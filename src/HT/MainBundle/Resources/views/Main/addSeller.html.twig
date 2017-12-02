@@ -1,0 +1,25 @@
+{% extends "HTMainBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+	
+{% if nameTest %}
+<p>Vous avez créé le vendeur de thé {{nameTest}} situé à l'adresse {{adressTest}} </p>
+
+{% else %}
+	
+	<form method="post">
+		<label>nom :</label>
+		<input type="text" name="name"><br/>
+		<label>adresse : </label>
+		<input type="text" name="adress"><br/>
+		<button>Créer vendeur</button>
+
+
+
+
+	</form>
+
+{% endif %}
+{% endblock %}

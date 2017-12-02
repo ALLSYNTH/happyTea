@@ -1,0 +1,28 @@
+ht_main_homepage:
+    path:     /
+    defaults: { _controller: HTMainBundle:Main:index }
+
+
+ht_main_categories:
+    path:    /categories
+    defaults: { _controller: HTMainBundle:Main:categories }
+
+
+ht_main_teas:
+    path:    /teas/{id}
+    defaults: 
+        _controller: HTMainBundle:Main:teas 
+    requirements: 
+        id: \d+
+
+ht_main_team:
+    path:    /team
+    defaults: { _controller: HTMainBundle:Main:team }
+
+ht_main_faq:
+    path:    /FAQ
+    defaults: { _controller: HTMainBundle:Main:faq }
+
+ht_main_addSeller:
+    path:    /addSeller
+    defaults: { _controller: HTMainBundle:Main:addSeller }
