@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-
+// notre controleur principal, c'est ici qu'il y aura toutes la logique du projet
 class MainController extends controller {
 
 	protected $title = "HappyTea"; 
@@ -18,14 +18,14 @@ class MainController extends controller {
 
 
 
-	public function indexAction() {
+	public function indexAction() { // le modèle pour la page index. les modèles finissent toujours par Action
 
 
 		$pageName = "d'accueil";
-
+						// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title, 
-				'pageName' => $pageName,
+				'pageName' => $pageName,  // on envoie les variable dans notre page twig
 
 			));
 
