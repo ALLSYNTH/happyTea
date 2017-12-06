@@ -32,7 +32,7 @@ class MainController extends controller {
 
 	}
 
-	public function categoriesAction() {
+	public function categoriesAction() { // modèle page categories
 
 		$pageName = "catégories"; 
 
@@ -44,7 +44,7 @@ class MainController extends controller {
 
 	}
 
-	public function teasAction($id) {
+	public function teasAction($id) { // modèle page thé
 
 		$pageName = "thés"; 
 
@@ -59,7 +59,7 @@ class MainController extends controller {
 
 	}
 
-	public function teamAction() {
+	public function teamAction() { // modèle page Team
 
 		$pageName = "team"; 
 
@@ -72,7 +72,7 @@ class MainController extends controller {
 
 	}
 
-	public function faqAction() {
+	public function faqAction() { // modèle FAQ
 
 
 		$pageName = "FAQ"; 
@@ -81,6 +81,19 @@ class MainController extends controller {
 				'title' => $this->title, 
 				'pageName' => $pageName, 
 			));
+	}
+
+	public function cguAction() { // modèle page CGU
+
+		$pageName = "Conditions générales d'utilisation"; 
+
+		return $this->render("HTMainBundle:Main:cgu.html.twig", array(
+				'title' => $this->title,
+				'pageName' => $pageName, 
+
+			));
+
+
 	}
 
 
