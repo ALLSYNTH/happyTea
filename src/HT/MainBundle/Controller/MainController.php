@@ -4,9 +4,11 @@ namespace HT\MainBundle\Controller;
 
 // c'est ici qu'est appelé les services (objets) de symfonie qui nous servirons dans ce controleur
 use HT\MainBundle\Entity\seller; 
+use HT\UserBundle\Entity\User; 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 // notre controleur principal, c'est ici qu'il y aura toutes la logique du projet
@@ -77,6 +79,36 @@ class MainController extends controller {
 
 		$pageName = "FAQ"; 
 
+
+		//SCRIPT TEST POUR REMPLIR BDD
+
+		// // Les noms d'utilisateurs à créer
+		//     $listNames = array('Alex', 'Antoine', 'Claire', 'Quentin');
+		//     $manager = $this->getDoctrine()->getManager(); 
+
+		//     foreach ($listNames as $name) {
+		//       // On crée l'utilisateur
+		//       $user = new User;
+
+		//       // Le nom d'utilisateur et le mot de passe sont identiques pour l'instant
+		//       $user->setUsername($name);
+		//       $user->setPassword($name);
+
+		//       // On ne se sert pas du sel pour l'instant
+		//       $user->setSalt('');
+		//       // On définit uniquement le role ROLE_USER qui est le role de base
+		//       $user->setRoles(array('ROLE_USER', 'ROLE_SELLER'));
+
+		//       // On le persiste
+		//       $manager->persist($user);
+		//     }
+
+		//     // On déclenche l'enregistrement
+		//     $manager->flush();
+		  
+
+		
+
 		return $this->render("HTMainBundle:Main:faq.html.twig", array(
 				'title' => $this->title, 
 				'pageName' => $pageName, 
@@ -89,6 +121,14 @@ class MainController extends controller {
 		$pageName = "ajouter vendeur";
 		$nameTest = "";
 		$adressTest=""; 
+
+		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+			throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+			
+		}
+
+
 		//on vérifie si le formulaire a bien été envoyé
 		if($request->isMethod('POST')) {
 
