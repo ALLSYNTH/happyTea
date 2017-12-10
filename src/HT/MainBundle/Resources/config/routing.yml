@@ -26,3 +26,7 @@ ht_main_faq:
 ht_main_addSeller:
     path:    /addSeller
     defaults: { _controller: HTMainBundle:Main:addSeller }
+
+ht_main_cgu:
+    path:   /cgu
+    defaults: { _controller: HTMainBundle:Main:cgu}
