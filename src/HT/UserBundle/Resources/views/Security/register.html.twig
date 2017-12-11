@@ -6,28 +6,51 @@
 </head>
 <body>
 
+	
+
 	<h1>Page Inscription</h1>
 	
+	{{ dump(userRep) }}
+
+	{% if success %}
+		<div> Votre compte a bien été créé. </div>
 
 	
+	{% else %}	
 
-	<form action="" method="post">
-		<label for="username"> Login : </label>
-		<input type="text" id="username" name="username" />
+		<form action="" method="post">
+			<label for="username"> Nom d'utilisateur: </label>
+			<input type="text" id="username" name="username" />
+			{% if error.username is defined %}
+				<div> {{ error.username }} </div>
+			{% endif %}
+			<br/>
 
-		<label for="password"> Mot de passe : </label>
-		<input type="password" id="password" name="password"/>
+			<label for="mail"> Adresse mail : </label>
+			<input type="text" id="mail" name="mail" />
+			{% if error.mail is defined  %}
+				<div> {{ error.mail }} </div>
+			{% endif %}
+			<br/>
 
-		<label for="password2">Retaper le Mot de passe : </label>
-		<input type="password" id="password2" name="password2"/>
-		<br/>
-		<input type="submit" value="Connexion"/>
+			<label for="password"> Mot de passe : </label>
+			<input type="password" id="password" name="password"/>
+			{% if error.password is defined  %}
+				<div> {{ error.password }} </div>
+			{% endif %}
+			<br/>
+
+			<label for="password2">Retaper le Mot de passe : </label>
+			<input type="password" id="password2" name="password2"/>
+			<br/>
+			<input type="submit" value="Inscription"/>
 
 
 
 
-	</form>
+		</form>
 
+	{% endif %}
 
 </body>
 </html>
