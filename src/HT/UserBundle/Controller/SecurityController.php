@@ -12,8 +12,13 @@ use HT\UserBundle\Entity\User;
 
 class SecurityController extends Controller 
 {
+	private $title = "HappyTea"; 
+
+
 	public function loginAction(Request $request)
 	{
+		$pageName = 'login';
+
 		if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
 		{
 
@@ -28,6 +33,8 @@ class SecurityController extends Controller
     return $this->render('HTUserBundle:Security:login.html.twig', array(
       'last_username' => $authenticationUtils->getLastUsername(),
       'error'         => $authenticationUtils->getLastAuthenticationError(),
+      'title' 		  => $this->title,
+      'pageName'     => $pageName,
     ));
 	}
 
@@ -37,6 +44,8 @@ class SecurityController extends Controller
 	{	
 		$error = []; 
 		$success = ""; 
+
+		$pageName = 'inscription';
 
 
 		if($request->isMethod('POST')) {
@@ -112,7 +121,9 @@ class SecurityController extends Controller
 		return $this->render('HTUserBundle:Security:register.html.twig', array(
 				'error' => $error,
 				'success' => $success,
-				'userRep' => $userRepository,   
+				
+				'title'   => $this->title,  
+				'pageName'=> $pageName,
 			));
 	}
 
