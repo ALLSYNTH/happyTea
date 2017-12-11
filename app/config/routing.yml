@@ -17,3 +17,8 @@ login_check:
 
 logout:
     path: /logout
+
+register:
+    path: /register
+    defaults:
+        _controller: HTUserBundle:Security:register 

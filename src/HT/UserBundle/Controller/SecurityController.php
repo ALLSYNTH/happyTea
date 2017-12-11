@@ -6,6 +6,7 @@ namespace HT\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use HT\UserBundle\Entity\User; 
 
 
 
@@ -28,6 +29,40 @@ class SecurityController extends Controller
       'last_username' => $authenticationUtils->getLastUsername(),
       'error'         => $authenticationUtils->getLastAuthenticationError(),
     ));
+	}
+
+
+
+	public function registerAction(Request $request) 
+	{
+
+		if($request->isMethod('POST')) {
+
+			$username = $request->get('username'); 
+			$password = $request->get('password'); 
+
+			$user = new User; 
+			$user->setUsername($username); 
+			$user->setPassword($password); 
+			$user->setSalt(''); 
+
+			$user->setRoles(array('ROLE_USER', 'ROLE_SELLER')); 
+
+
+
+			$em = $this->getDoctrine()->getManager(); 
+
+
+			$em->persist($user); 
+
+
+			$em->flush(); 
+
+		}
+
+		return $this->render('HTUserBundle:Security:register.html.twig', array(
+
+			));
 	}
 
 
