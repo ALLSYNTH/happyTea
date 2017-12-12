@@ -7,6 +7,7 @@ namespace HT\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use HT\UserBundle\Entity\User; 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 
@@ -45,6 +46,9 @@ class SecurityController extends Controller
 		$error = []; 
 		$success = ""; 
 
+		$encoder = $this->get('security.password_encoder');
+
+		
 		$pageName = 'inscription';
 
 
@@ -96,8 +100,9 @@ class SecurityController extends Controller
 			if(empty($error)) {
 
 			$user = new User; 
-			$user->setUsername($username); 
-			$user->setPassword($password); 
+			$user->setUsername($username);
+			$encoded = $encoder->encodePassword( $user, $password);  
+			$user->setPassword($encoded); 
 			$user->setSalt(''); 
 			$user->setMail($mail); 
 
