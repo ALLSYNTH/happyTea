@@ -1,0 +1,6 @@
+/*CSS sur le layout (navbar et footer)*/
+
+#footer{
+	position: fixed;
+	bottom: 0;
+}
