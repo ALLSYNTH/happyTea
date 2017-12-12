@@ -5,12 +5,12 @@ namespace HT\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * seller
+ * Category
  *
- * @ORM\Table(name="seller")
- * @ORM\Entity(repositoryClass="HT\MainBundle\Repository\sellerRepository")
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="HT\MainBundle\Repository\CategoryRepository")
  */
-class seller
+class Category
 {
     /**
      * @var int
@@ -24,16 +24,9 @@ class seller
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adress", type="string", length=255)
-     */
-    private $adress;
 
 
     /**
@@ -51,7 +44,7 @@ class seller
      *
      * @param string $name
      *
-     * @return seller
+     * @return Category
      */
     public function setName($name)
     {
@@ -68,30 +61,6 @@ class seller
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set adress
-     *
-     * @param string $adress
-     *
-     * @return seller
-     */
-    public function setAdress($adress)
-    {
-        $this->adress = $adress;
-
-        return $this;
-    }
-
-    /**
-     * Get adress
-     *
-     * @return string
-     */
-    public function getAdress()
-    {
-        return $this->adress;
     }
 }
 
