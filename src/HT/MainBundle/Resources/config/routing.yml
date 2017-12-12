@@ -10,9 +10,9 @@ ht_main_categories:
 
 ht_main_teas:
     path:    /teas/{id}
-    defaults: 
-        _controller: HTMainBundle:Main:teas 
-    requirements: 
+    defaults:
+        _controller: HTMainBundle:Main:teas
+    requirements:
         id: \d+
 
 ht_main_team:
@@ -30,3 +30,14 @@ ht_main_addSeller:
 ht_main_cgu:
     path:   /cgu
     defaults: { _controller: HTMainBundle:Main:cgu}
+
+ht_main_shopList:
+    path:     /shopList
+    defaults: { _controller: HTMainBundle:Main:shopList }
+
+ht_main_shop:
+    path:    /shop/{id}
+    defaults:
+        _controller: HTMainBundle:Main:shop
+    requirements:
+        id: \d+

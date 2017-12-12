@@ -21,14 +21,18 @@ class MainController extends controller {
 
 
 	public function indexAction() { // le modèle pour la page index. les modèles finissent toujours par Action
-
-
 		$pageName = "d'accueil";
-						// on envoi la view index.html.twig
+
+		 $em = $this->getDoctrine()->getManager();
+
+		 $productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		 $products = $productRepository->findAll();
+
+		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
-				'pageName' => $pageName,  // on envoie les variable dans notre page twig
-
+				'pageName' => $pageName,
+				'products' => $products  // on envoie les variable dans notre page twig
 			));
 
 
@@ -41,21 +45,23 @@ class MainController extends controller {
 		return $this->render("HTMainBundle:Main:categories.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
-
 			));
 
 	}
 
 	public function teasAction($id) { // modèle page thé
-
 		$pageName = "thés";
 
-		return $this->render("HTMainBundle:Main:teas.html.twig", array(
+		$em = $this->getDoctrine()->getManager();
 
+		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		$product = $productRepository->find($id);
+
+		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'id' => $id,
-
+				'product' => $product
 			));
 
 
@@ -188,6 +194,37 @@ class MainController extends controller {
 			));
 
 
+	}
+
+	public function shopListAction() {
+		$pageName = 'List des boutiques';
+
+		$em = $this->getDoctrine()->getManager();
+
+		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
+		$shops = $shopRepository->findAll();
+
+		return $this->render('HTMainBundle:Main:shopList.html.twig' , array(
+			'title' => $this->title,
+			'pageName' => $pageName,
+			'shops' => $shops
+		));
+	}
+
+	public function shopAction($id) {
+		$pageName = 'shop';
+
+		$em = $this->getDoctrine()->getManager();
+
+		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
+		$shop = $shopRepository->find($id);
+
+		return $this->render('HTMainBundle:Main:shop.html.twig', array(
+			'title' => $this->title,
+			'pageName' => $pageName,
+			'id' => $id,
+			'shop' => $shop
+		));
 	}
 
 

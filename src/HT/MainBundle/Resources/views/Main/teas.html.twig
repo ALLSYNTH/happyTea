@@ -3,4 +3,11 @@
 
 {% block body %}
 	<h2>Page du thé n° {{id}}</h2>
+	<ul>
+		<li>{{ product.name }}</li>
+		<li>{{ product.description }}</li>
+		<li>{{ product.price }}</li>
+		<li>{{ product.rating }}</li>
+		<li>{{ product.picture }}</li>
+	</ul>
 {% endblock %}

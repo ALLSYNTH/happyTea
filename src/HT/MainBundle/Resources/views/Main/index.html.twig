@@ -3,4 +3,22 @@
 
 {% block body %}
 
+<div class="container">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-6">
+      {{product.name}}
+      <br>
+      {{product.description}}
+      <br>
+      {{product.price}}
+      <br>
+      {{product.rating}}
+      <br>
+      {{product.picture}}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
