@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $roles = array();
 
+    /**
+    * @ORM\ManyToMany(targetEntity="HT\MainBundle\Entity\Product")
+    */
+    private $favProduct;
+
 
     /**
      * Get id
@@ -167,7 +172,7 @@ class User implements UserInterface
 
       public function eraseCredentials()
   {
-    
+
   }
 
     /**
