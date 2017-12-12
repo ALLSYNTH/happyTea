@@ -1,0 +1,20 @@
+{% extends "HTMainBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+  <h2>Shop n°{{ id }}</h2>
+  {{shop.name}}
+  <br>
+  {{shop.url}}
+  <br>
+  {{shop.description}}
+  <br>
+  {{shop.adress}}
+  <br>
+  {{shop.phone}}
+  <br>
+  {{ shop.openingTimes }}
+  <br>
+  {{ shop.logo }}
+</div>
+{% endblock %}
