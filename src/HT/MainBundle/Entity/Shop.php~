@@ -252,28 +252,4 @@ class Shop
     {
         return $this->logo;
     }
-
-    /**
-     * Set user
-     *
-     * @param \HT\UserBundle\Entity\User $user
-     *
-     * @return Shop
-     */
-    public function setUser(\HT\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \HT\UserBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }
