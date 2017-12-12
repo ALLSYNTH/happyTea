@@ -3,7 +3,7 @@
 namespace HT\MainBundle\Controller;
 
 // c'est ici qu'est appelé les services (objets) de symfonie qui nous servirons dans ce controleur
-use HT\MainBundle\Entity\seller;
+use HT\MainBundle\Entity\Shop;
 use HT\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,11 +129,9 @@ class MainController extends controller {
 	}
 
 
-	public function addSellerAction(Request $request) { // l'objet request sert à récupérer les données du formulaire
 
-		$pageName = "ajouter vendeur";
-		$nameTest = "";
-		$adressTest="";
+
+	public function addSellerAction(Request $request) { // l'objet request sert à récupérer les données du formulaire
 
 		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
 
@@ -141,18 +139,102 @@ class MainController extends controller {
 
 		}
 
+		$pageName = "ajouter vendeur";
+		$nameTest = "";
+		$adressTest="";
+		$error = []; 
+    	$success = ""; 
+
+
+		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+		dump($utilisateur);
+
+		$userId = $utilisateur->getId(); 
+
+
+
 	 // INSERER DANS LA BDD
 		// //on vérifie si le formulaire a bien été envoyé
-		// if($request->isMethod('POST')) {
-    //
-		// 	//$request->get('name');  est égal à $_POST['name'];
-		// $name=$request->get('name');
-		// $adress=$request->get('adress');
-    //
-		// //création de l'entité (objet qui nous sert à envoyer le nouveau vendeur dans la database)
-		// $seller = new seller();
-		// $seller->setName($name);
-		// $seller->setAdress($adress);
+		 if($request->isMethod('POST')) {
+    
+    
+		 // est égal à $_POST['name'];
+		$name=$request->get('name');
+		$adress=$request->get('adress');
+		$url=$request->get('url'); 
+		$description=$request->get('description');
+		$phone=$request->get('phone');
+		$logo = $request->files->get('logo');
+
+		$openingTimes = []; 
+
+		$openingTimes = $request->get('open'); 
+		$openingTimes = $request->get('close'); 
+
+
+
+		if(empty($name)) {
+			$error['name'] = "Veuillez remplir le champ \"Nom\"."; 
+
+		}
+
+
+
+		if(empty($url)) {
+			$error['url'] = "Veuillez remplir le champ \"Lien de votre site\"."; 
+
+		}
+
+		if(!filter_var($url, FILTER_VALIDATE_URL)) {
+
+			$error['url'] = "Votre lien n'est pas valide.";
+		}
+
+	
+
+		if(strlen($description)< 10) {
+
+			$error['description'] = "Votre description doit faire au moins 10 caractères."; 
+		}
+
+		if($logo == NULL ) {
+
+			$error['logo'] = "Veuillez ajouter une image pour illustrer votre Shop."; 
+		}
+
+		// dump($logo); 
+
+		
+    
+		//création de l'entité (objet qui nous sert à envoyer le nouveau vendeur dans la database)
+		if(empty($error)) {
+
+		
+
+		dump($logo);
+
+		$mime=$logo->guessClientExtension();
+		$uploadName = uniqid("doc_", true).'.'.$mime; 
+		$this->upload($logo, $uploadName);  
+
+		$shop = new Shop();
+		 $shop->setName($name);
+		 $shop->setAdress($adress);
+		 $shop->setUrl($url);
+		 $shop->setDescription($description);
+		 $shop->setPhone($phone); 
+		 $shop->setOpeningTimes($openingTimes); 
+		 $shop->setLogo($uploadName);
+		 $shop->setUser($utilisateur); 
+
+		 $em = $this->getDoctrine()->getManager();
+
+		 $em->persist($shop); 
+
+		 $em->flush(); 
+		 $success = "Votre Shop a bien été ajouté !";
+		}
     //
 		// // on créé l'entity manager
 		// $em = $this->getDoctrine()->getManager();
@@ -175,20 +257,55 @@ class MainController extends controller {
 
 		// et voilà ! pas besoin de reqête SQL, vous pouvez vérifier, le nouveau vendeur à bien été ajouter à la base de donnée !
 
-	// }
+	 }
 
 		return $this->render("HTMainBundle:Main:addSeller.html.twig", array(
 
 				'title' => $this->title,
 				'pageName' => $pageName,
-				'nameTest' => $nameTest,
-				'adressTest' => $adressTest,
+				'error' => $error,
+				'success' => $success
 
 
 			));
 
 
 	}
+
+
+	private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {
+	   //Test1: fichier correctement uploadé
+	     if (!isset($file) OR $file->getError() != 0) 
+	        {
+	        echo 'Le fichier n a pas été correctement uploadé<br/> ';
+	        return FALSE; }
+	   //Test2: taille limite
+	     if ($maxsize !== FALSE AND $file->getClientSize() > $maxsize) 
+	        {echo 'Le fichier est trop gros !<br/>';
+	        return FALSE; }
+
+	   //Test3: extension
+	     // $ext = substr(strrchr($_FILES[$index]['name'],'.'),1);
+	        $ext=$file->guessClientExtension();
+
+	     if ($extensions !== FALSE AND !in_array($ext,$extensions)) {
+	        
+	        echo 'Le fichier a une extension incorrect !<br/>';
+	        return FALSE; 
+	     }
+	     //Concatene l'extension MIME
+	    // $name .= '.'.$ext;
+	   //Déplacement
+	     // return move_uploaded_file($_FILES[$index]['tmp_name'],$destination);
+	     dump($file); 
+	     return $file->move("web/img/", $name );
+		}
+
+
+
+
+
+
 
 
 
