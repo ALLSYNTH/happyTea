@@ -13,6 +13,19 @@
 	width: 100%;
 }
 
+.simplelink{
+	text-decoration: none;
+	color: #46A271;
+}
+
+.simplelink:hover , .simplelink:focus{
+	color:#009688;
+}
+
+#footerlink:hover{
+	color:black;
+}
+
 .mainlogo{
 	height: 20%;
 	width: 20%;
