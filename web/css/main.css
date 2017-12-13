@@ -1,4 +1,11 @@
+/*CSS appliquable sur l'ensemble des pages*/
+
+
 /*CSS sur le layout (navbar et footer)*/
+
+.maintitle{
+	text-align: center;
+}
 
 #footer{
 	position: fixed;

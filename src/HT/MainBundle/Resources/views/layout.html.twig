@@ -15,32 +15,35 @@
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 	  <div class="container">
-		  <a class="navbar-brand" href="#">LOGO</a>
+		  <a class="navbar-brand" href="{{ path('ht_main_homepage')}}">Logo</a>
 		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 		    <ul class="navbar-nav">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#"> EQUIPE<span class="sr-only">(current)</span></a>
+		      <li class="nav-item">
+		        <a class="nav-link" href="{{ path('ht_main_team')}}">Equipe<span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">CONTACT</a>
+		        <a class="nav-link" href="#">Contact</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#"></a>
+		        <a class="nav-link" href="#">Ma théière</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Mon shop</a>
 		      </li>
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          INSCRIPTION
+		          Inscription
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-		          <a class="dropdown-item" href="{{ path('register') }}">CONSOMMATEUR</a>
-		          <a class="dropdown-item" href="{{ path('register_seller') }}">VENDEUR</a>
+		          <a class="dropdown-item" href="{{ path('register') }}">Consommateur</a>
+		          <a class="dropdown-item" href="{{ path('register_seller') }}">Vendeur</a>
 		        </div>
 		      </li>
 		    </ul>
 		  </div>
 	</div>
 	</nav></header>
-	<h1>Bienvenue sur la page {{pageName}} de {{title}} !! </h1>
+	<h1 class="maintitle">Page {{pageName}} de {{title}}</h1>
 	{% block body %}
 	{% endblock %}
 
