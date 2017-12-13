@@ -28,12 +28,6 @@ class Product
      */
     private $name;
 
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="rating", type="float", nullable=true)
-     */
-    private $rating;
 
     /**
      * @var float
@@ -98,30 +92,6 @@ class Product
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set rating
-     *
-     * @param float $rating
-     *
-     * @return Product
-     */
-    public function setRating($rating)
-    {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
-    /**
-     * Get rating
-     *
-     * @return float
-     */
-    public function getRating()
-    {
-        return $this->rating;
     }
 
     /**
