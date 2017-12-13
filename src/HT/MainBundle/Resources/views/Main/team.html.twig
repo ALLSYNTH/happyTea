@@ -3,24 +3,23 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<!-- header page : banner with page title -->
 
-	<div class="row">
-		<img src="{{ asset('img/background/banner-team.jpeg')}}" class="img-fluid" alt="team">
+<div class="container-fluid d-flex flex-column justify-content-center">
+	<div class="row banner team d-flex align-items-center">
+		<h1 class="col-12 m-5">Meet the Happy Team !</h1>
 	</div>
-
 </div>
 
+<!-- team presentation : cards x4  -->
 
-<div class="container">
+<div class="container my-5">
 
 	<div class="row">
 
-		<h2 class="team title col-12 m-5">Meet the Happy Team !</h2>
-
-		<div class="card col-12 col-md-6 mb-5">
+		<div class="card col-12 col-md-6 mb-5 team">
 	    <div class="card-block d-flex flex-column justify-content-center">
-	      <h3 class="card-title team title">Mister Tea</h3>
+	      <h2 class="card-title autumn">Mister Tea</h2>
 				<p class="grey text-center">Software Ninjaneer</p>
 				<img src="{{ asset('img/team/mistertea.jpg')}}" class="card-img-top img-fluid" alt="team mistertea">
 	      <p class="card-text py-5">

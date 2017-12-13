@@ -1,7 +1,7 @@
 /*CSS appliquable sur l'ensemble des pages*/
 
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
-
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /*CSS sur le layout (navbar et footer)*/
 
@@ -103,27 +103,66 @@
 	Styles Page Team
 ------------------------------------------------ */
 
-.team.title {
-	font-family: 'Pacifico', cursive;
-	font-size: 2.5em;
-	text-align: center;
+/* banner - page header */
+
+.team.banner {
+	background-image: url("../img/background/banner-team.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: ;
+	font-size: 2.2em;
 	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
 }
 
-.white {
-	color: white;
-}
 
-.grey {
-	color: darkgrey;
-}
+/* card - team presentation */
 
 .team.personaldetails {
 	text-transform: uppercase;
 	font-size: 0.8em;
 }
 
+/* font styles */
+
+.team h1 {
+	font-family: 'Pacifico', cursive;
+	font-size: 2.5em;
+	text-align: center;
+}
+
+.team h2 {
+	font-size: 2em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+
+
 .img-responsive{
 	width: 100%;
 	height: 100%;
+}
+
+.white {
+	color: white;
+}
+
+.darkgrey {
+	color: #484848;
+}
+
+.grey {
+	color: grey;
+}
+
+.autumn {
+	color: #D9A940;
+}
+
+.green {
+	color: #009688;
 }
