@@ -25,14 +25,17 @@
 				      <li class="nav-item  {%if app.request.attributes.get('_route') == 'ht_main_contact' %} active {% endif %}">
 				        <a class="nav-link" href="{{ path('ht_main_contact')}}">Contact</a>
 				      </li>
+				      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				      <li class="nav-item">
 				        <a class="nav-link" href="#">Ma théière</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link active" href="#">Mon shop</a>
+				        <a class="nav-link" href="#">Mon shop</a>
 				      </li>
-				      <li class="nav-item dropdown">
-				        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  {% endif %}
+					  {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+				      <li class="nav-item dropdown {%if app.request.attributes.get('_route') == 'register' or  app.request.attributes.get('_route') == 'register_seller' %} active {% endif %}">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				          Inscription
 				        </a>
 				        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -40,21 +43,31 @@
 				          <a class="dropdown-item" href="{{ path('register_seller') }}">Vendeur</a>
 				        </div>
 				      </li>
+				      <li class="nav-item {%if app.request.attributes.get('_route') == 'login' %} active {% endif %}">
+				        <a class="nav-link" href="{{ path('login')}}">Login</a>
+				      </li>
+				      {% endif %}
+				      
+				      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				      <li class="nav-item">
+				        <a class="nav-link" href="{{ path('logout')}}">Logout</a>
+				     	{% endif %}
+				      </li>
 				    </ul>
 				  </div>
 				</div>
 			</nav>
 		</header>
-		<h1 class="maintitle">Page {{pageName}} de {{title}}</h1>
+		{# <h1 class="maintitle">Page {{pageName}} de {{title}}</h1> #}
 		{% block body %}
 		{% endblock %}
 
-
+			{# <p>{{dump(app.user.shop)}} pouet pouet</p> #}
 			<footer id="footer">
 				<div class="container">
-					<a class="navbar-brand" href="#">sitemap</a>
-					<span class="text-muted">
-						Place sticky footer content here.
+					<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
+					<span>
+						Paske C NoTrE PrOjEeEeT
 					</span>
 				</div>
 			</footer>
