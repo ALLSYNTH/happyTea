@@ -11,3 +11,17 @@
 	position: fixed;
 	bottom: 0;
 }
+
+.mainlogo{
+	height: 20%;
+	width: 20%;
+}
+
+.mainlogo:hover{
+	transform: scale(0.9);
+}
+
+.img-fluid{
+	width: 100%;
+	height: 100%;
+}
