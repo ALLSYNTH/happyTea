@@ -109,7 +109,6 @@
 	background-image: url("../img/background/banner-team.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: ;
 	font-size: 2.2em;
 	color: #009688;
 	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
@@ -165,4 +164,18 @@
 
 .green {
 	color: #009688;
+}
+
+/* ------------------------------------------------
+	Media Queries
+------------------------------------------------ */
+
+@media (max-width: 768px){
+
+	.team h1 {
+		font-size: 1em;
+		padding: 0;
+		margin: 0;
+	}
+
 }
