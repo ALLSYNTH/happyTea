@@ -22,7 +22,7 @@
 
 	{% for comment in comments %}
 		<h6>{{ comment.user.username }}</h6>
-		<p>{{ comment.publishedAt.date }}</p>
+		<p>{{ comment.publishedAt.date | date('d-m-Y | H:i') }}</p>
 		<p>{{ comment.content }}</p>
 	{% endfor %}
 </div>
