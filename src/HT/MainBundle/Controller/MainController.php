@@ -175,8 +175,8 @@ class MainController extends controller {
 
 		$openingTimes = []; 
 
-		$openingTimes = $request->get('open'); 
-		$openingTimes = $request->get('close'); 
+		$openingTimes['opening'] = $request->get('open'); 
+		$openingTimes['closing'] = $request->get('close'); 
 
 
 
