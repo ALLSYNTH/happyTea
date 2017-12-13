@@ -72,16 +72,20 @@ class MainController extends controller {
 			$comment->setContent($content);
 			$comment->setPublishedAt($publishedAt);
 			$comment->setProduct($product);
-			 
+
 			$em->persist($comment);
 			$em->flush();
 		}
+
+		$commentRepository = $em->getRepository('HTMainBundle:Comment');
+		$comments = $commentRepository->findByProduct($id);
 
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'id' => $id,
 				'product' => $product,
+				'comments' => $comments
 			));
 
 

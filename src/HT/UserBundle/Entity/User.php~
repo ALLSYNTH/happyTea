@@ -70,6 +70,11 @@ class User implements UserInterface
      */
     private $siret;
 
+    /**
+    * @ORM\OneToOne(targetEntity="HT\MainBundle\Entity\Shop", mappedBy="user")
+    */
+    private $shop;
+
 
     /**
      * Get id

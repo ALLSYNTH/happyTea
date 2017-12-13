@@ -70,6 +70,11 @@ class User implements UserInterface
      */
     private $siret;
 
+    /**
+    * @ORM\OneToOne(targetEntity="HT\MainBundle\Entity\Shop", mappedBy="user")
+    */
+    private $shop;
+
 
     /**
      * Get id
@@ -269,5 +274,29 @@ class User implements UserInterface
     public function getFavProduct()
     {
         return $this->favProduct;
+    }
+
+    /**
+     * Set shop
+     *
+     * @param \HT\MainBundle\Entity\Shop $shop
+     *
+     * @return User
+     */
+    public function setShop(\HT\MainBundle\Entity\Shop $shop = null)
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
+
+    /**
+     * Get shop
+     *
+     * @return \HT\MainBundle\Entity\Shop
+     */
+    public function getShop()
+    {
+        return $this->shop;
     }
 }

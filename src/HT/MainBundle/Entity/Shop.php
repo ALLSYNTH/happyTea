@@ -71,7 +71,7 @@ class Shop
     private $logo;
 
     /**
-    * @ORM\OneToOne(targetEntity="HT\UserBundle\Entity\User")
+    * @ORM\OneToOne(targetEntity="HT\UserBundle\Entity\User", inversedBy="shop")
     */
     private $user;
 
