@@ -12,9 +12,13 @@
   {{shop.adress}}
   <br>
   {{shop.phone}}
+  {% if shop.openingTimes.opening is defined or shop.openingTimes.closing is defined %}
   <br>
   {{ shop.openingTimes.opening }} {{ shop.openingTimes.closing }}
   <br>
+  {% endif %}
   {{ shop.logo }}
+  <br>
+  {{ shop.user.username }}
 </div>
 {% endblock %}

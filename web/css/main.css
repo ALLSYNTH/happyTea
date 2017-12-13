@@ -12,90 +12,23 @@
 #footer{
 	position: fixed;
 	bottom: 0;
+  width: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.mainlogo{
+	height: 20%;
+	width: 20%;
+	transition: all 0.3s;
+}
+
+.mainlogo:hover{
+	transform: scale(1.1);
+}
+
+.img-fluid{
+	width: 100%;
+	height: 100%;
+}
 
 
 

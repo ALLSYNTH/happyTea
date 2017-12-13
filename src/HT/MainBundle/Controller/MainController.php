@@ -4,6 +4,8 @@ namespace HT\MainBundle\Controller;
 
 // c'est ici qu'est appelé les services (objets) de symfonie qui nous servirons dans ce controleur
 use HT\MainBundle\Entity\Shop;
+use HT\MainBundle\Entity\Product;
+use HT\MainBundle\Entity\Comment;
 use HT\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +51,7 @@ class MainController extends controller {
 
 	}
 
-	public function teasAction($id) { // modèle page thé
+	public function teasAction($id, Request $request) { // modèle page thé
 		$pageName = "thés";
 
 		$em = $this->getDoctrine()->getManager();
@@ -57,11 +59,33 @@ class MainController extends controller {
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
 
+		if($request->isMethod('POST')) {
+			$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+			$content = $request->get('content');
+			$publishedAt = new \DateTime();
+
+			//verif à faire...
+
+			$comment = new Comment();
+
+			$comment->setUser($utilisateur);
+			$comment->setContent($content);
+			$comment->setPublishedAt($publishedAt);
+			$comment->setProduct($product);
+
+			$em->persist($comment);
+			$em->flush();
+		}
+
+		$commentRepository = $em->getRepository('HTMainBundle:Comment');
+		$comments = $commentRepository->findByProduct($id);
+
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'id' => $id,
-				'product' => $product
+				'product' => $product,
+				'comments' => $comments
 			));
 
 
@@ -78,6 +102,16 @@ class MainController extends controller {
 			));
 
 
+	}
+
+	public function sitemapAction(){
+		$pageName = "Sitemap";
+
+		return $this->render("HTMainBundle:Main:sitemap.html.twig", array(
+				'title' => $this->title,
+				'pageName' =>$pageName,
+
+		));
 	}
 
 	public function faqAction() { // modèle FAQ
@@ -121,11 +155,11 @@ class MainController extends controller {
 			));
 	}
 
-	public function cguAction() { // modèle page CGU
+	public function contactAction() { // modèle page CGU
 
-		$pageName = "Conditions générales d'utilisation";
+		$pageName = "contact";
 
-		return $this->render("HTMainBundle:Main:cgu.html.twig", array(
+		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 
@@ -133,9 +167,6 @@ class MainController extends controller {
 
 
 	}
-
-
-
 
 	public function addSellerAction(Request $request) { // l'objet request sert à récupérer les données du formulaire
 
@@ -148,47 +179,47 @@ class MainController extends controller {
 		$pageName = "ajouter vendeur";
 		$nameTest = "";
 		$adressTest="";
-		$error = []; 
-    	$success = ""; 
+		$error = [];
+    	$success = "";
 
 
 		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 
 		dump($utilisateur);
 
-		$userId = $utilisateur->getId(); 
+		$userId = $utilisateur->getId();
 
 
 
 	 // INSERER DANS LA BDD
 		// //on vérifie si le formulaire a bien été envoyé
 		 if($request->isMethod('POST')) {
-    
-    
+
+
 		 // est égal à $_POST['name'];
 		$name=$request->get('name');
 		$adress=$request->get('adress');
-		$url=$request->get('url'); 
+		$url=$request->get('url');
 		$description=$request->get('description');
 		$phone=$request->get('phone');
 		$logo = $request->files->get('logo');
 
-		$openingTimes = []; 
+		$openingTimes = [];
 
-		$openingTimes['opening'] = $request->get('open'); 
-		$openingTimes['closing'] = $request->get('close'); 
+		$openingTimes['opening'] = $request->get('open');
+		$openingTimes['closing'] = $request->get('close');
 
 
 
 		if(empty($name)) {
-			$error['name'] = "Veuillez remplir le champ \"Nom\"."; 
+			$error['name'] = "Veuillez remplir le champ \"Nom\".";
 
 		}
 
 
 
 		if(empty($url)) {
-			$error['url'] = "Veuillez remplir le champ \"Lien de votre site\"."; 
+			$error['url'] = "Veuillez remplir le champ \"Lien de votre site\".";
 
 		}
 
@@ -197,48 +228,48 @@ class MainController extends controller {
 			$error['url'] = "Votre lien n'est pas valide.";
 		}
 
-	
+
 
 		if(strlen($description)< 10) {
 
-			$error['description'] = "Votre description doit faire au moins 10 caractères."; 
+			$error['description'] = "Votre description doit faire au moins 10 caractères.";
 		}
 
 		if($logo == NULL ) {
 
-			$error['logo'] = "Veuillez ajouter une image pour illustrer votre Shop."; 
+			$error['logo'] = "Veuillez ajouter une image pour illustrer votre Shop.";
 		}
 
-		// dump($logo); 
+		// dump($logo);
 
-		
-    
+
+
 		//création de l'entité (objet qui nous sert à envoyer le nouveau vendeur dans la database)
 		if(empty($error)) {
 
-		
+
 
 		dump($logo);
 
 		$mime=$logo->guessClientExtension();
-		$uploadName = uniqid("doc_", true).'.'.$mime; 
-		$this->upload($logo, $uploadName);  
+		$uploadName = uniqid("doc_", true).'.'.$mime;
+		$this->upload($logo, $uploadName);
 
 		$shop = new Shop();
 		 $shop->setName($name);
 		 $shop->setAdress($adress);
 		 $shop->setUrl($url);
 		 $shop->setDescription($description);
-		 $shop->setPhone($phone); 
-		 $shop->setOpeningTimes($openingTimes); 
+		 $shop->setPhone($phone);
+		 $shop->setOpeningTimes($openingTimes);
 		 $shop->setLogo($uploadName);
-		 $shop->setUser($utilisateur); 
+		 $shop->setUser($utilisateur);
 
 		 $em = $this->getDoctrine()->getManager();
 
-		 $em->persist($shop); 
+		 $em->persist($shop);
 
-		 $em->flush(); 
+		 $em->flush();
 		 $success = "Votre Shop a bien été ajouté !";
 		}
     //
@@ -253,7 +284,7 @@ class MainController extends controller {
 
 		// getRepository sert à récupérer les informations dans la base de donnees. on recupérere donc les données du vendeur que l'ont vient juste de créer
 		//ceci remplace donc le select de mySql
-// CHERCHER DANS LA BDD
+		// CHERCHER DANS LA BDD
 		// $sellerRepository = $em->getRepository('HTMainBundle:seller')->find($seller->getId());
     //
 		// $nameTest= $sellerRepository->getName();
@@ -285,7 +316,7 @@ class MainController extends controller {
 
 		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
 		$shops = $shopRepository->findAll();
-		dump($shops); 
+		dump($shops);
 		return $this->render('HTMainBundle:Main:shopList.html.twig' , array(
 			'title' => $this->title,
 			'pageName' => $pageName,
@@ -294,7 +325,7 @@ class MainController extends controller {
 	}
 
 	public function shopAction($id) {
-		$pageName = 'shop';
+		$pageName = 'Shop';
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -309,15 +340,35 @@ class MainController extends controller {
 		));
 	}
 
+	public function userAction($id) {
+		$pageName = 'User';
+
+		$em = $this->getDoctrine()->getManager();
+
+		$userRepository = $em->getRepository('HTUserBundle:User');
+		$user = $userRepository->find($id);
+
+		$shopRepository = $em->getRepository('HTMainBundle:Shop');
+		$userShop = $shopRepository->findByUser($id)[0];
+
+		return $this->render('HTMainBundle:Main:user.html.twig', array(
+			'title' => $this->title,
+			'pageName' => $pageName,
+			'id' => $id,
+			'user' => $user,
+			'userShop' => $userShop
+		));
+	}
+
 
 	private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {
 	   //Test1: fichier correctement uploadé
-	     if (!isset($file) OR $file->getError() != 0) 
+	     if (!isset($file) OR $file->getError() != 0)
 	        {
 	        $error = 'Le fichier n a pas été correctement uploadé<br/> ';
 	        return $error; }
 	   //Test2: taille limite
-	     if ($maxsize !== FALSE AND $file->getClientSize() > $maxsize) 
+	     if ($maxsize !== FALSE AND $file->getClientSize() > $maxsize)
 	        {$error = 'Le fichier est trop gros !<br/>';
 	        return $error; }
 
@@ -326,16 +377,16 @@ class MainController extends controller {
 	        $ext=$file->guessClientExtension();
 
 	     if ($extensions !== FALSE AND !in_array($ext,$extensions)) {
-	        
+
 	        $error = 'Le fichier a une extension incorrect !<br/>';
-	        return $error; 
+	        return $error;
 	     }
 	     //Concatene l'extension MIME
 	    // $name .= '.'.$ext;
 	   //Déplacement
 	     // return move_uploaded_file($_FILES[$index]['tmp_name'],$destination);
-	     dump($file); 
-	    
+	     dump($file);
+
 
 	     return $file->move("web/img/", $name );
 		}
@@ -343,7 +394,102 @@ class MainController extends controller {
 
 
 
+	public function addProductAction(Request $request) {
 
+		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+			throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+
+		}
+
+			$pageName = "ajouter thé";
+			$error = [];
+			$success = "";
+
+			 if($request->isMethod('POST')) {
+
+			 	$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+
+
+			 	$userId = $utilisateur->getId();
+
+			 	$em = $this->getDoctrine()->getManager();
+
+			 	$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
+
+			 	dump($shop);
+
+			 	$name = $request->get('name');
+			 	$price = $request->get('price');
+			 	$description = $request->get('description');
+			 	$picture = $request->files->get('picture');
+			 	$category_id = $request->get('category');
+
+			 	$category = $em->getRepository('HTMainBundle:Category')->findById($category_id)[0];
+
+			 	if(empty($name)) {
+
+			 		$error['name'] = "Veuillez remplir le champ \"Nom\".";
+			 	}
+
+			 	if(empty($price)) {
+
+			 		$error['price'] = "Veuillez remplir le champ \"Price\".";
+			 	}
+
+			 	if(!is_numeric($price)) {
+
+			 		$error['price'] = "Le prix doit être un nombre.";
+			 	}
+
+			 	if(empty($description)) {
+
+			 		$error['description'] = "Veuillez remplir le champ \"Description\".";
+			 	}
+
+			 	if(empty($category)) {
+
+			 		$error['category'] = "Veuillez remplir le champ \"Catégorie\".";
+			 	}
+
+
+				if(empty($error)) {
+
+
+					$mime=$picture->guessClientExtension();
+					$uploadName = uniqid("doc_", true).'.'.$mime;
+					$this->upload($picture, $uploadName);
+
+					$product = new Product;
+					$product->setShop($shop);
+					$product->setCategory($category);
+					$product->setPicture($uploadName);
+					$product->setDescription($description);
+					$product->setPrice($price);
+					$product->setName($name);
+
+					$em->persist($product);
+
+					$em->flush();
+
+					$success = "Le produit a bien été ajouté à votre shop.";
+
+
+				}
+
+
+
+			 }
+
+
+		return $this->render('HTMainBundle:Main:addProduct.html.twig', array(
+				'title' => $this->title,
+				'pageName' => $pageName,
+				'error' => $error,
+				'success' => $success
+			));
+	}
 
 
 

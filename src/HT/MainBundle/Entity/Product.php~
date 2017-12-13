@@ -28,6 +28,12 @@ class Product
      */
     private $name;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="rating", type="float", nullable=true)
+     */
+    private $rating;
 
     /**
      * @var float
@@ -92,6 +98,30 @@ class Product
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param float $rating
+     *
+     * @return Product
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
     }
 
     /**
@@ -164,53 +194,5 @@ class Product
     public function getPicture()
     {
         return $this->picture;
-    }
-
-    /**
-     * Set shop
-     *
-     * @param \HT\MainBundle\Entity\Shop $shop
-     *
-     * @return Product
-     */
-    public function setShop(\HT\MainBundle\Entity\Shop $shop = null)
-    {
-        $this->shop = $shop;
-
-        return $this;
-    }
-
-    /**
-     * Get shop
-     *
-     * @return \HT\MainBundle\Entity\Shop
-     */
-    public function getShop()
-    {
-        return $this->shop;
-    }
-
-    /**
-     * Set category
-     *
-     * @param \HT\MainBundle\Entity\Category $category
-     *
-     * @return Product
-     */
-    public function setCategory(\HT\MainBundle\Entity\Category $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \HT\MainBundle\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 }

@@ -2,12 +2,28 @@
 
 
 {% block body %}
-	<h2>Page du thé n° {{id}}</h2>
+<div class="container">
+	{{ dump(comments) }}
+		<h2>Page du thé n° {{id}}</h2>
 	<ul>
 		<li>{{ product.name }}</li>
 		<li>{{ product.description }}</li>
 		<li>{{ product.price }}</li>
-		<li>{{ product.rating }}</li>
 		<li>{{ product.picture }}</li>
+		<li>{{ product.shop.name }}</li>
+		<li>{{ product.shop.url }}</li>
 	</ul>
+
+	<form method="post" action="">
+		<textarea name="content" placeholder="Votre commentaire ici..." rows="5" cols="40"></textarea>
+		<br>
+		<input type="submit" value="Commenter">
+	</form>
+
+	{% for comment in comments %}
+		<h6>{{ comment.user.username }}</h6>
+		<p>{{ comment.publishedAt.date }}</p>
+		<p>{{ comment.content }}</p>
+	{% endfor %}
+</div>
 {% endblock %}

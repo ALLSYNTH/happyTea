@@ -27,9 +27,9 @@ ht_main_addSeller:
     path:    /addSeller
     defaults: { _controller: HTMainBundle:Main:addSeller }
 
-ht_main_cgu:
-    path:   /cgu
-    defaults: { _controller: HTMainBundle:Main:cgu}
+ht_main_contact:
+    path:   /contact
+    defaults: { _controller: HTMainBundle:Main:contact}
 
 ht_main_shopList:
     path:     /shopList
@@ -41,3 +41,11 @@ ht_main_shop:
         _controller: HTMainBundle:Main:shop
     requirements:
         id: \d+
+
+ht_main_addProduct:
+    path:   /addProduct
+    defaults: { _controller: HTMainBundle:Main:addProduct }
+
+ht_main_sitemap:
+    path:   /sitemap
+    defaults: { _controller: HTMainBundle:Main:sitemap}

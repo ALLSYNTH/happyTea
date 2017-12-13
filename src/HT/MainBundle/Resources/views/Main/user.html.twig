@@ -1,0 +1,23 @@
+{% extends "HTMainBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+  <h2>Page de l'utilisateur n°{{ id }}</h2>
+  <ul>
+    <li>{{ user.username }}</li>
+    <li>{{ user.mail }}</li>
+    {% if user.siret is defined %}
+    <li>{{ user.siret }}</li>
+    {% endif %}
+  </ul>
+  <h3>Shop de {{ user.username }}</h3>
+  <ul>
+    <li>{{ userShop.name }}</li>
+    {% if userSjop.logo is defined %}
+    <li>{{ userShop.logo }}</li>
+    {% endif %}
+    <li>{{ userShop.adress }}</li>
+    <li>{{ userShop.url }}</li>
+  </ul>
+</div>
+{% endblock %}
