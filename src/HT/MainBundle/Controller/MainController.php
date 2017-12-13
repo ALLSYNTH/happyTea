@@ -81,6 +81,16 @@ class MainController extends controller {
 
 	}
 
+	public function sitemapAction(){
+		$pageName = "Sitemap";
+
+		return $this->render("HTMainBundle:Main:sitemap.html.twig", array(
+				'title' => $this->title,
+				'pageName' =>$pageName,
+
+		));
+	}
+
 	public function faqAction() { // modèle FAQ
 
 
@@ -122,11 +132,11 @@ class MainController extends controller {
 			));
 	}
 
-	public function cguAction() { // modèle page CGU
+	public function contactAction() { // modèle page CGU
 
-		$pageName = "Conditions générales d'utilisation";
+		$pageName = "contact";
 
-		return $this->render("HTMainBundle:Main:cgu.html.twig", array(
+		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 
