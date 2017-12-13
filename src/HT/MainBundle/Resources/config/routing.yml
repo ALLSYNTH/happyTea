@@ -42,6 +42,13 @@ ht_main_shop:
     requirements:
         id: \d+
 
+ht_main_user:
+    path:    /user/{id}
+    defaults:
+        _controller: HTMainBundle:Main:User
+    requirements:
+        id: \d+
+
 ht_main_addProduct:
     path:   /addProduct
     defaults: { _controller: HTMainBundle:Main:addProduct }

@@ -135,9 +135,6 @@ class MainController extends controller {
 
 	}
 
-
-
-
 	public function addSellerAction(Request $request) { // l'objet request sert à récupérer les données du formulaire
 
 		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
@@ -254,7 +251,7 @@ class MainController extends controller {
 
 		// getRepository sert à récupérer les informations dans la base de donnees. on recupérere donc les données du vendeur que l'ont vient juste de créer
 		//ceci remplace donc le select de mySql
-// CHERCHER DANS LA BDD
+		// CHERCHER DANS LA BDD
 		// $sellerRepository = $em->getRepository('HTMainBundle:seller')->find($seller->getId());
     //
 		// $nameTest= $sellerRepository->getName();
@@ -307,6 +304,26 @@ class MainController extends controller {
 			'pageName' => $pageName,
 			'id' => $id,
 			'shop' => $shop
+		));
+	}
+
+	public function userAction($id) {
+		$pageName = 'User';
+
+		$em = $this->getDoctrine()->getManager();
+
+		$userRepository = $em->getRepository('HTUserBundle:User');
+		$user = $userRepository->find($id);
+
+		$shopRepository = $em->getRepository('HTMainBundle:Shop');
+		$userShop = $shopRepository->findByUser($id)[0];
+
+		return $this->render('HTMainBundle:Main:user.html.twig', array(
+			'title' => $this->title,
+			'pageName' => $pageName,
+			'id' => $id,
+			'user' => $user,
+			'userShop' => $userShop
 		));
 	}
 
