@@ -4,6 +4,7 @@ namespace HT\MainBundle\Controller;
 
 // c'est ici qu'est appelé les services (objets) de symfonie qui nous servirons dans ce controleur
 use HT\MainBundle\Entity\Shop;
+use HT\MainBundle\Entity\Product;
 use HT\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -343,7 +344,102 @@ class MainController extends controller {
 
 
 
+	public function addProductAction(Request $request) {
 
+		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+			throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+
+		}
+
+			$pageName = "ajouter thé";
+			$error = []; 
+			$success = ""; 
+
+			 if($request->isMethod('POST')) {
+
+			 	$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+			 	
+
+			 	$userId = $utilisateur->getId(); 
+
+			 	$em = $this->getDoctrine()->getManager();
+
+			 	$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
+
+			 	dump($shop);
+
+			 	$name = $request->get('name'); 
+			 	$price = $request->get('price');
+			 	$description = $request->get('description'); 
+			 	$picture = $request->files->get('picture');
+			 	$category_id = $request->get('category');
+
+			 	$category = $em->getRepository('HTMainBundle:Category')->findById($category_id)[0];
+
+			 	if(empty($name)) {
+
+			 		$error['name'] = "Veuillez remplir le champ \"Nom\"."; 
+			 	}
+
+			 	if(empty($price)) {
+
+			 		$error['price'] = "Veuillez remplir le champ \"Price\"."; 
+			 	}
+
+			 	if(!is_numeric($price)) {
+
+			 		$error['price'] = "Le prix doit être un nombre."; 
+			 	}
+
+			 	if(empty($description)) {
+
+			 		$error['description'] = "Veuillez remplir le champ \"Description\"."; 
+			 	}
+
+			 	if(empty($category)) {
+
+			 		$error['category'] = "Veuillez remplir le champ \"Catégorie\"."; 
+			 	}
+
+
+				if(empty($error)) {
+
+
+					$mime=$picture->guessClientExtension();
+					$uploadName = uniqid("doc_", true).'.'.$mime; 
+					$this->upload($picture, $uploadName);
+
+					$product = new Product; 
+					$product->setShop($shop); 
+					$product->setCategory($category); 
+					$product->setPicture($uploadName); 
+					$product->setDescription($description); 
+					$product->setPrice($price); 
+					$product->setName($name); 
+
+					$em->persist($product); 
+
+					$em->flush();   
+
+					$success = "Le produit a bien été ajouté à votre shop.";  
+
+
+				}
+
+
+
+			 }
+
+
+		return $this->render('HTMainBundle:Main:addProduct.html.twig', array(
+				'title' => $this->title, 
+				'pageName' => $pageName, 
+				'error' => $error,
+				'success' => $success
+			));
+	}
 
 
 

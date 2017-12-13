@@ -8,7 +8,7 @@
 	
 
 	{% if success %}
-		<div> Votre compte a bien été créé. </div>
+		<div class="alert alert-success"> Votre compte a bien été créé. </div>
 
 	
 	{% else %}	
@@ -19,7 +19,7 @@
 				<label for="username"> Nom d'utilisateur: </label>
 				<input type="text" class="form-control" id="username" name="username" />
 				{% if error.username is defined %}
-					<div> {{ error.username }} </div>
+					<div class="alert alert-warning"> {{ error.username }} </div>
 				{% endif %}
 			</div>
 			
@@ -27,7 +27,7 @@
 				<label for="mail"> Adresse mail : </label>
 				<input type="text" class="form-control" id="mail" name="mail" />
 				{% if error.mail is defined  %}
-					<div> {{ error.mail }} </div>
+					<div class="alert alert-warning"> {{ error.mail }} </div>
 				{% endif %}
 			</div>
 			
@@ -35,7 +35,7 @@
 				<label for="password"> Mot de passe : </label>
 				<input type="password" class="form-control" id="password" name="password"/>
 				{% if error.password is defined  %}
-					<div> {{ error.password }} </div>
+					<div class="alert alert-warning"> {{ error.password }} </div>
 				{% endif %}
 			</div>
 

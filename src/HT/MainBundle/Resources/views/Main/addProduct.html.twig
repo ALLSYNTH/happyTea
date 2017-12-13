@@ -1,0 +1,67 @@
+{% extends "HTMainBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+	
+{% if success %}
+<div class="alert alert-success">{{ success }}  </div>
+{% else %}
+<div class="container">
+	<form method="post" enctype="multipart/form-data">
+
+		<div> Les champs marqué d'un * sont obligatoires :</div>
+
+		<div class="form-group">
+			<label for="name"> Nom du thé : </label>
+			<input type="name" class="form-control" placeholder="nom du thé..." name="name" id="name">
+			{% if error.name is defined %}
+					<div class="alert alert-warning"> {{ error.name }} </div>
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			<label for="price"> Prix du thé : </label>
+			<input type="text" class="form-control" name="price" placeholder="prix du thé"/>
+			{% if error.price is defined %}
+				<div class="alert alert-warning"> {{ error.price }} </div>
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			<label for="description"> Description du produit </label>
+			<textarea class="form-control" name="description"></textarea>
+			{% if error.description is defined %}
+				<div class="alert alert-warning"> {{ error.description }} </div>
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			<label for="picture">Image : </label>
+			<input type="file" name="picture" id="picture">
+		</div>
+
+		<div class="form-group">
+			<label for="category">Catégorie :</label>
+			<select class="form-control" name="category" id="category">
+				<option value="1">Thé vert</option>
+				<option value="2">Thé noir</option>
+				<option value="3">Thé blanc</option>
+				<option value="4">Autre</option>
+			</select>
+			{% if error.category is defined %}
+				<div class="alert alert-warning"> {{ error.category }} </div>
+			{% endif %}
+
+
+		</div>
+
+		<input type="submit" value="rajouter thé">
+
+
+
+	</form>
+</div>
+
+{% endif %}
+{% endblock %}
