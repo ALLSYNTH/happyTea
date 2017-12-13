@@ -3,6 +3,7 @@
 
 {% block body %}
 <div class="container">
+	{{ dump(comments) }}
 		<h2>Page du thé n° {{id}}</h2>
 	<ul>
 		<li>{{ product.name }}</li>
@@ -18,5 +19,11 @@
 		<br>
 		<input type="submit" value="Commenter">
 	</form>
+
+	{% for comment in comments %}
+		<h6>{{ comment.user.username }}</h6>
+		<p>{{ comment.publishedAt.date }}</p>
+		<p>{{ comment.content }}</p>
+	{% endfor %}
 </div>
 {% endblock %}
