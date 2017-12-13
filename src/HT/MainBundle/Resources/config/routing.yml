@@ -41,3 +41,7 @@ ht_main_shop:
         _controller: HTMainBundle:Main:shop
     requirements:
         id: \d+
+
+ht_main_addProduct:
+    path:   /addProduct
+    defaults: { _controller: HTMainBundle:Main:addProduct }
