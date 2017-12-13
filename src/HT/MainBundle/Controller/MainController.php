@@ -314,12 +314,12 @@ class MainController extends controller {
 	   //Test1: fichier correctement uploadé
 	     if (!isset($file) OR $file->getError() != 0) 
 	        {
-	        echo 'Le fichier n a pas été correctement uploadé<br/> ';
-	        return FALSE; }
+	        $error = 'Le fichier n a pas été correctement uploadé<br/> ';
+	        return $error; }
 	   //Test2: taille limite
 	     if ($maxsize !== FALSE AND $file->getClientSize() > $maxsize) 
-	        {echo 'Le fichier est trop gros !<br/>';
-	        return FALSE; }
+	        {$error = 'Le fichier est trop gros !<br/>';
+	        return $error; }
 
 	   //Test3: extension
 	     // $ext = substr(strrchr($_FILES[$index]['name'],'.'),1);
@@ -327,14 +327,16 @@ class MainController extends controller {
 
 	     if ($extensions !== FALSE AND !in_array($ext,$extensions)) {
 	        
-	        echo 'Le fichier a une extension incorrect !<br/>';
-	        return FALSE; 
+	        $error = 'Le fichier a une extension incorrect !<br/>';
+	        return $error; 
 	     }
 	     //Concatene l'extension MIME
 	    // $name .= '.'.$ext;
 	   //Déplacement
 	     // return move_uploaded_file($_FILES[$index]['tmp_name'],$destination);
 	     dump($file); 
+	    
+
 	     return $file->move("web/img/", $name );
 		}
 

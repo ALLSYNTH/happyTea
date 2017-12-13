@@ -110,7 +110,7 @@ class SecurityController extends Controller
 			$user->setMail($mail); 
 			
 
-			$user->setRoles(array('ROLE_USER', 'ROLE_SELLER')); 
+			$user->setRoles(array('ROLE_USER')); 
 
 
 
