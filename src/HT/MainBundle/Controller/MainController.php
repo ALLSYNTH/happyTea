@@ -285,7 +285,7 @@ class MainController extends controller {
 
 		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
 		$shops = $shopRepository->findAll();
-
+		dump($shops); 
 		return $this->render('HTMainBundle:Main:shopList.html.twig' , array(
 			'title' => $this->title,
 			'pageName' => $pageName,
