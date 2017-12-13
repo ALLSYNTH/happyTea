@@ -22,3 +22,8 @@ register:
     path: /register
     defaults:
         _controller: HTUserBundle:Security:register 
+
+register_seller:
+    path: /registerSeller
+    defaults:
+        _controller: HTUserBundle:Security:registerSeller 

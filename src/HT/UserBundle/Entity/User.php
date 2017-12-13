@@ -63,6 +63,13 @@ class User implements UserInterface
     */
     private $favProduct;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="siret", type="string", length=255, nullable=true)
+     */
+    private $siret;
+
 
     /**
      * Get id
@@ -197,5 +204,70 @@ class User implements UserInterface
     public function getMail()
     {
         return $this->mail;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->favProduct = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set siret
+     *
+     * @param string $siret
+     *
+     * @return User
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return string
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+
+    /**
+     * Add favProduct
+     *
+     * @param \HT\MainBundle\Entity\Product $favProduct
+     *
+     * @return User
+     */
+    public function addFavProduct(\HT\MainBundle\Entity\Product $favProduct)
+    {
+        $this->favProduct[] = $favProduct;
+
+        return $this;
+    }
+
+    /**
+     * Remove favProduct
+     *
+     * @param \HT\MainBundle\Entity\Product $favProduct
+     */
+    public function removeFavProduct(\HT\MainBundle\Entity\Product $favProduct)
+    {
+        $this->favProduct->removeElement($favProduct);
+    }
+
+    /**
+     * Get favProduct
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavProduct()
+    {
+        return $this->favProduct;
     }
 }
