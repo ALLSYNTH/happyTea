@@ -5,6 +5,7 @@ namespace HT\MainBundle\Controller;
 // c'est ici qu'est appelé les services (objets) de symfonie qui nous servirons dans ce controleur
 use HT\MainBundle\Entity\Shop;
 use HT\MainBundle\Entity\Product;
+use HT\MainBundle\Entity\Comment;
 use HT\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,13 +51,31 @@ class MainController extends controller {
 
 	}
 
-	public function teasAction($id) { // modèle page thé
+	public function teasAction($id, Request $request) { // modèle page thé
 		$pageName = "thés";
 
 		$em = $this->getDoctrine()->getManager();
 
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
+
+		if($request->isMethod('POST')) {
+			$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+			$content = $request->get('content');
+			$publishedAt = new \DateTime();
+
+			//verif à faire...
+
+			$comment = new Comment();
+
+			$comment->setUser($utilisateur);
+			$comment->setContent($content);
+			$comment->setPublishedAt($publishedAt);
+			$comment->setProduct($product);
+			 
+			$em->persist($comment);
+			$em->flush();
+		}
 
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
@@ -380,16 +399,16 @@ class MainController extends controller {
 		}
 
 			$pageName = "ajouter thé";
-			$error = []; 
-			$success = ""; 
+			$error = [];
+			$success = "";
 
 			 if($request->isMethod('POST')) {
 
 			 	$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 
-			 	
 
-			 	$userId = $utilisateur->getId(); 
+
+			 	$userId = $utilisateur->getId();
 
 			 	$em = $this->getDoctrine()->getManager();
 
@@ -397,9 +416,9 @@ class MainController extends controller {
 
 			 	dump($shop);
 
-			 	$name = $request->get('name'); 
+			 	$name = $request->get('name');
 			 	$price = $request->get('price');
-			 	$description = $request->get('description'); 
+			 	$description = $request->get('description');
 			 	$picture = $request->files->get('picture');
 			 	$category_id = $request->get('category');
 
@@ -407,27 +426,27 @@ class MainController extends controller {
 
 			 	if(empty($name)) {
 
-			 		$error['name'] = "Veuillez remplir le champ \"Nom\"."; 
+			 		$error['name'] = "Veuillez remplir le champ \"Nom\".";
 			 	}
 
 			 	if(empty($price)) {
 
-			 		$error['price'] = "Veuillez remplir le champ \"Price\"."; 
+			 		$error['price'] = "Veuillez remplir le champ \"Price\".";
 			 	}
 
 			 	if(!is_numeric($price)) {
 
-			 		$error['price'] = "Le prix doit être un nombre."; 
+			 		$error['price'] = "Le prix doit être un nombre.";
 			 	}
 
 			 	if(empty($description)) {
 
-			 		$error['description'] = "Veuillez remplir le champ \"Description\"."; 
+			 		$error['description'] = "Veuillez remplir le champ \"Description\".";
 			 	}
 
 			 	if(empty($category)) {
 
-			 		$error['category'] = "Veuillez remplir le champ \"Catégorie\"."; 
+			 		$error['category'] = "Veuillez remplir le champ \"Catégorie\".";
 			 	}
 
 
@@ -435,22 +454,22 @@ class MainController extends controller {
 
 
 					$mime=$picture->guessClientExtension();
-					$uploadName = uniqid("doc_", true).'.'.$mime; 
+					$uploadName = uniqid("doc_", true).'.'.$mime;
 					$this->upload($picture, $uploadName);
 
-					$product = new Product; 
-					$product->setShop($shop); 
-					$product->setCategory($category); 
-					$product->setPicture($uploadName); 
-					$product->setDescription($description); 
-					$product->setPrice($price); 
-					$product->setName($name); 
+					$product = new Product;
+					$product->setShop($shop);
+					$product->setCategory($category);
+					$product->setPicture($uploadName);
+					$product->setDescription($description);
+					$product->setPrice($price);
+					$product->setName($name);
 
-					$em->persist($product); 
+					$em->persist($product);
 
-					$em->flush();   
+					$em->flush();
 
-					$success = "Le produit a bien été ajouté à votre shop.";  
+					$success = "Le produit a bien été ajouté à votre shop.";
 
 
 				}
@@ -461,8 +480,8 @@ class MainController extends controller {
 
 
 		return $this->render('HTMainBundle:Main:addProduct.html.twig', array(
-				'title' => $this->title, 
-				'pageName' => $pageName, 
+				'title' => $this->title,
+				'pageName' => $pageName,
 				'error' => $error,
 				'success' => $success
 			));
