@@ -39,6 +39,9 @@
 		<div class="form-group">
 			<label for="picture">Image : </label>
 			<input type="file" name="picture" id="picture">
+			{% if error.picture is defined %}
+				<div class="alert alert-warning"> {{ error.picture }} </div>
+			{% endif %}
 		</div>
 
 		<div class="form-group">

@@ -21,7 +21,7 @@ security:
         main:
             entity:
                 class: HT\UserBundle\Entity\User
-                property: username
+                property: mail
 
        
     firewalls:
@@ -39,7 +39,7 @@ security:
                 default_target_path: ht_main_homepage
             logout:
                 path:       logout
-                target:     login
+                target:     ht_main_homepage
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
