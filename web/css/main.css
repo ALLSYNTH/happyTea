@@ -1,5 +1,7 @@
 /*CSS appliquable sur l'ensemble des pages*/
 
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 
 /*CSS sur le layout (navbar et footer)*/
 
@@ -10,4 +12,118 @@
 #footer{
 	position: fixed;
 	bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------
+	Styles Page Team
+------------------------------------------------ */
+
+.team.title {
+	font-family: 'Pacifico', cursive;
+	font-size: 2.5em;
+	text-align: center;
+	color: #009688;
+}
+
+.white {
+	color: white;
+}
+
+.grey {
+	color: darkgrey;
+}
+
+.team.personaldetails {
+	text-transform: uppercase;
+	font-size: 0.8em;
+}
+
+.img-responsive{
+	width: 100%;
+	height: 100%;
 }
