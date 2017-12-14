@@ -9,15 +9,19 @@
 	</head>
 	<body>
 		<header>
+			<!-- bootstrap navbar -->
 			<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 			  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 			  <div class="container">
+					<!-- branding logo -->
 				  <a class="navbar-brand d-flex align-items-center" href="{{ path('ht_main_homepage')}}">
 				  	<img src="{{ asset('img/logo.png') }}" class="mainlogo">
 				  </a>
+
 				  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<!-- nav menu -->
 				    <ul class="navbar-nav">
 				      <li class="nav-item {%if app.request.attributes.get('_route') == 'ht_main_team' %} active {% endif %}">
 				        <a class="nav-link" href="{{ path('ht_main_team')}}">Equipe </a>
@@ -25,6 +29,8 @@
 				      <li class="nav-item  {%if app.request.attributes.get('_route') == 'ht_main_contact' %} active {% endif %}">
 				        <a class="nav-link" href="{{ path('ht_main_contact')}}">Contact</a>
 				      </li>
+
+							<!-- nav menu activation for seller and user -->
 				      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				      <li class="nav-item">
 				        <a class="nav-link" href="{{path('ht_main_user', {'id': app.user.id} )}}">Ma théière</a>
@@ -36,6 +42,8 @@
 				  		{% endif %}
 					  {% endif %}
 					  {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+
+						<!-- nav dropdown Inscription -->
 				      <li class="nav-item dropdown {%if app.request.attributes.get('_route') == 'register' or  app.request.attributes.get('_route') == 'register_seller' %} active {% endif %}">
 				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				          Inscription
@@ -45,11 +53,13 @@
 				          <a class="dropdown-item" href="{{ path('register_seller') }}">Vendeur</a>
 				        </div>
 				      </li>
+
+							<!-- nav Login / Logout -->
 				      <li class="nav-item {%if app.request.attributes.get('_route') == 'login' %} active {% endif %}">
 				        <a class="nav-link" href="{{ path('login')}}">Login</a>
 				      </li>
 				      {% endif %}
-				      
+
 				      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				      <li class="nav-item">
 				        <a class="nav-link" href="{{ path('logout')}}">Logout</a>
@@ -64,12 +74,12 @@
 		{% block body %}
 		{% endblock %}
 
-			
+
 			<footer id="footer">
 				<div class="container">
 					<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
 					<span>
-						
+
 					</span>
 				</div>
 			</footer>
