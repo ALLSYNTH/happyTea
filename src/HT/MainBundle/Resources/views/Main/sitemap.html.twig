@@ -2,5 +2,17 @@
 
 
 {% block body %}
-	Sitemap	
+	<div class="container shadowbox">
+		<br>
+		<h2 class="display-4 text-center">Sitemap d'Happytea</h2>
+		<br>
+		<li class="list-unstyled text-center">
+			<ul><a href="{{ path('ht_main_homepage') }}">Accueil</a></ul>
+			<ul><a href="{{ path('ht_main_team') }}">Equipe</a></ul>
+			<ul><a href="{{ path('login') }}">Login</a></ul>
+			<ul><a href="{{ path('register_seller') }}">Inscription Vendeur</a></ul>
+			<ul><a href="{{ path('register') }}">Inscription Consommateur</a></ul>
+		</li>
+	</div>
+
 {% endblock %}
