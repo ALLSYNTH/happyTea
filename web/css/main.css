@@ -113,6 +113,38 @@
 }
 
 /* ------------------------------------------------
+  Styles applicable to Contact page
+------------------------------------------------ */
+
+.contact.banner {
+  background-image: url("../img/background/banner-contact.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  font-size: 2.2em;
+  color: #009688;
+  text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+  height: 400px;
+  background-attachment: fixed;
+  margin-bottom: 1.5em;
+}
+
+/* font styles */
+
+.contact h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */
 

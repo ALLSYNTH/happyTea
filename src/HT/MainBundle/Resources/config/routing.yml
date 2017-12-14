@@ -36,7 +36,7 @@ ht_main_addSeller:
 
 ht_main_contact:
     path:   /contact
-    defaults: { _controller: HTMainBundle:Main:contact}
+    defaults: { _controller: HTMainBundle:Main:contact }
 
 ht_main_shopList:
     path:     /shopList
