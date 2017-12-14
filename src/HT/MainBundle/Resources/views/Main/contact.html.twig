@@ -2,45 +2,79 @@
 
 
 {% block body %}
-<!-- header : banner with page title -->
-<div class="container-fluid">
-  <div class="row banner contact d-flex align-items-center">
-    <h1 class="col-12">Contactez nous Bordel</h1>
+
+<div class=" bg-turquoise">
+
+  <!-- header : banner with page title -->
+  <div class="container-fluid">
+    <div class="row banner contact d-flex align-items-center">
+      <h1 class="col-12">Contactez nous Bordel</h1>
+    </div>
   </div>
-</div>
 
-<!-- form -->
-<div class="container mb-5">
+  <div class="container">
 
-  <form>
+    <div class="row">
 
-    <!-- name field -->
-    <div class="form-group row">
-      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Votre nom:</label>
-      <div class="col-12">
-        <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Ton nom coco">
+      <div class="col-12  offset-md-2 col-md-8 my-3 contact">
+        <h2>Besoin de nous contacter ?</h2>
+        <p>
+          Nous mettons tout en oeuvre pour faciliter votre visite sur notre site afin de répondre au mieux à vos attentes. Nous répondons à toutes vos questions rapidement.
+        </p>
+      </div>
+
+      <div class="col-12 offset-md-2 col-md-8">
+        <!-- form #2 -->
+        <form action="#" method="post" name="contact" class="text-left" id="contact">
+            <fieldset>
+              <div class="row">
+                <!-- name field -->
+                <div class="col-md-6 d-flex flex-column mt-4">
+                  <label for="name">Nom<span class="required">*</span></label>
+                  <input type="text" name="name" id="name" size="" value="" required/>
+                </div>
+
+                <!-- email field -->
+                <div class="col-md-6 d-flex flex-column mt-4">
+                  <label for="name">Email<span class="required">*</span></label>
+                  <input type="text" name="email" id="email" size="" value="" required/>
+                </div>
+              </div>
+
+              <!-- textarea -->
+                <div class="col-12 d-flex flex-column" style="margin-top:15px; padding: 0;">
+                  <label for="message">Message<span class="required">*</span></label>
+                  <textarea name="message" id="message" rows="8" required></textarea>
+                </div>
+
+              <!-- submit button -->
+                <div class="my-5">
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+
+            </fieldset>
+        </form>
       </div>
     </div>
+  </div>
 
-    <!-- name field -->
-    <div class="form-group row">
-      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Votre email:</label>
-      <div class="col-12">
-        <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Ton email quoi">
-      </div>
-    </div>
+  <!-- api twitter -->
+  <div class="container-fluid p-0 contact bannerbottom">
+    <div class="bg-dark"></div>
+  </div>
 
-    <!-- textarea -->
-    <div class="form-group">
-      <label for="exampleTextarea">Example textarea</label>
-      <textarea class="form-control" id="exampleTextarea" rows="8"></textarea>
-    </div>
+  <!-- img banner tout simple  -->
+  <!-- <div class="container-fluid p-0 hidden-sm-up">
+    <div class="contact bannerbottom"></div> -->
+    <!-- <img src="{{ asset('img/contact-teaparty.jpeg')}}" class="img-responsive" alt="contact us"> -->
+  <!-- </div> -->
 
-    <!-- form submit button -->
-    <button type="submit" class="btn btn-primary">Envoyer</button>
+  <!-- <div class="container-fluid px-0 py-3 bg-darkgrey hidden-sm-down">
+    <div class="contact bannerbottom my-3"></div> -->
+    <!-- <img src="{{ asset('img/contact-teaparty.jpeg')}}" class="img-responsive" alt="contact us"> -->
+  <!-- </div> -->
 
 
-  </form>
 </div>
 
 {% endblock %}
