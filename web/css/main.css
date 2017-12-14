@@ -3,16 +3,22 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+body{
+	background-color: #e4f9f6;
+}
 /*CSS sur le layout (navbar et footer)*/
 
-.maintitle{
-	text-align: center;
+.bg-faded{
+	background-color: rgb(204,234,231);
+
 }
 
 #footer{
-	position: fixed;
-	bottom: 0;
   width: 100%;
+  margin-top: 10px;
+  position: fixed;
+  bottom:0;
+  background-color: rgba(153,213,207, 0.5);
 }
 
 .simplelink{
