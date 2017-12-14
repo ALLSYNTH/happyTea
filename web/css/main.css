@@ -85,33 +85,6 @@
 	text-transform: uppercase;
 }
 
-
-
-.img-responsive{
-	width: 100%;
-	height: 100%;
-}
-
-.white {
-	color: white;
-}
-
-.darkgrey {
-	color: #484848;
-}
-
-.grey {
-	color: grey;
-}
-
-.autumn {
-	color: #D9A940;
-}
-
-.green {
-	color: #009688;
-}
-
 /* ------------------------------------------------
   Styles applicable to Contact page
 ------------------------------------------------ */
@@ -129,8 +102,15 @@
   margin-bottom: 1.5em;
 }
 
-/* form */
+/* contact banner bottom */
 
+.contact.bannerbottom {
+	height: 350px;
+	background-image: url("../img/contact-teaparty2.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 0 25%;
+}
 
 /* font styles */
 
@@ -142,10 +122,52 @@
 
 .contact h2 {
   font-size: 2em;
-  text-align: center;
-  text-transform: uppercase;
+	margin-bottom: 1em;
 }
 
+/* ------------------------------------------------
+	General styles applicable to all pages 
+------------------------------------------------ */
+
+
+.img-responsive{
+	width: 100%;
+	height: auto%;
+}
+
+.white {
+	color: white;
+}
+
+.darkgrey {
+	color: #484848;
+}
+
+.bg-darkgrey {
+	background-color: #484848;
+}
+
+.bg-dark {
+	background-color: rgba(48,48,48,0.75);
+	height: 100%;
+	width: 100%;
+}
+
+.grey {
+	color: grey;
+}
+
+.autumn {
+	color: #D9A940;
+}
+
+.green {
+	color: #009688;
+}
+
+.bg-turquoise {
+  background-color: #27BEA0;
+}
 
 
 /* ------------------------------------------------
@@ -154,10 +176,16 @@
 
 @media (max-width: 768px){
 
-	.team h1 {
-		font-size: 1em;
+	/* ---- Team Page & Contact Page ---- */
+	.team h1, .contact h1 {
+		font-size: 1.2em;
 		padding: 0;
 		margin: 0;
+	}
+
+	/* ---- Contact Page ---- */
+	.contact.banner {
+		height: 250px;
 	}
 
 }
