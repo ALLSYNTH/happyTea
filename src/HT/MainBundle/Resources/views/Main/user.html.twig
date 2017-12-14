@@ -11,13 +11,16 @@
     {% endif %}
   </ul>
   <h3>Shop de {{ user.username }}</h3>
-  <ul>
-    <li>{{ userShop.name }}</li>
-    {% if userSjop.logo is defined %}
-    <li>{{ userShop.logo }}</li>
-    {% endif %}
-    <li>{{ userShop.adress }}</li>
-    <li>{{ userShop.url }}</li>
-  </ul>
+
+    {% if userShop.logo is defined %}
+    <ul>
+      <li>{{ userShop.name }}</li>
+      <li>{{ userShop.logo }}</li>
+
+      <li>{{ userShop.adress }}</li>
+      <li>{{ userShop.url }}</li>
+    </ul>
+      {% endif %}
+     
 </div>
 {% endblock %}
