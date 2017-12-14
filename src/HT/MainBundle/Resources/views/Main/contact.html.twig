@@ -2,12 +2,45 @@
 
 
 {% block body %}
-<!-- header page : banner with page title -->
-
+<!-- header : banner with page title -->
 <div class="container-fluid">
   <div class="row banner contact d-flex align-items-center">
     <h1 class="col-12">Contactez nous Bordel</h1>
   </div>
+</div>
+
+<!-- form -->
+<div class="container mb-5">
+
+  <form>
+
+    <!-- name field -->
+    <div class="form-group row">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Votre nom:</label>
+      <div class="col-12">
+        <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Ton nom coco">
+      </div>
+    </div>
+
+    <!-- name field -->
+    <div class="form-group row">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Votre email:</label>
+      <div class="col-12">
+        <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Ton email quoi">
+      </div>
+    </div>
+
+    <!-- textarea -->
+    <div class="form-group">
+      <label for="exampleTextarea">Example textarea</label>
+      <textarea class="form-control" id="exampleTextarea" rows="8"></textarea>
+    </div>
+
+    <!-- form submit button -->
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+
+
+  </form>
 </div>
 
 {% endblock %}
