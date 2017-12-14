@@ -149,6 +149,13 @@ class SecurityController extends Controller
 		
 		$pageName = 'inscription';
 
+			if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
+		{
+
+			return $this->redirectToRoute('ht_main_homepage');
+		}
+
+
 
 		if($request->isMethod('POST')) {
 
@@ -196,7 +203,7 @@ class SecurityController extends Controller
 				$error['mail'] = "Votre email n'est pas correct."; 
 			}
 
-			if(strlen($siret) < 9) {
+			if(strlen($siret) < 9 || !is_numeric($siret)) {
 
 				$error['siret'] = "Le champ SIRET n'est pas valide."; 
 			}
@@ -247,6 +254,13 @@ class SecurityController extends Controller
 				$token = ""; 
 				$userId = "";
 				$em = $this->getDoctrine()->getManager(); 
+
+				if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
+				{
+
+					return $this->redirectToRoute('ht_main_homepage');
+				}
+
 
 				if($request->isMethod('POST')) {
 
@@ -316,6 +330,13 @@ class SecurityController extends Controller
 			dump($token);
 			// die();
 
+			if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
+			{
+
+				return $this->redirectToRoute('ht_main_homepage');
+			}
+
+
 			if($request->isMethod('POST') && $canChange) {
 
 				$password = $request->get('password'); 
@@ -332,6 +353,16 @@ class SecurityController extends Controller
 
 				}
 
+				if(strlen($password) < 8) {
+
+					$error['password'] = "Le mot de passe doit contenir au moins 8 charactères."; 
+				}
+
+				if(is_numeric($password)) {
+
+					$error['password'] = "Le mot de passe doit contenir au moins une lettre."; 
+				}
+
 				if(empty($error)) {
 
 					$em = $this->getDoctrine()->getManager(); 
@@ -339,6 +370,8 @@ class SecurityController extends Controller
 					$user = $em->getRepository('HTUserBundle:User')->find($id);
 					$encoded = $encoder->encodePassword( $user, $password);  
 					$user->setPassword($encoded); 
+					$user->setResetExpire(NULL);
+					$user->setResetToken(NULL);
 
 					$em->persist($user); 
 					$em->flush(); 
