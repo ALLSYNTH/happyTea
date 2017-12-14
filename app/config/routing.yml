@@ -26,4 +26,16 @@ register:
 register_seller:
     path: /registerSeller
     defaults:
-        _controller: HTUserBundle:Security:registerSeller 
+        _controller: HTUserBundle:Security:registerSeller
+
+password_forget:
+    path: /password_forget
+    defaults:
+        _controller: HTUserBundle:Security:passwordForget 
+
+password_change:
+    path: /password_change/{token}-{id}
+    defaults:
+        _controller: HTUserBundle:Security:passwordChange 
+    requirements: 
+        id: \d+

@@ -75,6 +75,20 @@ class User implements UserInterface
     */
     private $shop;
 
+     /**
+     * @var \Datetime
+     *
+     * @ORM\Column(name="resetExpire", type="datetimetz", nullable=true)
+     */
+    private $resetExpire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resetToken", type="string", length=255, nullable=true)
+     */
+    private $resetToken;
+
 
     /**
      * Get id
@@ -298,5 +312,53 @@ class User implements UserInterface
     public function getShop()
     {
         return $this->shop;
+    }
+
+    /**
+     * Set resetExpire
+     *
+     * @param \Datetime $resetExpire
+     *
+     * @return User
+     */
+    public function setResetExpire($resetExpire)
+    {
+        $this->resetExpire = $resetExpire;
+
+        return $this;
+    }
+
+    /**
+     * Get resetExpire
+     *
+     * @return \Datetime
+     */
+    public function getResetExpire()
+    {
+        return $this->resetExpire;
+    }
+
+    /**
+     * Set resetToken
+     *
+     * @param string $resetToken
+     *
+     * @return User
+     */
+    public function setResetToken($resetToken)
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    /**
+     * Get resetToken
+     *
+     * @return string
+     */
+    public function getResetToken()
+    {
+        return $this->resetToken;
     }
 }

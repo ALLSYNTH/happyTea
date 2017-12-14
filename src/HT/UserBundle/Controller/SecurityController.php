@@ -239,6 +239,170 @@ class SecurityController extends Controller
 	}
 
 
+	public function passwordForgetAction(Request $request, \Swift_Mailer $mailer) {
 
+				$pageName = 'Mot de passe oublié'; 
+				$error = [];
+				$success = "";
+				$token = ""; 
+				$userId = "";
+				$em = $this->getDoctrine()->getManager(); 
+
+				if($request->isMethod('POST')) {
+
+					$mail=$request->get('mail'); 
+
+					$user = $em->getRepository('HTUserBundle:User')->findByMail($mail)[0];
+
+					$userId = $user->getId(); 
+
+					if(!$user) {
+
+						$error['mail'] = "Aucun utilisateur n'est enregistré avec cette adresse mail."; 
+					} 
+
+					if(empty($error)) {
+						$token = $this->generateResetToken(); 
+						$user->setResetToken($token);
+						$timeToken = new \Datetime(); 
+						$timeToken->modify('+1 day'); 
+						$user->setResetExpire($timeToken);
+
+						// date("Y/m/d/h/i", time()+ 24*3600
+
+						$em->persist($user); 
+
+						$em->flush(); 
+						$success = true; 
+
+						// $message = new /Swift_Mailer('Mot de passe oublié'); 
+						// $message->setFrom('quentin.gary@nordnet.fr'); 
+						// $message->setBody($this->renderView(
+						// 		'Emails/registration.html.twig',
+						// 		 array('name' => $name)
+						// 	), 'text/html'
+						// );
+
+						//  $mailer->send($message);
+
+					}
+					dump($success);
+
+				}
+
+		return $this->render('HTUserBundle:Security:passwordForget.html.twig', array(
+				'error' => $error,
+				'success' => $success,
+				'title'   => $this->title,  
+				'pageName'=> $pageName,
+				'token' => $token,
+				'userId'=> $userId
+
+			));
+	}
+
+	public function passwordChangeAction($token, $id,  Request $request) {
+
+			$canChange = $this->checkToken($id, $token); 
+
+			$error = []; 
+			$success = ""; 
+			$pageName = "Changer de mot de passe."; 
+
+			$encoder = $this->get('security.password_encoder');
+
+			dump($id);
+
+			dump($token);
+			// die();
+
+			if($request->isMethod('POST') && $canChange) {
+
+				$password = $request->get('password'); 
+				$password2 = $request->get('password2'); 
+
+				if(empty($password) || empty($password2) ) {
+
+					$error['password'] = "Veuillez remplir tous les champs.";
+				}
+
+				if($password != $password2) {
+
+					$error['password'] = "Les deux champs mots de passes ne sont pas identiques."; 
+
+				}
+
+				if(empty($error)) {
+
+					$em = $this->getDoctrine()->getManager(); 
+					
+					$user = $em->getRepository('HTUserBundle:User')->find($id);
+					$encoded = $encoder->encodePassword( $user, $password);  
+					$user->setPassword($encoded); 
+
+					$em->persist($user); 
+					$em->flush(); 
+
+					$success = true; 
+				}
+
+				
+
+
+			}
+
+		return $this->render('HTUserBundle:Security:passwordChange.html.twig', array(
+				'error' => $error,
+				'success' => $success,
+				'title'   => $this->title,  
+				'pageName'=> $pageName,
+				'canChange' => $canChange
+				
+			));
+	}
+
+	private	function generateResetToken() {
+
+		return md5(uniqid( rand(), true));
+
+	}
+
+
+	private function checkToken($id, $token) {
+		//include("connectPDO.php"); 
+
+	// 	global $bdd; 
+
+	// 	$stmt=$bdd->prepare('SELECT * FROM users WHERE id = ?'); 
+	// $stmt->bindValue(1, $id); 
+	// $stmt->execute(); 
+
+	// $userInfo=$stmt->fetch(); 
+		$em = $this->getDoctrine()->getManager(); 
+		dump($id);
+		$user = $em->getRepository('HTUserBundle:User')->find($id);
+			dump($user); 
+		$resetExpire=$user->getResetExpire(); 
+		$resetToken=$user->getResetToken(); 
+
+		dump($resetToken);
+		dump($token); 
+		dump($user); 
+	// $time=strtotime($resetExpire); 
+
+		$now = new \Datetime();
+		$now->format("Y/m/d/h/i"); 
+		dump($now); 
+		dump($resetExpire); 
+
+
+		if($resetToken==$token && $now < $resetExpire  ) {
+
+			return true; 
+		}
+
+		return false; 
+	
+	}
 
 }
