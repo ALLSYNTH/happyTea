@@ -99,6 +99,17 @@ class MainController extends controller {
 
 	}
 
+		public function sitemapAction(){
+ 	    $pageName = "Sitemap";
+ 
+ 		return $this->render("HTMainBundle:Main:sitemap.html.twig", array(
+ 				'title' => $this->title,
+ 				'pageName' =>$pageName,
+ 
+ 		));
+ 	}
+ 
+
 	public function faqAction() { // modèle FAQ
 
 
@@ -140,11 +151,11 @@ class MainController extends controller {
 			));
 	}
 
-	public function cguAction() { // modèle page CGU
+	public function contactAction() { // modèle page CGU
 
-		$pageName = "Conditions générales d'utilisation";
+		$pageName = "contact";
 
-		return $this->render("HTMainBundle:Main:cgu.html.twig", array(
+		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 
@@ -321,7 +332,7 @@ class MainController extends controller {
 	}
 
 	public function shopAction($id) {
-		$pageName = 'shop';
+		$pageName = 'Shop';
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -335,6 +346,28 @@ class MainController extends controller {
 			'shop' => $shop
 		));
 	}
+
+	public function userAction($id) {
+ 		$pageName = 'User';
+ 
+ 	$em = $this->getDoctrine()->getManager();
+ 
+ 		$userRepository = $em->getRepository('HTUserBundle:User');
+ 		$user = $userRepository->find($id);
+ 
+ 		$shopRepository = $em->getRepository('HTMainBundle:Shop');
+ 		// $userShop = $shopRepository->findByUser($id)[0];
+ 		$userShop = $user->getShop(); 
+
+ 		dump($userShop); 
+ 		return $this->render('HTMainBundle:Main:user.html.twig', array(
+ 			'title' => $this->title,
+ 			'pageName' => $pageName,
+ 			'id' => $id,
+ 			'user' => $user,
+ 			'userShop' => $userShop
+ 		));
+ 	}
 
 
 	private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {
