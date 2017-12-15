@@ -49,7 +49,30 @@ body{
 	height: 100%;
 }
 
+/* ------------------------------------------------
+	Style applicable to the main page
+------------------------------------------------ */
 
+.filterisotope{
+	visibility: hidden;
+}
+
+.filterbutton{
+	margin-top: 15px;
+}
+
+.filtercontainer{
+	position:fixed;
+	right:0;
+}
+
+.teacontainer{
+	transition: all 0.3s;
+}
+
+.teacontainer:hover{
+	transform: scale(0.8);
+}
 
 /* ------------------------------------------------
 	Styles Page Team
@@ -90,6 +113,9 @@ body{
 	text-align: center;
 	text-transform: uppercase;
 }
+
+
+
 
 /* ------------------------------------------------
   Styles applicable to Contact page
