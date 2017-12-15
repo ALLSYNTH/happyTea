@@ -264,13 +264,15 @@ class SecurityController extends Controller
 
 				if($request->isMethod('POST')) {
 
-					$mail=$request->get('mail'); 
+					$mail=$request->get('mail');
 
-					$user = $em->getRepository('HTUserBundle:User')->findByMail($mail)[0];
 
-					$userId = $user->getId(); 
+					if($em->getRepository('HTUserBundle:User')->findByMail($mail)) {
+						$user = $em->getRepository('HTUserBundle:User')->findByMail($mail)[0];
+						$userId = $user->getId(); 
+					}
 
-					if(!$user) {
+					else {
 
 						$error['mail'] = "Aucun utilisateur n'est enregistré avec cette adresse mail."; 
 					} 

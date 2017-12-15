@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             // new AppBundle\AppBundle(),
             new HT\MainBundle\HTMainBundle(),
             new HT\UserBundle\HTUserBundle(),
+            new HT\AdminBundle\HTAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

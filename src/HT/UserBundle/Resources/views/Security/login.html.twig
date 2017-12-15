@@ -6,8 +6,8 @@
 	<h2>Login</h2>
 	
 
-	{% if error %}
-		<div class="alert-warning alert">{{ error.message }}</div>
+	{% if error.message is defined%}
+		<div class="alert-warning alert">Votre adresse e-mail et/ou votre mot de passe ne sont pas corrects. </div>
 	{% endif %}
 
 	<form action="{{ path('login_check') }}" method="post">

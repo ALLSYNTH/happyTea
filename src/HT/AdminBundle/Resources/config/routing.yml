@@ -1,0 +1,3 @@
+ht_admin_homepage:
+    path:     /
+    defaults: { _controller: HTAdminBundle:Admin:adminPage }
