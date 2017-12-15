@@ -67,4 +67,10 @@ $(function(){
 
 	console.log($(window).height());
 
+
+/*ISOTOPE*/
+
+	$('.grid').isotope({
+		
+	});
 });
