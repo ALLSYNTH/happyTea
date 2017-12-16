@@ -63,14 +63,26 @@ class MainController extends controller {
 					$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 					$content = $request->get('content');
 					$publishedAt = new \DateTime();
-					//verif à faire...
 					$comment = new Comment();
-					$comment->setUser($utilisateur);
-					$comment->setContent($content);
-					$comment->setPublishedAt($publishedAt);
-					$comment->setProduct($product);
-					$em->persist($comment);
-					$em->flush();
+
+					$error = [];
+					$success = "";
+
+					if(strlen($content) < 10) {
+						$error['length'] = 'Votre commentaire doit comporter au minimum 10 caratères';
+					}
+
+					if(empty($error)) {
+
+						$comment->setUser($utilisateur);
+						$comment->setContent($content);
+						$comment->setPublishedAt($publishedAt);
+						$comment->setProduct($product);
+						$em->persist($comment);
+						$em->flush();
+
+						$success .= "Votre commentaire à été posté.";
+					}
 				}
 				$commentRepository = $em->getRepository('HTMainBundle:Comment');
 				$comments = $commentRepository->findByProduct($id);
@@ -80,7 +92,9 @@ class MainController extends controller {
 				'pageName' => $pageName,
 				'id' => $id,
 				'product' => $product,
-				'comments' => $comments
+				'comments' => $comments,
+				'success' => $success,
+				'error' => $error
 			));
 
 

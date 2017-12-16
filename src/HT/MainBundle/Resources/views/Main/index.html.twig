@@ -3,19 +3,31 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    {% for product in products %}
-    <div class="col-md-6">
-      {{product.name}}
+    <div class="col-2 filtercontainer">
+      <button type="button" class="btn btn-success filterbutton" data-filter="1">Thé noir</button>
       <br>
-      {{product.description}}
+      <button type="button" class="btn btn-success filterbutton">Thé vert</button>
       <br>
-      {{product.price}}
+      <button type="button" class="btn btn-success filterbutton">Thé blanc</button>
       <br>
-      {{product.picture}}
+      <button type="button" class="btn btn-success filterbutton">Autre</button>
+      <br>
     </div>
-    {% endfor %}
+    <div class="col-10">
+      <div class="row grid">
+        {% for product in products %}
+        <div class="col-2 teacontainer element-item" data-category="{{product.id}}">
+          <div class="filterisotope"> {{product.name}} </div>
+          <div class="filterisotope">{{product.price}}</div>
+          <br>
+          <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
+        </div>
+          {{product.category.name}}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 

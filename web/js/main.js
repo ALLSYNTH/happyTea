@@ -71,7 +71,6 @@ $(function(){
 
 
 
-
             // JS REQUETE AJAX ADMIN PAGE 
 
             // requete JS de base 
@@ -169,5 +168,12 @@ $(function(){
           });
 
 
+
+
+/*ISOTOPE*/
+
+	$('.grid').isotope({
+		
+	});
 
 });
