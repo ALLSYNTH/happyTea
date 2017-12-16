@@ -89,6 +89,20 @@ class User implements UserInterface
      */
     private $resetToken;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isBanned", type="boolean")
+     */
+    private $isBanned = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isChecked", type="boolean")
+     */
+    private $isChecked = false;
+
 
     /**
      * Get id
@@ -360,5 +374,53 @@ class User implements UserInterface
     public function getResetToken()
     {
         return $this->resetToken;
+    }
+
+    /**
+     * Set isBanned
+     *
+     * @param boolean $isBanned
+     *
+     * @return User
+     */
+    public function setIsBanned($isBanned)
+    {
+        $this->isBanned = $isBanned;
+
+        return $this;
+    }
+
+    /**
+     * Get isBanned
+     *
+     * @return boolean
+     */
+    public function getIsBanned()
+    {
+        return $this->isBanned;
+    }
+
+    /**
+     * Set isChecked
+     *
+     * @param boolean $isChecked
+     *
+     * @return User
+     */
+    public function setIsChecked($isChecked)
+    {
+        $this->isChecked = $isChecked;
+
+        return $this;
+    }
+
+    /**
+     * Get isChecked
+     *
+     * @return boolean
+     */
+    public function getIsChecked()
+    {
+        return $this->isChecked;
     }
 }

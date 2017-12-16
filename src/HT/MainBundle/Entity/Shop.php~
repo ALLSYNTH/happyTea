@@ -75,6 +75,8 @@ class Shop
     */
     private $user;
 
+  
+
     /**
      * Get id
      *
@@ -276,4 +278,6 @@ class Shop
     {
         return $this->user;
     }
+
+    
 }

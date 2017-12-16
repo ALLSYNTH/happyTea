@@ -207,6 +207,51 @@ body{
 }
 
 
+
+/*-----------------------------------------------------
+	Style Page admin 
+------------------------------------------------ */
+
+.header-admin {
+
+	background-color: black;
+	text-align: center;
+
+}
+
+.header-admin h3 {
+
+	line-height:  2; 
+	cursor: pointer;
+	color: lightgray;
+}
+
+#color-title {
+
+	
+	cursor: default;
+}
+
+.header-admin a:focus {
+
+	text-decoration: none;
+}
+
+.header-admin a:hover {
+	text-decoration: none;
+}
+
+#mainDiv {
+
+	background-color: white;
+	box-shadow: 1px 2px 3px gainsboro;
+}
+
+.pad-h3 {
+
+	padding: 34px 18px; 
+}
+
 /* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */
