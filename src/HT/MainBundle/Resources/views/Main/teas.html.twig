@@ -3,7 +3,14 @@
 
 {% block body %}
 <div class="container">
-	{{ dump(comments) }}
+
+	{% if success %}
+	<div class="alert alert-success">{{ success }}  </div>
+	{% endif %}
+	{% if error.length is defined %}
+	<div class="alert alert-danger"> {{ error.length }} </div>
+	{% endif %}
+
 		<h2>Page du thé n° {{id}}</h2>
 	<ul>
 		<li>{{ product.name }}</li>
