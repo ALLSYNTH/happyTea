@@ -192,22 +192,33 @@ body{
 
 	line-height:  2; 
 	cursor: pointer;
+	color: lightgray;
 }
 
-.color-title {
+#color-title {
 
-	color: white;
+	
 	cursor: default;
 }
 
 .header-admin a:focus {
 
-	color: white;
 	text-decoration: none;
 }
 
 .header-admin a:hover {
 	text-decoration: none;
+}
+
+#mainDiv {
+
+	background-color: white;
+	box-shadow: 1px 2px 3px gainsboro;
+}
+
+.pad-h3 {
+
+	padding: 34px 18px; 
 }
 
 /* ------------------------------------------------

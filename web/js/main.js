@@ -80,8 +80,8 @@ $(function(){
               event.preventDefault();
               // var path = $(this).attr("href");
                 var path = $(this).data("href");
-                $('.action-button').removeClass('color-title');
-                $(this).addClass('color-title'); 
+                $('.action-button').find('h3').css('color' , 'lightgray' );
+                $(this).find('h3').css('color' , 'white'); 
               // var idElement = $(this).attr("id");
               $.ajax({
                  url : path,
