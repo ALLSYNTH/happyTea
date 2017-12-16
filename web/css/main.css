@@ -70,6 +70,11 @@ body{
 	transition: all 0.3s;
 }
 
+.filterimg{
+	border-radius: 15px;
+	margin-top: 5px;
+}
+
 .teacontainer:hover{
 	transform: scale(0.8);
 }
