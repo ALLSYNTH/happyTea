@@ -176,6 +176,40 @@ body{
 }
 
 
+
+/*-----------------------------------------------------
+	Style Page admin 
+------------------------------------------------ */
+
+.header-admin {
+
+	background-color: black;
+	text-align: center;
+
+}
+
+.header-admin h3 {
+
+	line-height:  2; 
+	cursor: pointer;
+}
+
+.color-title {
+
+	color: white;
+	cursor: default;
+}
+
+.header-admin a:focus {
+
+	color: white;
+	text-decoration: none;
+}
+
+.header-admin a:hover {
+	text-decoration: none;
+}
+
 /* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */
