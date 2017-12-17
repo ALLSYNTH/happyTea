@@ -253,6 +253,17 @@ body{
 	padding: 34px 18px; 
 }
 
+.admin-div-main div {
+
+
+	text-align: center;
+}
+
+.p-admin {
+
+	line-height: 7;
+}
+
 /* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */
