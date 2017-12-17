@@ -58,15 +58,14 @@ class MainController extends controller {
 
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
+		$error = [];
+		$success = "";
 
 		if($request->isMethod('POST')) {
 					$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 					$content = $request->get('content');
 					$publishedAt = new \DateTime();
 					$comment = new Comment();
-
-					$error = [];
-					$success = "";
 
 					if(strlen($content) < 10) {
 						$error['length'] = 'Votre commentaire doit comporter au minimum 10 caratères';
@@ -356,7 +355,7 @@ class MainController extends controller {
 		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
 		$shop = $shopRepository->find($id);
 
-		
+
 
 		return $this->render('HTMainBundle:Main:shop.html.twig', array(
 			'title' => $this->title,
