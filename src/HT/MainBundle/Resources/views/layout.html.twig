@@ -20,7 +20,8 @@
 				  	<img src="{{ asset('img/logo.png') }}" class="mainlogo">
 				  </a>
 
-				  <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
+					<div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
+				  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
 
 						<!-- nav menu : home - equipe - contact -->
 						<ul class="navbar-nav">
@@ -28,7 +29,6 @@
 							<li class="nav-item  {%if app.request.attributes.get('_route') == 'ht_main_homepage' %} active {% endif %}">
 								<a class="nav-link" href="{{ path('ht_main_homepage')}}">Home</a>
 							</li>
-
 				      <li class="nav-item {%if app.request.attributes.get('_route') == 'ht_main_team' %} active {% endif %}">
 				        <a class="nav-link" href="{{ path('ht_main_team')}}">Equipe </a>
 				      </li>
@@ -36,22 +36,21 @@
 				        <a class="nav-link" href="{{ path('ht_main_contact')}}">Contact</a>
 				      </li>
 
-							<!-- nav menu activation for seller and user -->
+							<!-- nav menu activation for sellers and users -->
 				      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				      <li class="nav-item">
 				        <a class="nav-link" href="{{path('ht_main_user', {'id': app.user.id} )}}">Ma théière</a>
 				      </li>
-				     	 {% if is_granted('ROLE_SELLER') %}
+				     	{% if is_granted('ROLE_SELLER') %}
 					     	<li class="nav-item">
 					        <a class="nav-link" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}">Mon shop</a>
 					      </li>
 				  		{% endif %}
 					  {% endif %}
 					  {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-				    </ul>
+					</ul> 
 
-						<ul class="navbar-nav">
-
+					<ul class="navbar-nav">
 						<!-- nav dropdown Inscription -->
 						  <li class="nav-item dropdown {%if app.request.attributes.get('_route') == 'register' or  app.request.attributes.get('_route') == 'register_seller' %} active {% endif %}">
 				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,8 +73,6 @@
 				        <a class="nav-link" href="{{ path('logout')}}">Logout</a>
 				     	{% endif %}
 				      </li>
-
-
 				    </ul>
 
 				  </div>
