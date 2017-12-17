@@ -62,7 +62,8 @@ body{
 }
 
 .filterbutton{
-	margin-top: 15px;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 	border-radius: 15px;
 	border: 2px solid;
 }
@@ -73,7 +74,11 @@ body{
 
 .filtercontainer{
 	position:fixed;
-	right:0;
+	top: 7em;
+	right:4em;
+	background-color: rgba(204, 234, 231, 0.35);
+	border-radius: 30px;
+	border: 2px dashed #cceae7;
 }
 
 .teacontainer{
@@ -89,16 +94,24 @@ body{
 }
 
 .teainformations{
-	font-family: 'Indie Flower', cursive;
-/*	font-family: 'Lobster', cursive;
+/*	font-family: 'Indie Flower', cursive;
+	font-family: 'Lobster', cursive;
 	font-family: 'Dancing Script', cursive;
 	font-family: 'Berkshire Swash', cursive;
-	font-family: 'Courgette', cursive;
+	*/font-family: 'Courgette', cursive;/*
 	font-family: 'Sacramento', cursive;
 	font-family: 'Julius Sans One', sans-serif;
 	font-family: 'Rancho', cursive;
-	font-family: 'Niconne', cursive;
-*/}
+	font-family: 'Niconne', cursive;*/
+	font-size: 1.2em;
+	margin-bottom: 1.2em;
+	color: #5BAD83;
+}
+
+.teasubinformations{
+	font-family: 'Julius Sans One', sans-serif;
+	margin-bottom: 0.5em;
+}
 
 .filterimg{
 	border-radius: 15px;

@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2 filtercontainer text-center">
+    <div class="col-2 filtercontainer text-center fadeInRightBig animated">
       <div id="filters" class="button-group">
         <button type="button" class="btn btn-success filterbutton" data-filter="*">Tout les thés</button>
         <br>
@@ -22,13 +22,15 @@
     <div class="col-8">
       <div class="row grid">
         {% for product in products %}
-        <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
-          <div class="teainformations"> {{product.name}} </div>
-          <div class="teainformations">{{product.price}} euros</div>
-          <div class="teainformations type">{{product.category.name}}</div>
-          <br>
-          <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
-        </div>
+          <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
+            <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
+            <div class="teainformations"> {{product.name}} </div>
+            <div class="teasubinformations">{{product.price}} euros</div>
+            <div class="teasubinformations type">{{product.category.name}}</div>
+            <br>
+            <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
+          </div>
+        </a>
           
         {% endfor %}
 
