@@ -22,10 +22,19 @@ class AdminController extends controller {
 
 			public function adminPageAction() {
 
+					$em = $this->getDoctrine()->getManager();
+				$userRepository = $em->getRepository('HTUserBundle:User');
+				$users = $userRepository->findAll();
 
+
+				
+				$shopRepository = $em->getRepository('HTMainBundle:Shop');
+				$shops = $shopRepository->findAll(); 
 
 				return $this->render('HTAdminBundle:Admin:adminPage.html.twig', array(
 						'title' => $this->title,
+						'users' => $users,
+						'shops' => $shops
 					));
 
 			}

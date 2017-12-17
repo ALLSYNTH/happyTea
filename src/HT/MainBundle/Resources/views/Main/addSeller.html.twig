@@ -4,7 +4,9 @@
 {% block body %}
 
 {% if false == app.user.isChecked  %}
-		<div class="alert alert-info">Votre compte vendeur doit avoir été vérifié par un administrateur pour que vous puissiez créer un Shop </div>
+		<div class="alert alert-info">Votre compte vendeur doit avoir été vérifié par un administrateur pour que vous puissiez créer un Shop ou rajouter un produit </div>
+{% elseif true == app.user.isBanned %}
+		<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à cette page. Veuillez contacter les administrateurs pour plus d'informations.</div>
 {% else %}
 
 	
