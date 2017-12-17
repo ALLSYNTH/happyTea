@@ -1,0 +1,189 @@
+<?php
+
+namespace HT\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="HT\AdminBundle\Repository\ArticleRepository")
+ */
+class Article
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subtitle", type="string", length=255, nullable=true)
+     */
+    private $subtitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="writer", type="string", length=255, nullable=true)
+     */
+    private $writer;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set subtitle
+     *
+     * @param string $subtitle
+     *
+     * @return Article
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    /**
+     * Get subtitle
+     *
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Article
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Article
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set writer
+     *
+     * @param string $writer
+     *
+     * @return Article
+     */
+    public function setWriter($writer)
+    {
+        $this->writer = $writer;
+
+        return $this;
+    }
+
+    /**
+     * Get writer
+     *
+     * @return string
+     */
+    public function getWriter()
+    {
+        return $this->writer;
+    }
+}
