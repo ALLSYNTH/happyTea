@@ -71,6 +71,26 @@ class AdminController extends controller {
 
 				}
 
+				if($request->query->get('req') == "search") {
+					$search = $request->query->get('search'); 
+					// $userRepository = $em->getRepository('HTUserBundle:User');
+
+					// $users = $userRepository->findByUsername($search); 
+
+				
+
+					$query = $em->createQuery(
+					    "SELECT p
+					    FROM HTUserBundle:User p
+					    WHERE p.username
+					    LIKE :search OR p.mail LIKE :search OR p.id LIKE :search"
+					)->setParameter('search', '%'.$search.'%');
+
+					$users = $query->getResult();
+
+					
+				}
+
 				return $this->render('HTAdminBundle:Admin:ajaxUser.html.twig', array(
 						'users' => $users,
 					));
