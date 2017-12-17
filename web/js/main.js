@@ -167,6 +167,33 @@ $(function(){
               
           });
 
+            	//requete search
+
+             $("body").on('click', '#search-button', function(event){
+               event.preventDefault();
+             
+                 var path = $(this).data("href");
+                 var search = $("#search").val(); 
+              
+                 var req = $(this).data("req"); 
+
+                 console.log(req);
+
+
+              
+               $.ajax({
+                  url : path+'?search='+search+'&req='+req,
+                  type : 'GET',
+                  // data : data, 
+                  
+                  dataType : 'html',
+                  success : function(code_html, statut){
+                   $('#mainDiv').html(code_html);
+                  }
+               });
+               
+           });
+
 
 
 

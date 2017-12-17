@@ -343,11 +343,20 @@ class MainController extends controller {
 
 	public function shopAction($id) {
 		$pageName = 'Shop';
+		if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+			throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+
+		}
+
+
 
 		$em = $this->getDoctrine()->getManager();
 
 		$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
 		$shop = $shopRepository->find($id);
+
+		
 
 		return $this->render('HTMainBundle:Main:shop.html.twig', array(
 			'title' => $this->title,

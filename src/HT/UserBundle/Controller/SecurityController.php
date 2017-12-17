@@ -208,6 +208,12 @@ class SecurityController extends Controller
 				$error['siret'] = "Le champ SIRET n'est pas valide."; 
 			}
 
+
+			if($userRepository = $em->getRepository('HTUserBundle:User')->findBySiret($siret)) {
+
+				$error['siret'] = "Ce siret est déjà utilisé par un autre utilisateur."; 
+			} 
+
 			if(empty($error)) {
 
 			$user = new User; 
