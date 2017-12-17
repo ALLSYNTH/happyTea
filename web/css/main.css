@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 body{
-	background-color: #e4f9f6;
+	/*background-color: #e4f9f6;*/
 }
 /*CSS sur le layout (navbar et footer)*/
 
@@ -132,7 +132,24 @@ body{
 }
 
 /* ------------------------------------------------
-	General styles applicable to all pages 
+	Applicable to Product page
+------------------------------------------------ */
+
+.teas h1 {
+	font-family: 'Pacifico', cursive;
+	padding-bottom: 0.7em;
+}
+
+.teas.badge-category {
+	padding: 5px 10px;
+	color: white;
+	background-color: #484848;
+  border-radius: .25rem;
+}
+
+
+/* ------------------------------------------------
+	General styles applicable to all pages
 ------------------------------------------------ */
 
 
@@ -151,6 +168,10 @@ body{
 
 .bg-darkgrey {
 	background-color: #484848;
+}
+
+.bg-white {
+	background-color: #fff;
 }
 
 .bg-dark {

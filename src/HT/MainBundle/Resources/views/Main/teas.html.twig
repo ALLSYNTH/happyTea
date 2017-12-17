@@ -2,17 +2,40 @@
 
 
 {% block body %}
+
 <div class="container">
-	{{ dump(comments) }}
-		<h2>Page du thé n° {{id}}</h2>
+	<!-- {{ dump(comments) }} -->
+
+	<section class="row my-5 teas d-flex flex-column align-items-center">
+		<h1>{{ product.name }}</h1>
+		<p class="teas badge-category">tea category</p>
+	</section>
+
+	<section class="row d-flex">
+		<figure class="col-12 col-md-6">
+			<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
+		</figure>
+
+		<div class="col-12 offset-md-1 col-md-5">
+			<p>{{ product.description }}</p>
+			<p>Avis: </p>
+			<p>Prix: {{ product.price }}</p>
+
+			<!-- redirection to shop -->
+			<button type="button" class="btn bg-success btn-lg btn-block text-white">Aller sur site du Shop</button>
+		</div>
+	</section>
+
+
+
 	<ul>
-		<li>{{ product.name }}</li>
-		<li>{{ product.description }}</li>
-		<li>{{ product.price }}</li>
-		<li>{{ product.picture }}</li>
+		<li></li>
 		<li>{{ product.shop.name }}</li>
 		<li>{{ product.shop.url }}</li>
 	</ul>
+
+
+	<!-- comments area -->
 
 	<form method="post" action="">
 		<textarea name="content" placeholder="Votre commentaire ici..." rows="5" cols="40"></textarea>
