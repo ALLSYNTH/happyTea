@@ -1,0 +1,57 @@
+
+
+
+{% block body %}
+	
+	<div>
+		<h3 class="pad-h3">Liste des utilisateurs</h3>
+		<div>
+			
+				<input type="text" id="search" name="search-user">
+				<a href="#" data-href={{ path('ht_admin_user')}} data-req="search"  id="search-button"> Recherche </a>
+			
+
+		</div>
+		<div>
+
+			<table class="table table-striped table-hover ">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>nom</th>
+						<th>mail</th>
+						<th>shop</th>
+						<th>role</th>
+						<th>bannir</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+					<tr>
+						{# {{dump(user.roles)}} #}
+						<td>{{user.id}}</td>
+						<td>{{user.username}}</td>
+						<td>{{user.mail}}</td>
+						<td>{% if user.shop %}<a href="{{ path('ht_main_shop', { 'id' : user.shop.id }) }}">{{user.shop.name}}</a>{% endif %}
+						<td>
+							<select class="select-role" data-href={{ path('ht_admin_user')}} data-id={{ user.id }}>
+								<option value="1" {% if user.roles | length == 1 %} selected {% endif %}>utilisateur</option>
+								<option value="2" {% if user.roles | length == 2 %} selected {% endif %}>vendeur </option>
+								<option value="3" {% if user.roles | length == 3 %} selected {% endif %}>administrateur</option>
+								<option value="4" {% if user.roles | length == 4 %} selected {% endif %}>super-administrateur</option>
+							</select>
+						</td>
+						<td> <a href="#" class="ban-button" data-req="ban" data-ban = "{{ user.isBanned  }}" data-href={{ path('ht_admin_user')}} data-id="{{ user.id }}">{% if user.isBanned %} Enlever ban {% else %} Bannir utilisateur {% endif %} </a> </td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+	</div>
+{% endblock %}

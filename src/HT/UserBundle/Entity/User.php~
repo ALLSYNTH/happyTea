@@ -76,9 +76,9 @@ class User implements UserInterface
     private $shop;
 
      /**
-     * @var string
+     * @var \Datetime
      *
-     * @ORM\Column(name="resetExpire", type="string", length=255, nullable=true)
+     * @ORM\Column(name="resetExpire", type="datetimetz", nullable=true)
      */
     private $resetExpire;
 
@@ -88,6 +88,20 @@ class User implements UserInterface
      * @ORM\Column(name="resetToken", type="string", length=255, nullable=true)
      */
     private $resetToken;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isBanned", type="boolean")
+     */
+    private $isBanned = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isChecked", type="boolean")
+     */
+    private $isChecked = false;
 
 
     /**
@@ -312,5 +326,77 @@ class User implements UserInterface
     public function getShop()
     {
         return $this->shop;
+    }
+
+    /**
+     * Set resetExpire
+     *
+     * @param \Datetime $resetExpire
+     *
+     * @return User
+     */
+    public function setResetExpire($resetExpire)
+    {
+        $this->resetExpire = $resetExpire;
+
+        return $this;
+    }
+
+    /**
+     * Get resetExpire
+     *
+     * @return \Datetime
+     */
+    public function getResetExpire()
+    {
+        return $this->resetExpire;
+    }
+
+    /**
+     * Set resetToken
+     *
+     * @param string $resetToken
+     *
+     * @return User
+     */
+    public function setResetToken($resetToken)
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    /**
+     * Get resetToken
+     *
+     * @return string
+     */
+    public function getResetToken()
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * Set isBanned
+     *
+     * @param boolean $isBanned
+     *
+     * @return User
+     */
+    public function setIsBanned($isBanned)
+    {
+        $this->isBanned = $isBanned;
+
+        return $this;
+    }
+
+    /**
+     * Get isBanned
+     *
+     * @return boolean
+     */
+    public function getIsBanned()
+    {
+        return $this->isBanned;
     }
 }

@@ -1,3 +1,18 @@
 ht_admin_homepage:
     path:     /
     defaults: { _controller: HTAdminBundle:Admin:adminPage }
+
+ht_admin_user:
+    path:     /ajUser
+    defaults: { _controller: HTAdminBundle:Admin:userAjax }
+
+
+
+ht_admin_admin:
+    path:     /ajAdmin
+    defaults: { _controller: HTAdminBundle:Admin:adminAjax } 
+
+ht_admin_content:
+    path:    /ajContent
+    defaults: { _controller: HTAdminBundle:Admin:contentAjax }   
+

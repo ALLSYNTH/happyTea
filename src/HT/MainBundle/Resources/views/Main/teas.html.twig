@@ -3,9 +3,16 @@
 
 {% block body %}
 
-<div class="container teas">
-	<!-- {{ dump(comments) }} -->
 
+<div class="container teas">
+
+  	{% if success %}
+	    <div class="alert alert-success">{{ success }}  </div>
+	  {% endif %}
+	  {% if error.length is defined %}
+	    <div class="alert alert-danger"> {{ error.length }} </div>
+	  {% endif %}
+ 
 	<section class="row my-5 teas d-flex flex-column align-items-center">
 		<h1>{{ product.name }}</h1>
 		<p class="teas badge-category">{{ product.category.name }}</p>
@@ -39,8 +46,6 @@
 
 		<h2>Coups de Coeur: {{ product.category.name }} </h2>
 
-		{% for product in products %}
-
 			<div class="my-5 offset-2 col-2 d-flex flex-column align-items-center">
 				<figure class="flex-column align-items-center">
 					<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
@@ -50,8 +55,6 @@
 				<button id="redirect-product"  data-target="../web/app_dev.php/main/teas/{{ product.id }}" type="button" class="btn btn-lg btn-block btn-warning">Voir thé</button>
 			</div>
 
-			{% endfor %}
-
 	</section>
 
 
@@ -60,8 +63,6 @@
 	<!-- product section : shop -->
 
 	<!-- product section : comments -->
-
-
 
 	<ul>
 		<li></li>

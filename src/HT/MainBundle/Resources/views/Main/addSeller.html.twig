@@ -3,67 +3,75 @@
 
 {% block body %}
 
-	
-{% if success %}
-<div class="alert alert-success">{{ success }}  </div>
-
+{% if false == app.user.isChecked  %}
+		<div class="alert alert-info">Votre compte vendeur doit avoir été vérifié par un administrateur pour que vous puissiez créer un Shop ou rajouter un produit </div>
+{% elseif true == app.user.isBanned %}
+		<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à cette page. Veuillez contacter les administrateurs pour plus d'informations.</div>
 {% else %}
-<div class="container">
-	<form method="post" enctype="multipart/form-data">
 
-		<div> Les champs marqué d'un * sont obligatoires :</div>
+	
+	{% if success %}
+	<div class="alert alert-success">{{ success }}  </div>
 
-		<div class="form-group">
-			<label>Nom du Shop * :</label>
-			<input class="form-control" type="text" name="name"><br/>
-			{% if error.name is defined %}
-				<div class="alert alert-warning">{{ error.name }}</div>
-			{% endif %}
-		</div>
-		<div class="form-group">
-			<label>Adresse : </label>
-			<input class="form-control" type="text" name="adress"><br/>
+	{% else %}
+	<div class="container">
+		<form method="post" enctype="multipart/form-data">
 
-		</div>
-		<div class="form-group">
-			<label>Lien vers votre site * : </label>
-			<input class="form-control" type="text" name="url"><br/>
-			{% if error.url is defined %}
-				<div class="alert alert-warning">{{ error.url }}</div>
-			{% endif %}
-		</div>
-		<div class="form-group">
-			<label>Description : * </label>
-			<input class="form-control" type="text" name="description"><br/>
-			{% if error.description is defined %}
-				<div class="alert alert-warning">{{ error.description }}</div>
-			{% endif %}
-		</div>
-		<div class="form-group">
-			<label>Téléphone : </label>
-			<input class="form-control" type="text" name="phone"><br/>
-		</div>
-		<div class="form-group">
-			<p>Horaires d'ouverture :</p>
-			<label>Entre : </label>
-			<input class="form-control" type="text" name="open"><br/>
-			<label>Et : </label>
-			<input class="form-control" type="text" name="close"><br/>
-		</div>
-		<div class="form-group">
-			<label>Votre Logo ou Image : * </label>
-			<input type="file" class="form-control" name="logo"/>
-			{% if error.logo is defined %}
-				<div class="alert alert-warning">{{ error.logo }}</div>
-			{% endif %}
-		</div>
-		<input type="submit" value="Créer Shop"/>
+			<div> Les champs marqués d'un * sont obligatoires :</div>
+			<br/>
+
+			<div class="form-group">
+				<label>Nom du Shop * :</label>
+				<input class="form-control" type="text" name="name"><br/>
+				{% if error.name is defined %}
+					<div class="alert alert-warning">{{ error.name }}</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>Adresse : </label>
+				<input class="form-control" type="text" name="adress"><br/>
+
+			</div>
+			<div class="form-group">
+				<label>Lien vers votre site * : </label>
+				<input class="form-control" type="text" name="url"><br/>
+				{% if error.url is defined %}
+					<div class="alert alert-warning">{{ error.url }}</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>Description : * </label>
+				<input class="form-control" type="text" name="description"><br/>
+				{% if error.description is defined %}
+					<div class="alert alert-warning">{{ error.description }}</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>Téléphone : </label>
+				<input class="form-control" type="text" name="phone"><br/>
+			</div>
+			<div class="form-group">
+				<p>Horaires d'ouverture :</p>
+				<label>Entre : </label>
+				<input class="form-control" type="text" name="open"><br/>
+				<label>Et : </label>
+				<input class="form-control" type="text" name="close"><br/>
+			</div>
+			<div class="form-group">
+				<label>Votre Logo ou Image : * </label>
+				<input type="file" class="form-control" name="logo"/>
+				{% if error.logo is defined %}
+					<div class="alert alert-warning">{{ error.logo }}</div>
+				{% endif %}
+			</div>
+			<input type="submit" value="Créer Shop"/>
 
 
 
 
-	</form>
-</div>
+		</form>
+	</div>
 
+	{% endif %}
 {% endif %}
 {% endblock %}

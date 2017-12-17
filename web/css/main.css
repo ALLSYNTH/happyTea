@@ -3,8 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+/*Police de test*/
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
+
 body{
 	/*background-color: #e4f9f6;*/
+	padding-bottom: 70px;
 }
 /*CSS sur le layout (navbar et footer)*/
 
@@ -15,7 +19,7 @@ body{
 
 #footer{
   width: 100%;
-  margin-top: 10px;
+  margin-top: 30px;
   position: fixed;
   bottom:0;
   background-color: rgba(153,213,207, 0.5);
@@ -41,12 +45,64 @@ body{
 }
 
 .mainlogo:hover{
-	transform: scale(1.1);
+	transform: scale(0.9);
 }
 
 .img-fluid{
 	width: 100%;
 	height: 100%;
+}
+
+/* ------------------------------------------------
+	Style applicable to the main page
+------------------------------------------------ */
+
+.filterisotope{
+	visibility: hidden;
+}
+
+.filterbutton{
+	margin-top: 15px;
+	border-radius: 15px;
+	border: 2px solid;
+}
+
+.filterbutton:focus{
+	border: 2px solid green;
+}
+
+.filtercontainer{
+	position:fixed;
+	right:0;
+}
+
+.teacontainer{
+	transition: all 0.2s;
+	padding: 5px;
+	border: 2px solid lightgreen;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.teacontainer:hover{
+	transform: scale(0.93);
+}
+
+.teainformations{
+	font-family: 'Indie Flower', cursive;
+/*	font-family: 'Lobster', cursive;
+	font-family: 'Dancing Script', cursive;
+	font-family: 'Berkshire Swash', cursive;
+	font-family: 'Courgette', cursive;
+	font-family: 'Sacramento', cursive;
+	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'Rancho', cursive;
+	font-family: 'Niconne', cursive;
+*/}
+
+.filterimg{
+	border-radius: 15px;
+	margin-top: 5px;
 }
 
 
@@ -90,6 +146,9 @@ body{
 	text-align: center;
 	text-transform: uppercase;
 }
+
+
+
 
 /* ------------------------------------------------
   Styles applicable to Contact page
@@ -220,6 +279,62 @@ body{
   background-color: #27BEA0;
 }
 
+
+
+/*-----------------------------------------------------
+	Style Page admin 
+------------------------------------------------ */
+
+.header-admin {
+
+	background-color: black;
+	text-align: center;
+
+}
+
+.header-admin h3 {
+
+	line-height:  2; 
+	cursor: pointer;
+	color: lightgray;
+}
+
+#color-title {
+
+	
+	cursor: default;
+}
+
+.header-admin a:focus {
+
+	text-decoration: none;
+}
+
+.header-admin a:hover {
+	text-decoration: none;
+}
+
+#mainDiv {
+
+	background-color: white;
+	box-shadow: 1px 2px 3px gainsboro;
+}
+
+.pad-h3 {
+
+	padding: 34px 18px; 
+}
+
+.admin-div-main div {
+
+
+	text-align: center;
+}
+
+.p-admin {
+
+	line-height: 7;
+}
 
 /* ------------------------------------------------
 	Media Queries

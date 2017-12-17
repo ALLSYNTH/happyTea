@@ -2,7 +2,7 @@
 
 
 {% block body %}
-
+<div class="container">
 	<h2>Login</h2>
 	
 
@@ -13,20 +13,21 @@
 	<form action="{{ path('login_check') }}" method="post">
 
 		<div class="form-group">
-		<label for="username"> E-mail : </label>
-		<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"/>
-		<div/>
-		<div class="form-group">
-		<label for="password"> Mot de passe : </label><br/>
-		<input type="password" class="form-control"  id="password" name="_password"/>
-		</div>
+			<label for="username"> E-mail : </label>
+			<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"/>
+			<div/>
+			<div class="form-group">
+			<label for="password"> Mot de passe : </label><br/>
+			<input type="password" class="form-control"  id="password" name="_password"/>
+			
 		<input type="submit" value="Connexion"/>
-
+		</div>
 
 
 
 	</form>
 
 	<a href="{{ path('password_forget') }}">Mot de passe oublié </a>
+</div>
 
 {% endblock %}

@@ -208,6 +208,12 @@ class SecurityController extends Controller
 				$error['siret'] = "Le champ SIRET n'est pas valide."; 
 			}
 
+
+			if($userRepository = $em->getRepository('HTUserBundle:User')->findBySiret($siret)) {
+
+				$error['siret'] = "Ce siret est déjà utilisé par un autre utilisateur."; 
+			} 
+
 			if(empty($error)) {
 
 			$user = new User; 
@@ -261,6 +267,8 @@ class SecurityController extends Controller
 					return $this->redirectToRoute('ht_main_homepage');
 				}
 
+			
+
 
 				if($request->isMethod('POST')) {
 
@@ -291,17 +299,26 @@ class SecurityController extends Controller
 						$em->flush(); 
 						$success = true; 
 
-						// $message = new /Swift_Mailer('Mot de passe oublié'); 
-						// $message->setFrom('quentin.gary@nordnet.fr'); 
-						// $message->setBody($this->renderView(
-						// 		'Emails/registration.html.twig',
-						// 		 array('name' => $name)
-						// 	), 'text/html'
-						// );
+						$link = $this->generateUrl('password_change', array('id'=> $userId, 'token' => $token ));
 
-						//  $mailer->send($message);
+						$message = (new \Swift_Message('Mot de passe perdu'))
+						     ->setFrom('no-response@HappyTea.ninja')
+						     ->setTo('quentin.gary@nordnet.fr')
+						     ->setBody(
+						         $this->renderView(
+						             // templates/emails/registration.html.twig
+						             'emails/mail_password.html.twig',
+						             array('link' => $link)
+						         ),
+						         'text/html'
+						     );
+
+						 // var_dump($message); 
+
+						 dump($mailer->send($message)); 
 
 					}
+
 					dump($success);
 
 				}
