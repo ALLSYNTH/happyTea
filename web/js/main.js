@@ -69,13 +69,24 @@ $(function(){
 }); // END
 
 /* -------------------------------------
-	JQuery - Product page
+	Product page - JQuery functions
 ------------------------------------- */
 
 $(function(){
 
-	// button - redirection to external Shop Site
+// Button - redirect user to external Shop Site
 
+	// style on & out hover
+	$('#redirect-shop').hover(function(){
+    $(this).css("background-color", "grey");
+		$(this).css("color", "#5cb85c");
+    },
+		function(){
+			$(this).css("background-color", "#5cb85c");
+			$(this).css("color", "white");
+		});
+
+	// redirection to shop site in new tab
 	$('#redirect-shop').on('click', function(event) {
     event.preventDefault();
     var url = $(this).data('target');

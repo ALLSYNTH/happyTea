@@ -145,8 +145,14 @@ body{
 	color: white;
 	background-color: #484848;
   border-radius: .25rem;
+	text-transform: uppercase;
+	font-size: 0.8em;
 }
 
+.teas #redirect-shop {
+	background-color: #5cb85c;
+	color: white;
+}
 
 /* ------------------------------------------------
 	General styles applicable to all pages

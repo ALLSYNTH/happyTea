@@ -3,15 +3,15 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container teas">
 	<!-- {{ dump(comments) }} -->
 
 	<section class="row my-5 teas d-flex flex-column align-items-center">
 		<h1>{{ product.name }}</h1>
-		<p class="teas badge-category">tea category</p>
+		<p class="teas badge-category">{{ product.category.name }}</p>
 	</section>
 
-	<section class="row d-flex">
+	<section class="row d-flex teas">
 		<figure class="col-12 col-md-6">
 			<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
 		</figure>
@@ -22,9 +22,14 @@
 			<p>Prix: {{ product.price }}</p>
 
 			<!-- redirection to shop -->
-			<button type="button" class="btn bg-success btn-lg btn-block text-white">Aller sur site du Shop</button>
+			<!-- <button href="{{ product.shop.url }}" type="button" class="btn bg-success btn-lg btn-block text-white">Aller sur site du Shop</button> -->
+
+			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
+
 		</div>
 	</section>
+
+	<!-- product nav : description / shop  -->
 
 
 
