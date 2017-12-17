@@ -295,6 +295,35 @@ body{
 }
 
 /* ------------------------------------------------
+	Applicable to shopList page
+------------------------------------------------ */
+
+.shoplist img {
+}
+
+.shoplist h2 {
+	font-family: 'Miniver', cursive;
+	text-align: center;
+	font-size: 2em;
+	padding: 0.5em 0;
+}
+
+.shoplist.address{
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+.shoplist.description {
+	font-size: 1.5em;
+  text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+
+}
+
+/* ------------------------------------------------
 	General styles applicable to all pages
 ------------------------------------------------ */
 
