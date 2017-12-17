@@ -202,16 +202,6 @@ $(function(){
 	 	Main index- Isotope
 	 ------------------------------------- */
 
-	 /* -------------------------------------
-	 	Main index- Isotope
-	 ------------------------------------- */
-
-
-
-/*ISOTOPE*/
-
-  
-
 // Initialisation 
 	var $grid = $('.grid').isotope({
 		itemSelector: '.element-item',
