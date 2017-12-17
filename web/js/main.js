@@ -73,16 +73,16 @@ $(function(){
 
 
 
-	// JS REQUETE AJAX ADMIN PAGE 
+	// JS REQUETE AJAX ADMIN PAGE
 
-	// requete JS de base 
+	// requete JS de base
 
 	$("body").on('click', '.action-button', function(event){
 	  event.preventDefault();
 	  // var path = $(this).attr("href");
 	    var path = $(this).data("href");
 	    $('.action-button').find('h3').css('color' , 'lightgray' );
-	    $(this).find('h3').css('color' , 'white'); 
+	    $(this).find('h3').css('color' , 'white');
 	  // var idElement = $(this).attr("id");
 	  $.ajax({
 	     url : path,
@@ -92,108 +92,108 @@ $(function(){
 	      $('#mainDiv').html(code_html);
 	     }
 	  });
-	  
+
 	});
 
-	// requete changement de role 
+	// requete changement de role
 
 	$("body").on('change', '.select-role', function(event){
 	  event.preventDefault();
 
 	    var path = $(this).data("href");
-	    var id = $(this).data("id"); 
-	    var value = $(this).val(); 
+	    var id = $(this).data("id");
+	    var value = $(this).val();
 
-	    console.log(value); 
+	    console.log(value);
 
 	  $.ajax({
 	     url : path+'?id='+id+'&value='+value,
 	     type : 'GET',
-	   
+
 	     dataType : 'html',
 	     success : function(code_html, statut){
 	      $('#mainDiv').html(code_html);
 	     }
 	  });
-	  
+
 	});
 
-	// requete ban 
+	// requete ban
 
 	$("body").on('click', '.ban-button', function(event){
 	  event.preventDefault();
-	 
+
 	    var path = $(this).data("href");
-	    var id = $(this).data("id"); 
-	    var ban = $(this).data("ban"); 
-	    var req = $(this).data("req"); 
+	    var id = $(this).data("id");
+	    var ban = $(this).data("ban");
+	    var req = $(this).data("req");
 
 
-	     console.log(ban); 
+	     console.log(ban);
 
 	  $.ajax({
 	     url : path+'?id='+id+'&ban='+ban+'&req='+req,
 	     type : 'GET',
-	   
-	     
+
+
 	     dataType : 'html',
 	     success : function(code_html, statut){
 	      $('#mainDiv').html(code_html);
 	     }
 	  });
-	  
+
 	});
 
-	          // requete change auto 
+	          // requete change auto
 
 	$("body").on('click', '.check-button', function(event){
 	  event.preventDefault();
 
 	    var path = $(this).data("href");
-	    var id = $(this).data("id"); 
-	; 
-	    var req = "check"; 
+	    var id = $(this).data("id");
+	;
+	    var req = "check";
 
 
-	 
+
 	  $.ajax({
 	     url : path+'?id='+id+'&req='+req,
 	     type : 'GET',
-	     // data : data, 
-	     
+	     // data : data,
+
 	     dataType : 'html',
 	     success : function(code_html, statut){
 	      $('#mainDiv').html(code_html);
 	     }
 	  });
-	  
+
 	});
 
 		//requete search
 
 	 $("body").on('click', '#search-button', function(event){
 	   event.preventDefault();
-	 
+
 	     var path = $(this).data("href");
-	     var search = $("#search").val(); 
-	  
-	     var req = $(this).data("req"); 
+	     var search = $("#search").val();
+
+	     var req = $(this).data("req");
 
 	     console.log(req);
 
 
-	  
+
 	   $.ajax({
 	      url : path+'?search='+search+'&req='+req,
 	      type : 'GET',
-	      // data : data, 
-	      
+	      // data : data,
+
 	      dataType : 'html',
 	      success : function(code_html, statut){
 	       $('#mainDiv').html(code_html);
 	      }
 	   });
-	   
+
 	});
 
 
@@ -202,7 +202,7 @@ $(function(){
 	 	Main index- Isotope
 	 ------------------------------------- */
 
-// Initialisation 
+// Initialisation
 	var $grid = $('.grid').isotope({
 		itemSelector: '.element-item',
 		layoutMode:'fitRows',
@@ -258,8 +258,8 @@ $(function(){
 
 	// style on & out hover
 	$('#redirect-shop').hover(function(){
-    $(this).css("background-color", "grey");
-		$(this).css("color", "#5cb85c");
+    $(this).css("background-color", "#104a2c");
+		$(this).css("color", "white");
     },
 		function(){
 			$(this).css("background-color", "#5cb85c");

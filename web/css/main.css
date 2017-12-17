@@ -2,9 +2,20 @@
 
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Miniver');
 
 /*Police de test*/
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
+
+
+nav h1 {
+	font-family: 'Pacifico';
+	color: #00A96F;
+	position: absolute;
+	top: 32%;
+	left: 90px;
+}
+
 
 body{
 	/*background-color: #e4f9f6;*/
@@ -207,10 +218,7 @@ body{
 	Applicable to Product page
 ------------------------------------------------ */
 
-.teas h1 {
-	font-family: 'Pacifico', cursive;
-	padding-bottom: 0.7em;
-}
+
 
 .teas.badge-category {
 	padding: 5px 10px;
@@ -231,13 +239,58 @@ body{
   font-size: 13px;
   font-weight: bold;
   text-transform: uppercase;
-  padding: 50px 60px 30px;
+  padding: 50px 0 30px;
   border-bottom: 0.5px solid lightgrey;
   overflow: auto;
 }
 
 .teas.menu a{
 	padding-right: 1em;
+}
+
+.teas h1 {
+	font-family: 'Miniver', cursive;
+	font-size: 3em;
+	padding-bottom: 0.5em;
+}
+
+.teas h2 {
+	font-family: 'Miniver', cursive;
+}
+
+.teas h3 {
+	font-family: 'Berkshire Swash';
+}
+
+.teas h4 {
+	color: rgb(103, 103, 103);
+	font-size: 0.8em;
+	text-transform: uppercase;
+	font-style: italic;
+	margin-bottom: 2em;
+}
+
+.teas.info {
+	font-size: 0.9em;
+}
+
+.info-chart {
+	font-style: bold;
+	font-size: 1.5em;
+}
+
+/* row other products */
+
+.teas.menu, .teas.otherproducts {
+	overflow: auto;
+  display: flex;
+	white-space: nowrap;
+}
+
+.teas form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* ------------------------------------------------
@@ -292,10 +345,14 @@ body{
   background-color: #27BEA0;
 }
 
+.bg-clearblue {
+	background-color: #2bbbfd;
+}
+
 
 
 /*-----------------------------------------------------
-	Style Page admin 
+	Style Page admin
 ------------------------------------------------ */
 
 .header-admin {
@@ -307,14 +364,14 @@ body{
 
 .header-admin h3 {
 
-	line-height:  2; 
+	line-height:  2;
 	cursor: pointer;
 	color: lightgray;
 }
 
 #color-title {
 
-	
+
 	cursor: default;
 }
 
@@ -335,7 +392,7 @@ body{
 
 .pad-h3 {
 
-	padding: 34px 18px; 
+	padding: 34px 18px;
 }
 
 .admin-div-main div {
@@ -374,5 +431,9 @@ body{
 	/* ---- Product Page ---- */
 	.teas.menu a{
 		padding-right: 5em;
+	}
+
+	.teas form {
+		width: 70%;
 	}
 }

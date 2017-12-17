@@ -12,77 +12,191 @@
 	  {% if error.length is defined %}
 	    <div class="alert alert-danger"> {{ error.length }} </div>
 	  {% endif %}
- 
+
+	<!-- product details -->
 	<section class="row my-5 teas d-flex flex-column align-items-center">
 		<h1>{{ product.name }}</h1>
-		<p class="teas badge-category">{{ product.category.name }}</p>
+		<h4>Les Thés de la boutique {{ product.shop.name }} </h4>
+
 	</section>
 
+	<!-- product image -->
 	<section class="row d-flex teas">
 		<figure class="col-12 col-md-6">
-			<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
+			<img src="{{ product.picture }}" class="img-responsive" alt="">
 		</figure>
 
 		<div class="col-12 offset-md-1 col-md-5">
+
+			<!-- category info -->
+			<div class="d-flex align-items-baseline justify-content-left">
+				<h4>Categorie:</h4>
+				<p class="ml-2 teas badge-category">{{ product.category.name }}</p>
+			</div>
+
+			<!-- description text -->
+			<h4>description</h4>
 			<p>{{ product.description }}</p>
-			<p>Avis: </p>
-			<p>Prix: {{ product.price }}</p>
+
+			<!-- rating info -->
+			<div class="d-flex flex-md-column">
+				<div class="col-6 col-md-12 d-flex align-items-baseline  my-3">
+					<img class="pr-2" src="{{ asset('img/icons/love-avis.png') }}" alt="">
+					<h4 class="teas info">Note générale: XX </h4>
+				</div>
+
+				<!-- price info -->
+				<div class="col-6 col-md-12 d-flex align-items-baseline my-3">
+					<img class="pr-2" src="{{ asset('img/icons/price.png') }}" alt="">
+					<h4 class="teas info">A partir de: {{ product.price }} €</h4>
+				</div>
+			</div>
+
+			<!-- general tea info -->
+			<aside class="row d-flex my-3">
+				<div class="col-12">
+					<h4>Savourer ce thé</h4>
+				</div>
+
+				<div class="col-4 text-center">
+					<img class="pb-3" src="{{ asset('img/icons/time.png') }}" alt="">
+					<h4>Temps pour infusion</h4>
+					<p class="info-chart">3"</p>
+				</div>
+				<div class="col-4 text-center">
+					<img class="pb-3" src="{{ asset('img/icons/thermometer.png') }}" alt="">
+					<h4>Température d'infusion</h4>
+					<p class="info-chart">74°C</p>
+				</div>
+				<div class="col-4 text-center">
+					<img class="pb-3" src="{{ asset('img/icons/teacup.png') }}" alt="">
+					<h4>Moment de la journée</h4>
+					<p class="info-chart">Matin</p>
+				</div>
+
+			</aside>
 
 			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
 
 		</div>
 	</section>
 
-	<!-- product nav : other teas / shop / comments -->
-	<div class="teas menu">
-		<a class="no-textdecoration" href="#">Thés coups de cœurs</a>
-		<a class="no-textdecoration" href="#">Shop</a>
-		<a class="no-textdecoration" href="#">Avis</a>
+
+</div>
+
+<div class="container-fluid teas">
+
+
+	<!-- product nav : shop / other teas / comments -->
+	<div class="teas menu pt-5 mt-3 offset-1">
+		<a class="no-textdecoration" href="#shop">La Boutique</a>
+		<a class="no-textdecoration" href="#products">Thés de la Boutique</a>
+		<a class="no-textdecoration" href="#comments">Avis & conseils de la communaut(h)é</a>
 	</div>
 
-	<!-- product section : other teas -->
+	<!-- product section : shop -->
+	<section  id="shop" class="my-5">
 
-	<section class="row my-5">
+		<h2>La boutique</h2>
 
-		<h2>Coups de Coeur: {{ product.category.name }} </h2>
+		<div class="row my-5">
+			<figure class="col-12 offset-md-1 col-md-4">
+				<img class="img-responsive" src="https://i.pinimg.com/736x/91/b2/a1/91b2a15dbe78b38d6b5885d4a1a86b2e--afternoon-tea-drinking-tea.jpg" alt="">
+			</figure>
 
-			<div class="my-5 offset-2 col-2 d-flex flex-column align-items-center">
-				<figure class="flex-column align-items-center">
-					<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
-					<figcaption>{{ product.name }}</figcaption>
-				</figure>
-
-				<button id="redirect-product"  data-target="../web/app_dev.php/main/teas/{{ product.id }}" type="button" class="btn btn-lg btn-block btn-warning">Voir thé</button>
+			<div class="col-12 offset-md-1 col-md-6">
+				<h3>{{ product.shop.name }} </h3>
+				<p class="info-chart">
+					Après Mister T. de l’agence tous risques, découvrez maintenant Mister Tea qui vous sert une tasse de thé.
+				</p>
+				<a href="#">plus d'infos sur la page de la boutique</a>
 			</div>
+
+		</div>
 
 	</section>
 
+	<!-- product section : display products teas -->
 
+	<section  id="products" class="row my-5 bg-clearblue p-5">
 
+		<h2 class="darkgrey">Thés de la boutique</h2>
 
-	<!-- product section : shop -->
+		<!-- display teas from similar categories // a mettre a jour plus tard avec for each + nommage twig-->
 
-	<!-- product section : comments -->
+		<div class="teas otherproducts d-flex">
+			<div class="col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
+			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
+			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
+			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
+			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
+			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
+				<figure class="flex-column align-items-center">
+					<img src="{{ product.picture }}" class="img-responsive" alt="">
+				</figure>
+				<p class="text-truncate">{{ product.name }}</p>
+				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
+			</div>
 
-	<ul>
-		<li></li>
-		<li>{{ product.shop.name }}</li>
-		<li>{{ product.shop.url }}</li>
-	</ul>
+		</div>
+
+	</section>
 
 	<!-- comments area -->
-  
-	<form method="post" action="">
-		<textarea name="content" placeholder="Votre commentaire ici..." rows="5" cols="40"></textarea>
-		<br>
-		<input type="submit" value="Commenter">
-	</form>
 
-	{% for comment in comments %}
-		<h6>{{ comment.user.username }}</h6>
-		<p>{{ comment.publishedAt.date | date('d-m-Y | H:i') }}</p>
-		<p>{{ comment.content }}</p>
-	{% endfor %}
+	<section  id="comments" class="row my-5 p-5 d-flex flex-column align-items-center">
+		<h2>Les avis sur le thé {{ product.name }}</h2>
+
+		<form method="post" class="my-5 col-12" action="">
+			<textarea name="content" placeholder="Votre commentaire ici..." rows="5" ></textarea>
+			<br>
+			<input class="btn btn-info" type="submit" value="Commenter">
+		</form>
+
+		<div class="d-flex flex-column align-items-center">
+			{% for comment in comments %}
+			<div class="my-2 col-10 col-lg-6">
+				<div class="d-flex justify-content-between">
+					<h6>{{ comment.user.username }}</h6>
+					<h4>{{ comment.publishedAt.date | date('d-m-Y | H:i') }}</h4>
+				</div>
+				<p>{{ comment.content }}</p>
+			</div>
+			{% endfor %}
+		</div>
+
+	</section>
+
 </div>
 
 {# Exemple boucle twig foreach #}
