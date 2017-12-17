@@ -85,4 +85,37 @@
 	{% endfor %}
 </div>
 
+{# Exemple boucle twig foreach #}
+
+{# Ici, on ouvre la boucle twig,
+on demande a parcourir tout les produit (product), 
+dans le tableau qui contient les produits (products).
+à l'intérieur de cette boucle on demandera certaines informations. #}
+
+{% for product in products %} 
+<div>
+
+	{# Dans cette boucle je vais demander des infos, ce sera toujours écrit ainsi: 
+	nomdelatable.nomduchamp #}
+
+  {{product.name}} {# Ici le nom #}
+  {{product.price}} euros {# ici le prix, j'ai ajouté "euros" pour être précis #}
+  {{product.category.name}} {# ici la catégorie, ou type du thé #} 
+  <img src='/happyTea/web/web/img/{{product.picture}}'>
+{# 
+  Pour l'image c'est un poil plus complexe, je t'explique. 
+  Avec {{product.picture}}, je vais récupérer le nom de l'image qui est dans notre projet symfony.
+  La fonction "path()" de twig, pour cherche l'image, ne fonctionnait pas, donc j'ai fait autrement.
+  Attention cependant, je suis pas sur que ce soit la bonne solution, on verra ça lundi ou mardi.
+
+  Je met le chemin en dur vers le dossier ou sont stocké les images uploadés par les vendeurs,
+  soit: /happyTea/web/web/img/
+  Dans le dossier img, se trouve l'image du produits. 
+  Pour qu'elle soit bien trouvé, j'ajoute juste la commande twig {{product.picture}}
+  Ainsi, je récupère le nom de l'image du produit actuellement parcouru par le tableau. #}
+
+  <br> <br>
+</div>
+{% endfor %} {# On ferme la condition #}
+
 {% endblock %}
