@@ -86,6 +86,9 @@ class MainController extends controller {
 				$commentRepository = $em->getRepository('HTMainBundle:Comment');
 				$comments = $commentRepository->findByProduct($id);
 
+				$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+				$products = $productRepository->findAll();
+
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
@@ -93,7 +96,8 @@ class MainController extends controller {
 				'product' => $product,
 				'comments' => $comments,
 				'success' => $success,
-				'error' => $error
+				'error' => $error,
+				'products' => $products
 			));
 
 
@@ -378,12 +382,17 @@ class MainController extends controller {
  		$userShop = $user->getShop();
 
  		dump($userShop);
+
+ 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+ 		$products = $productRepository->findAll();
+
  		return $this->render('HTMainBundle:Main:user.html.twig', array(
  			'title' => $this->title,
  			'pageName' => $pageName,
  			'id' => $id,
  			'user' => $user,
- 			'userShop' => $userShop
+ 			'userShop' => $userShop,
+ 			'products' => $products
  		));
  	}
 
