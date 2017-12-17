@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+/*Police de test*/
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
+
 body{
 	background-color: #e4f9f6;
 	padding-bottom: 70px;
@@ -16,7 +19,7 @@ body{
 
 #footer{
   width: 100%;
-  margin-top: 10px;
+  margin-top: 30px;
   position: fixed;
   bottom:0;
   background-color: rgba(153,213,207, 0.5);
@@ -42,7 +45,7 @@ body{
 }
 
 .mainlogo:hover{
-	transform: scale(1.1);
+	transform: scale(0.9);
 }
 
 .img-fluid{
@@ -60,6 +63,12 @@ body{
 
 .filterbutton{
 	margin-top: 15px;
+	border-radius: 15px;
+	border: 2px solid;
+}
+
+.filterbutton:focus{
+	border: 2px solid green;
 }
 
 .filtercontainer{
@@ -68,17 +77,35 @@ body{
 }
 
 .teacontainer{
-	transition: all 0.3s;
+	transition: all 0.2s;
+	padding: 5px;
+	border: 2px solid lightgreen;
+	border-radius: 4px;
+	text-align: center;
 }
+
+.teacontainer:hover{
+	transform: scale(0.93);
+}
+
+.teainformations{
+	font-family: 'Indie Flower', cursive;
+/*	font-family: 'Lobster', cursive;
+	font-family: 'Dancing Script', cursive;
+	font-family: 'Berkshire Swash', cursive;
+	font-family: 'Courgette', cursive;
+	font-family: 'Sacramento', cursive;
+	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'Rancho', cursive;
+	font-family: 'Niconne', cursive;
+*/}
 
 .filterimg{
 	border-radius: 15px;
 	margin-top: 5px;
 }
 
-.teacontainer:hover{
-	transform: scale(0.8);
-}
+
 
 /* ------------------------------------------------
 	Styles Page Team
