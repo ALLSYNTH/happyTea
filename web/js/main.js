@@ -1,4 +1,6 @@
-/*JQ sur la page team*/
+/* -------------------------------------
+	TEAM PAGE - hover animation
+------------------------------------- */
 
 $(function(){
 	$('#monsieurcarpe')
@@ -207,14 +209,20 @@ $(function(){
 
 
 
+	 /* -------------------------------------
+	 	Main index- Isotope
+	 ------------------------------------- */
+
 
 
 /*ISOTOPE*/
 
+  
+
 // Initialisation 
 	var $grid = $('.grid').isotope({
 		itemSelector: '.element-item',
-		layoutMode:'masonry',
+		layoutMode:'fitRows',
 		getSortData: {
 			name:'.category'
 		}
