@@ -154,6 +154,20 @@ body{
 	color: white;
 }
 
+.teas.menu {
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 50px 60px 30px;
+  border-bottom: 0.5px solid lightgrey;
+  overflow: auto;
+}
+
+.teas.menu a{
+	padding-right: 1em;
+}
+
 /* ------------------------------------------------
 	General styles applicable to all pages
 ------------------------------------------------ */
@@ -162,6 +176,10 @@ body{
 .img-responsive{
 	width: 100%;
 	height: auto%;
+}
+
+.no-textdecoration:hover{
+	text-decoration: none;
 }
 
 .white {
@@ -221,4 +239,12 @@ body{
 		height: 250px;
 	}
 
+}
+
+@media (min-width: 768px) {
+
+	/* ---- Product Page ---- */
+	.teas.menu a{
+		padding-right: 5em;
+	}
 }

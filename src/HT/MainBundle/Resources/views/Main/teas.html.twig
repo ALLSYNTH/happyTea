@@ -21,15 +21,45 @@
 			<p>Avis: </p>
 			<p>Prix: {{ product.price }}</p>
 
-			<!-- redirection to shop -->
-			<!-- <button href="{{ product.shop.url }}" type="button" class="btn bg-success btn-lg btn-block text-white">Aller sur site du Shop</button> -->
-
 			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
 
 		</div>
 	</section>
 
-	<!-- product nav : description / shop  -->
+	<!-- product nav : other teas / shop / comments -->
+	<div class="teas menu">
+		<a class="no-textdecoration" href="#">Thés coups de cœurs</a>
+		<a class="no-textdecoration" href="#">Shop</a>
+		<a class="no-textdecoration" href="#">Avis</a>
+	</div>
+
+	<!-- product section : other teas -->
+
+	<section class="row my-5">
+
+		<h2>Coups de Coeur: {{ product.category.name }} </h2>
+
+		{% for product in products %}
+
+			<div class="my-5 offset-2 col-2 d-flex flex-column align-items-center">
+				<figure class="flex-column align-items-center">
+					<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
+					<figcaption>{{ product.name }}</figcaption>
+				</figure>
+
+				<button id="redirect-product"  data-target="../web/app_dev.php/main/teas/{{ product.id }}" type="button" class="btn btn-lg btn-block btn-warning">Voir thé</button>
+			</div>
+
+			{% endfor %}
+
+	</section>
+
+
+
+
+	<!-- product section : shop -->
+
+	<!-- product section : comments -->
 
 
 
