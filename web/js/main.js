@@ -75,7 +75,17 @@ $(function(){
 
 	// JS REQUETE AJAX ADMIN PAGE 
 
+	// fait disparaitre message info
+
+	function displayInfo() {
+
+		$('.go-hidden').fadeOut('slow'); 
+	}
+
+	setTimeout(displayInfo, 2000); 
+
 	// requete JS de base 
+
 
 	$("body").on('click', '.action-button', function(event){
 	  event.preventDefault();
@@ -198,9 +208,16 @@ $(function(){
 
 
 
+
 	 /* -------------------------------------
 	 	Main index- Isotope
 	 ------------------------------------- */
+
+
+
+/*ISOTOPE*/
+
+  
 
 // Initialisation 
 	var $grid = $('.grid').isotope({
