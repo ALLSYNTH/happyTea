@@ -2,6 +2,27 @@
 
 {% block body %}
 	<div>
-		TEST3
+		<h3>Ajouter un article</h3>
+		<form method="post" action="" enctype="multipart/form-data" >
+			<div class="form-group">
+				<label for="title">Titre de l'article :</label>
+				<input class="form-control" name="title" type="text" placeholder="titre..."></input>
+			</div>
+			<div class="form-group">
+				<label for="subtitle"> Sous-titre de l'article :</label>
+				<input class="form-control" name="subtitle" type="text" placeholder="sous-titre..."></input>
+			</div>
+			<div class="form-group">
+				<label for="picture"> Photo de l'article :</label>
+				<input class="form-control" name="picture" type="file" placeholder="votre photo"></input>
+			</div>
+			<div class="form-group">
+				<label for="content"> Contenu : </label>
+				<textarea class="form-control" name="content" placeholder="Votre texte..."></textarea>
+
+			</div>
+			<input type="submit">
+
+		</form>
 	</div>
 {% endblock %}

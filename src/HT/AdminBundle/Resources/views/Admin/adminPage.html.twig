@@ -3,13 +3,37 @@
 
 
 {% block body %}
+	<style >
+		body {
+
+			background: lightgray; 	
+		}
+	</style>
 	     {# <h2>  Zone Admin  </h2> #}
 
 	     <div class="container-fluid">
+	     	{% if error %}
+	     	<div class="alert go-hidden alert-warning">
+	     		{{error.empty}} 
+	     		
+	     	</div>
+	     	{% endif %}
+	     	{% if error.picture is defined %}
+	     	<div class="alert go-hidden alert-warning">
+	     		{{error.picture}} 
+	     		
+	     	</div>
+	     	{% endif %}
+	     	{% if success %}
+	     	<div class="alert go-hidden alert-success">
+	     		{{ success }}
+	     		
+	     	</div>
+	     	{% endif %}
 	     	<div class="row header-admin">
 		     	<div class="col">
 		     		<div >
-		     			<a class="action-button" href="#" data-href="{{path('ht_admin_user')}}">
+		     			<a class="action-button" href="#user" data-href="{{path('ht_admin_user')}}">
 		     				<h3>Utilisateurs</h3>
 		     			</a>
 		     		</div>
@@ -18,7 +42,7 @@
 		     	</div>
 		     	<div class="col ">
 		 			<div>
-		 				<a class="action-button" href="#" data-href="{{path('ht_admin_admin')}}">
+		 				<a class="action-button" href="#admin" data-href="{{path('ht_admin_admin')}}">
 		 					<h3>Administration</h3>
 		 				</a>
 		 			</div>  
@@ -27,7 +51,7 @@
 		     	</div>
 		     	<div class="col ">
 		     		<div>
-		     			<a class="action-button" href="#" data-href="{{path('ht_admin_content')}}">
+		     			<a class="action-button" href="#content" data-href="{{path('ht_admin_content')}}">
 		     				<h3>Contenu</h3>
 		     			</a>
 		     		</div>
@@ -40,7 +64,7 @@
 		     		<div class="col home-admin">
 		     			<p class="p-admin">nombre d'utilisateurs : {{ users  | length }}</p>
 
-		     			
+
 		     		</div>
 		     		<div class="col home-admin">
 		     			<h2 class="p-admin">ESPACE ADMIN</h2>

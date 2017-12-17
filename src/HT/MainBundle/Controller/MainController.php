@@ -30,11 +30,15 @@ class MainController extends controller {
 		 $productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		 $products = $productRepository->findAll();
 
+		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
+		 $articles = $articleRepository->findAll();
+
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
-				'products' => $products  // on envoie les variable dans notre page twig
+				'products' => $products,
+				'articles' => $articles  // on envoie les variable dans notre page twig
 			));
 
 
