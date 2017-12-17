@@ -2,24 +2,76 @@
 
 
 {% block body %}
-<div class="container">
 
-	{% if success %}
-	<div class="alert alert-success">{{ success }}  </div>
-	{% endif %}
-	{% if error.length is defined %}
-	<div class="alert alert-danger"> {{ error.length }} </div>
-	{% endif %}
 
-		<h2>Page du thé n° {{id}}</h2>
+<div class="container teas">
+
+  	{% if success %}
+	    <div class="alert alert-success">{{ success }}  </div>
+	  {% endif %}
+	  {% if error.length is defined %}
+	    <div class="alert alert-danger"> {{ error.length }} </div>
+	  {% endif %}
+ 
+	<section class="row my-5 teas d-flex flex-column align-items-center">
+		<h1>{{ product.name }}</h1>
+		<p class="teas badge-category">{{ product.category.name }}</p>
+	</section>
+
+	<section class="row d-flex teas">
+		<figure class="col-12 col-md-6">
+			<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
+		</figure>
+
+		<div class="col-12 offset-md-1 col-md-5">
+			<p>{{ product.description }}</p>
+			<p>Avis: </p>
+			<p>Prix: {{ product.price }}</p>
+
+			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
+
+		</div>
+	</section>
+
+	<!-- product nav : other teas / shop / comments -->
+	<div class="teas menu">
+		<a class="no-textdecoration" href="#">Thés coups de cœurs</a>
+		<a class="no-textdecoration" href="#">Shop</a>
+		<a class="no-textdecoration" href="#">Avis</a>
+	</div>
+
+	<!-- product section : other teas -->
+
+	<section class="row my-5">
+
+		<h2>Coups de Coeur: {{ product.category.name }} </h2>
+
+			<div class="my-5 offset-2 col-2 d-flex flex-column align-items-center">
+				<figure class="flex-column align-items-center">
+					<img src="https://www.luneethe.com/64-large_default/ceylan-saint-james.jpg" class="img-responsive" alt="">
+					<figcaption>{{ product.name }}</figcaption>
+				</figure>
+
+				<button id="redirect-product"  data-target="../web/app_dev.php/main/teas/{{ product.id }}" type="button" class="btn btn-lg btn-block btn-warning">Voir thé</button>
+			</div>
+
+	</section>
+
+
+
+
+	<!-- product section : shop -->
+
+	<!-- product section : comments -->
+
 	<ul>
-		<li>{{ product.name }}</li>
-		<li>{{ product.description }}</li>
-		<li>{{ product.price }}</li>
-		<li>{{ product.picture }}</li>
+		<li></li>
 		<li>{{ product.shop.name }}</li>
 		<li>{{ product.shop.url }}</li>
 	</ul>
+
+
+	<!-- comments area -->
 
 	<form method="post" action="">
 		<textarea name="content" placeholder="Votre commentaire ici..." rows="5" cols="40"></textarea>
@@ -33,4 +85,5 @@
 		<p>{{ comment.content }}</p>
 	{% endfor %}
 </div>
+
 {% endblock %}

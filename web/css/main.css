@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
 
 body{
-	background-color: #e4f9f6;
+	/*background-color: #e4f9f6;*/
 	padding-bottom: 70px;
 }
 /*CSS sur le layout (navbar et footer)*/
@@ -191,13 +191,54 @@ body{
 }
 
 /* ------------------------------------------------
-	General styles applicable to all pages 
+	Applicable to Product page
+------------------------------------------------ */
+
+.teas h1 {
+	font-family: 'Pacifico', cursive;
+	padding-bottom: 0.7em;
+}
+
+.teas.badge-category {
+	padding: 5px 10px;
+	color: white;
+	background-color: #484848;
+  border-radius: .25rem;
+	text-transform: uppercase;
+	font-size: 0.8em;
+}
+
+.teas #redirect-shop {
+	background-color: #5cb85c;
+	color: white;
+}
+
+.teas.menu {
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 50px 60px 30px;
+  border-bottom: 0.5px solid lightgrey;
+  overflow: auto;
+}
+
+.teas.menu a{
+	padding-right: 1em;
+}
+
+/* ------------------------------------------------
+	General styles applicable to all pages
 ------------------------------------------------ */
 
 
 .img-responsive{
 	width: 100%;
 	height: auto%;
+}
+
+.no-textdecoration:hover{
+	text-decoration: none;
 }
 
 .white {
@@ -210,6 +251,10 @@ body{
 
 .bg-darkgrey {
 	background-color: #484848;
+}
+
+.bg-white {
+	background-color: #fff;
 }
 
 .bg-dark {
@@ -309,4 +354,12 @@ body{
 		height: 250px;
 	}
 
+}
+
+@media (min-width: 768px) {
+
+	/* ---- Product Page ---- */
+	.teas.menu a{
+		padding-right: 5em;
+	}
 }
