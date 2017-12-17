@@ -7,7 +7,7 @@ $(function(){
 		$(this).fadeOut(150, function () {
 			$(this).attr('src', img);
 		}).fadeIn(150);
-		
+
 	})
 	.mouseout(function(){
 		var original = $(this).attr('data-original');
@@ -23,7 +23,7 @@ $(function(){
 		$(this).fadeOut(150, function () {
 			$(this).attr('src', img);
 		}).fadeIn(150);
-		
+
 	})
 	.mouseout(function(){
 		var original = $(this).attr('data-original');
@@ -39,7 +39,7 @@ $(function(){
 		$(this).fadeOut(150, function () {
 			$(this).attr('src', img);
 		}).fadeIn(150);
-		
+
 	})
 	.mouseout(function(){
 		var original = $(this).attr('data-original');
@@ -55,7 +55,7 @@ $(function(){
 		$(this).fadeOut(150, function () {
 			$(this).attr('src', img);
 		}).fadeIn(150);
-		
+
 	})
 	.mouseout(function(){
 		var original = $(this).attr('data-original');
@@ -66,4 +66,20 @@ $(function(){
 	});
 
 	console.log($(window).height());
-});
+}); // END
+
+/* -------------------------------------
+	JQuery - Product page
+------------------------------------- */
+
+$(function(){
+
+	// button - redirection to external Shop Site
+
+	$('#redirect-shop').on('click', function(event) {
+    event.preventDefault();
+    var url = $(this).data('target');
+    window.open(url);
+	});
+
+}); // END
