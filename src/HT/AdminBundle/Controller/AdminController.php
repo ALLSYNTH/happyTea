@@ -28,15 +28,15 @@ class AdminController extends controller {
 				$userRepository = $em->getRepository('HTUserBundle:User');
 				$users = $userRepository->findAll();
 
-
+				$tagForm = $request->get("form-tag"); 
 				
 				$shopRepository = $em->getRepository('HTMainBundle:Shop');
 				$shops = $shopRepository->findAll(); 
 
-				if($request->isMethod('POST')) {
+				if($request->isMethod('POST') && $tagForm == "ad-form") {
 
 					$articleTitle = $request->get('title');
-					$subTitle = $request->get('subTitle');
+					$subTitle = $request->get('subtitle');
 					$content = $request->get('content');
 					$picture = $request->files->get('picture');
 
@@ -67,7 +67,7 @@ class AdminController extends controller {
 					if(empty($error)) {
 						 $article = new Article;
 						$article->setTitle($articleTitle);
-						$article->setSubTitle($subTitle);
+						$article->setSubtitle($subTitle);
 						$article->setContent($content);
 						$article->setPicture($uploadName); 
 						$article->setWriter('test'); 
@@ -82,6 +82,65 @@ class AdminController extends controller {
 					}
 
 
+
+				}
+
+				if($request->isMethod('POST') && $tagForm == "up-form") {
+
+
+					$articleTitle = $request->get('up-title');
+					$subTitle = $request->get('up-subtitle');
+					$content = $request->get('up-content');
+					$picture = $request->files->get('up-picture');
+					$id = $request->get('id-article'); 
+
+
+
+
+					if(empty($articleTitle) && empty($subTitle) && empty($content)   ) {
+
+						$error['empty'] = "Veuillez remplir au moins un champs."; 
+
+					}
+					
+
+					if($picture != null ) {
+						$mime=$picture->guessClientExtension();
+						$uploadName = uniqid("doc_", true).'.'.$mime;
+						if(!$this->upload($picture, $uploadName, 1000000, array('png','gif','jpg','jpeg') )  ) {
+							$error['picture'] = "Votre fichier n'est pas à un format autorisé et/ou est trop volumineux.";
+						}
+					}
+
+				
+
+
+					if(empty($error)) {
+						$em = $this->getDoctrine()->getManager();
+						$articleRepository = $em->getRepository('HTAdminBundle:Article');
+						$article = $articleRepository->find($id);
+
+
+						$article->setTitle($articleTitle);
+						$article->setSubtitle($subTitle);
+						$article->setContent($content);
+						dump($picture); 
+						if($picture != null ) {
+
+						 $article->setPicture($uploadName); 
+
+						}
+						
+						$article->setWriter('test'); 
+
+					
+
+						$em->persist($article);
+						$em->flush();
+
+						$success = "L'article $id a bien été modifié !";
+
+					}
 
 				}
 
@@ -194,8 +253,33 @@ class AdminController extends controller {
 
 			public function contentAjaxAction(Request $request) {
 
+				$em = $this->getDoctrine()->getManager();
+				$articleRepository = $em->getRepository('HTAdminBundle:Article');
+				
 
-				return $this->render('HTAdminBundle:Admin:ajaxContent.html.twig');
+				if($request->query->get('req') == "remove") {
+
+					$id = $request->query->get('id');
+					$article = $articleRepository->find($id); 
+					$em->remove($article);
+					$em->flush(); 
+				}
+
+				if($request->query->get('req') == "publish") {
+
+					$id = $request->query->get('id');
+					$article = $articleRepository->find($id);
+					$stat = $article->getIsPublished(); 
+					$article->setIsPublished(!$stat); 
+					$em->persist($article);
+					$em->flush(); 
+				}
+
+				$articles = $articleRepository->findAll();
+
+				return $this->render('HTAdminBundle:Admin:ajaxContent.html.twig', array(
+						'articles' => $articles
+					));
 			}
 
 

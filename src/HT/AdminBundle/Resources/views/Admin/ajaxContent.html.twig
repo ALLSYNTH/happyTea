@@ -2,7 +2,7 @@
 
 {% block body %}
 	<div>
-		<h3>Ajouter un article</h3>
+		<h3 class="pad-h3">Ajouter un article</h3>
 		<form method="post" action="" enctype="multipart/form-data" >
 			<div class="form-group">
 				<label for="title">Titre de l'article :</label>
@@ -19,10 +19,47 @@
 			<div class="form-group">
 				<label for="content"> Contenu : </label>
 				<textarea class="form-control" name="content" placeholder="Votre texte..."></textarea>
-
+				<input class="hidden" value="ad-form" name="form-tag">
 			</div>
 			<input type="submit">
 
 		</form>
+	</div>
+	<div>
+		<h3 class="pad-h3" >Les articles :</h3>
+		<div class="row">
+		  <div class="col-8">
+		{% for article in articles %}
+		<form method="post" action="" enctype="multipart/form-data" >
+		  <div class="row div-article-admin"> 
+		 
+		    <div class="col-4">
+		      <img class="img-article-admin" src="/happyTea/web/web/img/{{article.picture}}">
+		      <input class="form-control" type="file" name="up-picture">
+		    </div>
+		    <div class="col-8">
+
+		      <input class="form-control" type="text" name="up-title" value="{{article.title}}">
+		      <br/>
+
+		      <input class="form-control" type="text" name="up-subtitle" value="{{article.subtitle}}">
+		      <br/>
+
+		      <textarea class="form-control textarea-admin" name="up-content">{{article.content}}</textarea>
+
+		      <input class="hidden" value="up-form" name="form-tag">
+		      <input class="hidden" value="{{article.id}}" name="id-article">
+		      <div class="bot-article-admin"></div>
+			      <button id="but-article">Modifier article </button>
+			      <button class="button-article" data-href="{{path('ht_admin_content')}}" data-id="{{article.id}}" data-req="remove"> Supprimer l'article </button>
+			      <button class="button-article" data-href="{{path('ht_admin_content')}}" data-id="{{article.id}}" data-req="publish">{% if article.isPublished %} Stopper publication  {% else %} Publier l'article{% endif %}</button>
+		      </div>
+		    </div>
+		  
+		  </div>
+		  </form>
+		{% endfor %}
+		  </div>
+		</div>
 	</div>
 {% endblock %}

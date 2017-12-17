@@ -204,6 +204,32 @@ $(function(){
 	   
 	});
 
+	  $("body").on('click', '.button-article', function(event){
+	    event.preventDefault();
+	  
+	      var path = $(this).data("href");
+	   
+	      var req = $(this).data("req"); 
+	      var id = $(this).data("id"); 
+
+	      // console.log(req);
+
+
+	   
+	    $.ajax({
+	       url : path+'?id='+id+'&req='+req,
+	       type : 'GET',
+	       // data : data, 
+	       
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+	    
+	 });
+
+
 
 
 

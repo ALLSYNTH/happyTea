@@ -31,7 +31,7 @@ class MainController extends controller {
 		 $products = $productRepository->findAll();
 
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
-		 $articles = $articleRepository->findAll();
+		 $articles = $articleRepository->findByIsPublished(true);
 
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(

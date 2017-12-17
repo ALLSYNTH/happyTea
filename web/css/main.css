@@ -335,6 +335,33 @@ body{
 
 	line-height: 7;
 }
+
+.textarea-admin {
+
+	height: 130px; 
+}
+
+.div-article-admin {
+
+	height: 350px;
+	margin-top: 40px;
+	box-shadow: 1px 2px 3px black; 
+	margin: 15px; 
+	padding: 10px; 
+
+}
+
+.img-article-admin {
+
+	height: 60%;
+	width: 100%;
+}
+
+.hidden {
+
+	display: none;
+	visibility: none; 
+}
 /*-----------------------------------------------------
 	Style Article/News
 ------------------------------------------------ */

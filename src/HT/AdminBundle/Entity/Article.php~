@@ -56,6 +56,13 @@ class Article
      */
     private $writer;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isPublished", type="boolean")
+     */
+    private $isPublished = false;
+
 
     /**
      * Get id

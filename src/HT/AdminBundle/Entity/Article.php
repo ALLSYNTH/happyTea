@@ -56,6 +56,13 @@ class Article
      */
     private $writer;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isPublished", type="boolean")
+     */
+    private $isPublished = false;
+
 
     /**
      * Get id
@@ -185,5 +192,29 @@ class Article
     public function getWriter()
     {
         return $this->writer;
+    }
+
+    /**
+     * Set isPublished
+     *
+     * @param boolean $isPublished
+     *
+     * @return Article
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublished
+     *
+     * @return boolean
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
     }
 }
