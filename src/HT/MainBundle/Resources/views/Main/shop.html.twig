@@ -8,28 +8,27 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container text-center">
 
-  <br>
-  {{shop.url}}
-  <br>
-  {{shop.description}}
-  <br>
-  {{shop.adress}}
-  <br>
-  {{shop.phone}}
   {% if shop.openingTimes.opening is defined or shop.openingTimes.closing is defined %}
   <br>
   {{ shop.openingTimes.opening }} {{ shop.openingTimes.closing }}
   <br>
+
   {% endif %}
 
-  <img src='/happyTea/web/web/img/{{ shop.logo }}' class="shoplogo">
-  <br>
-  {{ shop.user.username }}
+  <a href="{{ path('ht_main_shopPage', {'id' : app.user.shop.id} ) }}" class="simplelink">
+
+    <h3> Aller a la page public du shop !</h3>
+    <hr>
+    <img src='/happyTea/web/web/img/{{ shop.logo }}' class="shoplogo">
+
+  </a>
+
   <br>
   <h2>
-    <a href="{{path('ht_main_addProduct')}}">
+    <a href="{{path('ht_main_addProduct')}}" class="simplelink ">
+      <br>
       Vous voulez ajoutez un produit ?
       <br>
       C'est par ici !

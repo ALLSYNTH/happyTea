@@ -22,6 +22,11 @@ body{
 	padding-bottom: 70px;
 }
 
+.simpletitle{
+	font-family: 'Courgette', arial;
+	font-size: 2.5em;
+}
+
 /*Les bannières*/
 
 .shop.banner {
@@ -75,10 +80,12 @@ body{
 .simplelink{
 	text-decoration: none;
 	color: #46A271;
+	font-family:'Courgette', arial;
 }
 
 .simplelink:hover , .simplelink:focus{
 	color:#009688;
+	text-decoration: none;
 }
 
 #footerlink:hover{
@@ -261,6 +268,12 @@ body{
 	border:2px dashed lightgreen;
 	width: 15em;
 	height: 15em;
+	transition: all 0.5s;
+}
+
+.shoplogo:hover{
+	transform: scale(0.9);
+	border-radius: 90px;
 }
 
 /* ------------------------------------------------
