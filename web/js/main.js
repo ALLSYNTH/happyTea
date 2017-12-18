@@ -70,7 +70,41 @@ $(function(){
 	// console.log($(window).height());
 
 
+	//JS REQUETE AJAX FAVS
 
+	//Ajout aux favotis
+	$('body').on('click', '.fav', function(event){
+		event.preventDefault();
+
+		var path = $(this).data("path");
+		var id = $(this).data("id");
+
+		console.log(id);
+		$.ajax({
+			 url : path+'?id='+id,
+			 type : 'GET',
+			 success : function(statut){
+	      $('.fav').html('Supprimer des favoris');
+	     }
+		});
+	});
+
+	//Remove des favoris
+	$('body').on('click', '.supfav', function(event){
+		event.preventDefault();
+
+		var path = $(this).data("path");
+		var id = $(this).data("id");
+
+		console.log(id);
+		$.ajax({
+			 url : path+'?id='+id,
+			 type : 'GET',
+			 success : function(statut){
+	      $('.fav').html('Ajouter aux favoris');
+	     }
+		});
+	});
 
 
 	// JS REQUETE AJAX ADMIN PAGE
@@ -198,11 +232,11 @@ $(function(){
 
 	  $("body").on('click', '.button-article', function(event){
 	    event.preventDefault();
-	  
+
 	      var path = $(this).data("href");
-	   
-	      var req = $(this).data("req"); 
-	      var id = $(this).data("id"); 
+
+	      var req = $(this).data("req");
+	      var id = $(this).data("id");
 
 	      // console.log(req);
 
@@ -210,18 +244,18 @@ $(function(){
 	 	Main index- Isotope
 	 ------------------------------------- */
 
-	   
+
 	    $.ajax({
 	       url : path+'?id='+id+'&req='+req,
 	       type : 'GET',
-	       // data : data, 
-	       
+	       // data : data,
+
 	       dataType : 'html',
 	       success : function(code_html, statut){
 	        $('#mainDiv').html(code_html);
 	       }
 	    });
-	    
+
 	 });
 
 
@@ -232,7 +266,7 @@ $(function(){
 
 /*ISOTOPE*/
 
-// Initialisation 
+// Initialisation
 	var $grid = $('.grid').isotope({
 		itemSelector: '.element-item',
 		layoutMode:'fitRows',

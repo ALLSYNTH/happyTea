@@ -63,3 +63,11 @@ ht_main_shopPage:
 ht_main_sitemap:
     path:   /sitemap
     defaults: { _controller: HTMainBundle:Main:sitemap }
+
+ht_main_fav:
+    path:     /favAjax
+    defaults: { _controller: HTMainBundle:Main:fav }
+
+ht_main_removeFav:
+    path:     /removeFavAjax
+    defaults: { _controller: HTMainBundle:Main:removeFav }

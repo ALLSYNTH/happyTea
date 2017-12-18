@@ -11,7 +11,7 @@
 	<body>
 		<header>
 			<!-- bootstrap navbar -->
-			<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded col-12">
 
 				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -20,11 +20,11 @@
 			  	<div class="container">
 
 					<!-- branding logo -->
-					<a class="navbar-brand d-flex align-items-center" href="{{ path('ht_main_homepage')}}">
+					<a class="navbar-brand align-items-center" href="{{ path('ht_main_homepage')}}">
 						<img src="{{ asset('img/logo.png') }}" class="mainlogo">
 					</a>
 
-					<div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
+					<div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
 				  	<!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
 
 						<!-- nav menu : home - equipe - contact -->
@@ -45,13 +45,13 @@
 							<!-- nav menu activation for sellers and users -->
 				      		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-				      		<li class="nav-item">
+				      		<li class="nav-item {%if app.request.attributes.get('_route') == 'ht_main_user' %} active {% endif %}">
 				        		<a class="nav-link" href="{{path('ht_main_user', {'id': app.user.id} )}}">Ma théière</a>
 				      		</li>
 
 				     		{% if is_granted('ROLE_SELLER') %}
 
-					     	<li class="nav-item">
+					     	<li class="nav-item {%if app.request.attributes.get('_route') == 'ht_main_shop' %} active {% endif %}">
 					        	<a class="nav-link" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}">Mon shop</a>
 					      	</li>
 
@@ -110,10 +110,11 @@
 
 			<footer id="footer">
 				<div class="container">
-					<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
-					<span>
-
-					</span>
+					<div class="d-flex justify-content-between align-items-center">
+						<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
+						<p class="m-0">HappyTea - un projet WF3 </p>
+						<a href="https://twitter.com/happytea_m" target="_blank"><img src="{{ asset('img/icons/twitter.png')}}"  class="img-responsive" alt="icone twitter"></a>
+					</div>
 				</div>
 			</footer>
 
