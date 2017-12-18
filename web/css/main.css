@@ -534,14 +534,18 @@ body{
 
 .img-article {
  
- 	height: 40%;
+ 	height: 100%;
  	width: 100%;
+ 	box-sizing: border-box;
  }
  
  .div-article {
- 
- 	height: 500px;
- 	margin-top: 40px;
+ 	margin-top: 1em;
+ 	margin-bottom: 1em;
+ 	background-color: ;
+ 	padding: 0.5em;
+ 	border-radius: 1em;
+ 	border:2px solid #EDF8F7;
  }
 
 
@@ -564,14 +568,6 @@ body{
 	}
 
 	/*---- Index Page ----*/
-	.filtercontainer{
-		position:fixed;
-		top: 20em;
-		right:4em;
-		background-color: rgba(204, 234, 231, 0.35);
-		border-radius: 30px;
-		border: 2px dashed #cceae7;
-	}
 
 }
 

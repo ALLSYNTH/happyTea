@@ -4,6 +4,31 @@
 {% block body %}
 
 <div class="container-fluid">
+
+  {#         ARTICLE / NEWS  
+   +             #}
+   <div class="row">
+     <div class="col-8">
+   {% for article in articles %}
+     <div class="row div-article"> 
+       <div class="col-4">
+         <img class="img-article" src="/happyTea/web/web/img/{{article.picture}}">
+       </div>
+       <div class="col-8">
+         <h3>{{article.title}}</h3>
+       <h4>{{article.subtitle}}</h4>
+   
+         <p>{{article.content}}</p>
+   
+       </div>
+   
+     </div>
+   {% endfor %}
+     </div>
+   </div>
+   
+   
+   {#   FIN ARTICLE / NEWS  #}
   <div class="row">
     <div class="col-2 filtercontainer text-center fadeInRightBig animated">
       <div id="filters" class="button-group">
@@ -37,31 +62,6 @@
       </div>
     </div>
   </div>
-
-  {#         ARTICLE / NEWS  
-   +             #}
-   <div class="row">
-     <div class="col-8">
-   {% for article in articles %}
-     <div class="row div-article"> 
-       <div class="col-4">
-         <img class="img-article" src="/happyTea/web/web/img/{{article.picture}}">
-       </div>
-       <div class="col-8">
-         <h3>{{article.title}}</h3>
-       <h4>{{article.subtitle}}</h4>
-   
-         <p>{{article.content}}</p>
-   
-       </div>
-   
-     </div>
-   {% endfor %}
-     </div>
-   </div>
-   
-   
-   {#   FIN ARTICLE / NEWS  #}
 </div>
 
 {% endblock %}
