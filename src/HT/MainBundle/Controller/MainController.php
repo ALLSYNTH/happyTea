@@ -611,7 +611,7 @@ class MainController extends controller {
 		}
 
 		public function shopPageAction($id) {
-			$pageName = 'Shop de Page';
+			$pageName = 'Shop Page';
 
       // Create a robot (entity manager = $em) that will fetch info from database
 			$em = $this->getDoctrine()->getManager();
