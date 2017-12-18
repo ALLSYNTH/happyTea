@@ -8,13 +8,13 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
 
 
-nav h1 {
+/*nav h1 {
 	font-family: 'Pacifico';
 	color: #00A96F;
 	position: absolute;
 	top: 32%;
 	left: 90px;
-}
+}*/
 
 
 body{
@@ -219,8 +219,6 @@ body{
 	Applicable to Product page
 ------------------------------------------------ */
 
-
-
 .teas.badge-category {
 	padding: 5px 10px;
 	color: white;
@@ -320,13 +318,53 @@ body{
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
-
 }
+
+/* ------------------------------------------------
+	Applicable to ShopPage
+------------------------------------------------ */
+
+.shoppage h1 {
+	font-family: 'Miniver', cursive;
+	font-size: 3em;
+	padding-bottom: 0.5em;
+}
+
+.shoppage h2 {
+	font-family: 'Miniver', cursive;
+	font-size: 1.5em;
+	padding-bottom: 0.5em;
+}
+
+.shoppage.description {
+	font-size: 1.5em;
+}
+
+.minitext{
+	font-size: 0.8em;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.shoppage-badge {
+	padding: 5px 10px;
+	color: white;
+	background-color: #484848;
+  border-radius: .25rem;
+	text-transform: uppercase;
+	font-size: 0.8em;
+	width: 7em;
+	text-align: center;
+}
+
 
 /* ------------------------------------------------
 	General styles applicable to all pages
 ------------------------------------------------ */
 
+.text-center {
+	text-align: center;
+}
 
 .img-responsive{
 	width: 100%;
@@ -438,16 +476,16 @@ body{
 
 .textarea-admin {
 
-	height: 130px; 
+	height: 130px;
 }
 
 .div-article-admin {
 
 	height: 350px;
 	margin-top: 40px;
-	box-shadow: 1px 2px 3px black; 
-	margin: 15px; 
-	padding: 10px; 
+	box-shadow: 1px 2px 3px black;
+	margin: 15px;
+	padding: 10px;
 
 }
 
@@ -460,7 +498,7 @@ body{
 .hidden {
 
 	display: none;
-	visibility: none; 
+	visibility: none;
 }
 /*-----------------------------------------------------
 	Style Article/News
@@ -468,13 +506,13 @@ body{
 
 
 .img-article {
- 
+
  	height: 40%;
  	width: 100%;
  }
- 
+
  .div-article {
- 
+
  	height: 500px;
  	margin-top: 40px;
  }

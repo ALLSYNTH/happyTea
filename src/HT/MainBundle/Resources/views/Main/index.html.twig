@@ -25,43 +25,18 @@
           <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
             <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
             <div class="teainformations"> {{product.name}} </div>
-            <div class="teasubinformations">{{product.price}} euros</div>
+            <div class="teasubinformations">{{product.price}} €</div>
             <div class="teasubinformations type">{{product.category.name}}</div>
             <br>
-            <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
+            <img src='/happyTea/web/web/img/{{product.picture}}'  class="img-responsive filterimg">
           </div>
         </a>
-          
+
         {% endfor %}
 
       </div>
     </div>
   </div>
-
-  {#         ARTICLE / NEWS  
-   +             #}
-   <div class="row">
-     <div class="col-8">
-   {% for article in articles %}
-     <div class="row div-article"> 
-       <div class="col-4">
-         <img class="img-article" src="/happyTea/web/web/img/{{article.picture}}">
-       </div>
-       <div class="col-8">
-         <h3>{{article.title}}</h3>
-       <h4>{{article.subtitle}}</h4>
-   
-         <p>{{article.content}}</p>
-   
-       </div>
-   
-     </div>
-   {% endfor %}
-     </div>
-   </div>
-   
-   
-   {#   FIN ARTICLE / NEWS  #}
 </div>
 
 {% endblock %}
