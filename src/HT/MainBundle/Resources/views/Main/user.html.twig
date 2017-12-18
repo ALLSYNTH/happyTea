@@ -1,31 +1,26 @@
 {% extends "HTMainBundle::layout.html.twig" %}
 
 {% block body %}
+
+<div class="container-fluid">
+  <div class="row banner user d-flex align-items-center">
+    <h1 class="col-12 animated zoomIn">Welcome home, {{user.username}} !</h1>
+  </div>
+</div>
+
 <div class="container">
   {% if true == app.user.isBanned %}
     <div class="alert alert-danger">
       Vous avez été banni.
     </div>
   {% endif %}
-  <h2>Page de l'utilisateur n°{{ id }}</h2>
+
   <ul>
-    <li>{{ user.username }}</li>
-    <li>{{ user.mail }}</li>
-    {% if user.siret is defined %}
-    <li>{{ user.siret }}</li>
-    {% endif %}
+    <li> mon adresse mail : {{ user.mail }}</li>
   </ul>
-  <h3>Shop de {{ user.username }}</h3>
 
-    {% if userShop.logo is defined %}
-    <ul>
-      <li>{{ userShop.name }}</li>
-      <li>{{ userShop.logo }}</li>
+  <a class="simplelink" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}"><h3 class="text-center">Shop de {{ user.username }}</h3></a>
 
-      <li>{{ userShop.adress }}</li>
-      <li>{{ userShop.url }}</li>
-    </ul>
-      {% endif %}
      
 </div>
 {% endblock %}
