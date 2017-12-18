@@ -21,6 +21,9 @@
 
   <a class="simplelink" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}"><h3 class="text-center">Shop de {{ user.username }}</h3></a>
 
-     
+  {% for userFav in userFavs %}
+  {{ dump(userFav) }}
+  {% endfor %}
+
 </div>
 {% endblock %}
