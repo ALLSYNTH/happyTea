@@ -418,6 +418,7 @@ class MainController extends controller {
  		$shopRepository = $em->getRepository('HTMainBundle:Shop');
  		// $userShop = $shopRepository->findByUser($id)[0];
  		$userShop = $user->getShop();
+		$userfavs = $user->getFavProduct();
 
  		dump($userShop);
 
@@ -430,7 +431,8 @@ class MainController extends controller {
  			'id' => $id,
  			'user' => $user,
  			'userShop' => $userShop,
- 			'products' => $products
+ 			'products' => $products,
+			'userFavs' => $userfavs
  		));
  	}
 
