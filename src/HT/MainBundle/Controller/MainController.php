@@ -37,7 +37,8 @@ class MainController extends controller {
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
-				'products' => $products  // on envoie les variable dans notre page twig
+				'products' => $products,
+				'articles' => $articles  // on envoie les variable dans notre page twig
 			));
 
 
