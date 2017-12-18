@@ -7,6 +7,7 @@ use HT\MainBundle\Entity\Shop;
 use HT\MainBundle\Entity\Product;
 use HT\MainBundle\Entity\Comment;
 use HT\UserBundle\Entity\User;
+use HT\AdminBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -167,13 +168,40 @@ class MainController extends controller {
 			));
 	}
 
-	public function contactAction() { // modèle page CGU
+	public function contactAction(Request $request) { // modèle page CGU //it's my POST method
 
 		$pageName = "contact";
+		$error = "";
+		$success = "";
+		$em = $this->getDoctrine()->getManager();
+
+		if($request->isMethod('POST')) { // Si j'ai fait mon Submit
+			$name = $request->get('name'); // je stocke le nom dans la variable nom
+			$mail = $request->get('mail');
+			$message = $request->get('message');
+
+			if(empty($name) || empty($mail)  || empty($message) ) {
+					$error = "Remplir tous les champs!";
+			}
+
+			if(empty($error)) {
+				$contact = new Contact;
+				$contact->setName($name);
+				$contact->setMail($mail);
+				$contact->setMessage($message);
+				$em->persist($contact);
+				$em->flush();
+
+				$success = "Votre message a bien été envoyé !";
+
+			}
+		}
 
 		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
+				'error' => $error,
+				'success' => $success
 
 			));
 
