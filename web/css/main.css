@@ -8,18 +8,59 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
 
 
-nav h1 {
+/*nav h1 {
 	font-family: 'Pacifico';
 	color: #00A96F;
 	position: absolute;
 	top: 32%;
 	left: 90px;
-}
+}*/
 
 
 body{
 	/*background-color: #e4f9f6;*/
 	padding-bottom: 70px;
+}
+
+.simpletitle{
+	font-family: 'Courgette', arial;
+	font-size: 2.5em;
+}
+
+/*Les bannières*/
+
+.shop.banner {
+	background-image: url("../img/background/banner-shop.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
+.shop.banner h1{
+	font-size:5em;
+}
+
+.user.banner {
+	background-image: url("../img/background/banner-user.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
+.user.banner h1{
+	font-size:5em;
 }
 /*CSS sur le layout (navbar et footer)*/
 
@@ -31,24 +72,32 @@ body{
 #footer{
   width: 100%;
   margin-top: 30px;
+  padding-top: 5px;
   position: fixed;
   bottom:0;
   background-color: rgba(153,213,207, 0.5);
+  border-radius: 90px;
+  margin-bottom: 2px;
 }
 
 .simplelink{
 	text-decoration: none;
 	color: #46A271;
+	font-family:'Courgette', arial;
 }
 
 .simplelink:hover , .simplelink:focus{
 	color:#009688;
+	text-decoration: none;
 }
 
 #footerlink:hover{
 	color:black;
 }
 
+.letter-spacing: {
+	letter-spacing: 3px;
+}
 .mainlogo{
 	height: 20%;
 	width: 20%;
@@ -127,6 +176,8 @@ body{
 .filterimg{
 	border-radius: 15px;
 	margin-top: 5px;
+	height: 14rem;
+	width: 14rem;
 }
 
 
@@ -216,10 +267,24 @@ body{
 }
 
 /* ------------------------------------------------
-	Applicable to Product page
+	Applicable to Shop page
 ------------------------------------------------ */
 
+.shoplogo{
+	border:2px dashed lightgreen;
+	width: 15em;
+	height: 15em;
+	transition: all 0.5s;
+}
 
+.shoplogo:hover{
+	transform: scale(0.9);
+	border-radius: 90px;
+}
+
+/* ------------------------------------------------
+	Applicable to Product page
+------------------------------------------------ */
 
 .teas.badge-category {
 	padding: 5px 10px;
@@ -295,9 +360,78 @@ body{
 }
 
 /* ------------------------------------------------
+	Applicable to shopList page
+------------------------------------------------ */
+
+.shoplist img {
+}
+
+.shoplist h2 {
+	font-family: 'Miniver', cursive;
+	text-align: center;
+	font-size: 2em;
+	padding: 0.5em 0;
+}
+
+.shoplist.address{
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+.shoplist.description {
+	font-size: 1.5em;
+  text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+/* ------------------------------------------------
+	Applicable to ShopPage
+------------------------------------------------ */
+
+.shoppage h1 {
+	font-family: 'Miniver', cursive;
+	font-size: 3em;
+	padding-bottom: 0.5em;
+}
+
+.shoppage h2 {
+	font-family: 'Miniver', cursive;
+	font-size: 1.5em;
+	padding-bottom: 0.5em;
+}
+
+.shoppage.description {
+	font-size: 1.5em;
+}
+
+.minitext{
+	font-size: 0.8em;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.shoppage-badge {
+	padding: 5px 10px;
+	color: white;
+	background-color: #484848;
+  border-radius: .25rem;
+	text-transform: uppercase;
+	font-size: 0.8em;
+	width: 7em;
+	text-align: center;
+}
+
+
+/* ------------------------------------------------
 	General styles applicable to all pages
 ------------------------------------------------ */
 
+.text-center {
+	text-align: center;
+}
 
 .img-responsive{
 	width: 100%;
@@ -409,16 +543,16 @@ body{
 
 .textarea-admin {
 
-	height: 130px; 
+	height: 130px;
 }
 
 .div-article-admin {
 
 	height: 350px;
 	margin-top: 40px;
-	box-shadow: 1px 2px 3px black; 
-	margin: 15px; 
-	padding: 10px; 
+	box-shadow: 1px 2px 3px black;
+	margin: 15px;
+	padding: 10px;
 
 }
 
@@ -431,7 +565,7 @@ body{
 .hidden {
 
 	display: none;
-	visibility: none; 
+	visibility: none;
 }
 /*-----------------------------------------------------
 	Style Article/News
@@ -439,15 +573,18 @@ body{
 
 
 .img-article {
- 
- 	height: 40%;
+ 	height: 100%;
  	width: 100%;
+ 	box-sizing: border-box;
  }
- 
+
  .div-article {
- 
- 	height: 500px;
- 	margin-top: 40px;
+ 	margin-top: 1em;
+ 	margin-bottom: 1em;
+ 	background-color: ;
+ 	padding: 0.5em;
+ 	border-radius: 1em;
+ 	border:2px solid #EDF8F7;
  }
 
 
@@ -468,6 +605,8 @@ body{
 	.contact.banner {
 		height: 250px;
 	}
+
+	/*---- Index Page ----*/
 
 }
 

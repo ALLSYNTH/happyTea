@@ -279,4 +279,36 @@ class AdminController extends controller {
 					));
 			}
 
+			private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {
+			   //Test1: fichier correctement uploadé
+				$error= "";
+			     if (!isset($file) OR $file->getError() != 0)
+			        {
+			        $error = 'Le fichier n a pas été correctement uploadé<br/> ';
+			        return FALSE; }
+			   //Test2: taille limite
+			     if ($maxsize !== FALSE AND $file->getClientSize() > $maxsize)
+			        {$error = 'Le fichier est trop gros !<br/>';
+			        return FALSE; }
+
+			   //Test3: extension
+			     // $ext = substr(strrchr($_FILES[$index]['name'],'.'),1);
+			        $ext=$file->guessClientExtension();
+
+			     if ($extensions !== FALSE AND !in_array($ext,$extensions)) {
+
+			        $error = 'Le fichier a une extension incorrect !<br/>';
+			        return FALSE;
+			     }
+			     //Concatene l'extension MIME
+			    // $name .= '.'.$ext;
+			   //Déplacement
+			     // return move_uploaded_file($_FILES[$index]['tmp_name'],$destination);
+			     dump($file);
+
+
+			     return $file->move("web/img/", $name );
+				}
+
+
 }

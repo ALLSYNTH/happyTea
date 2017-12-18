@@ -7,10 +7,12 @@ use HT\MainBundle\Entity\Shop;
 use HT\MainBundle\Entity\Product;
 use HT\MainBundle\Entity\Comment;
 use HT\UserBundle\Entity\User;
+use HT\AdminBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 
@@ -59,6 +61,10 @@ class MainController extends controller {
 	public function teasAction($id, Request $request) { // modèle page thé
 		$pageName = "thés";
 
+		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+		$favs = $utilisateur->getFavProduct();
+		dump($favs);
+
 		$em = $this->getDoctrine()->getManager();
 
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
@@ -67,7 +73,6 @@ class MainController extends controller {
 		$success = "";
 
 		if($request->isMethod('POST')) {
-					$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 					$content = $request->get('content');
 					$publishedAt = new \DateTime();
 					$comment = new Comment();
@@ -102,7 +107,9 @@ class MainController extends controller {
 				'comments' => $comments,
 				'success' => $success,
 				'error' => $error,
-				'products' => $products
+				'products' => $products,
+				'user' => $utilisateur,
+				'favs' =>$favs
 			));
 
 
@@ -172,16 +179,43 @@ class MainController extends controller {
 			));
 	}
 
-	public function contactAction(Request $request) { // modèle page CGU
-		
-	
+
+	public function contactAction(Request $request) { // modèle page CGU //it's my POST method
+
 		$pageName = "contact";
+		$error = "";
+		$success = "";
+		$em = $this->getDoctrine()->getManager();
+
+		if($request->isMethod('POST')) { // Si j'ai fait mon Submit
+			$name = $request->get('name'); // je stocke le nom dans la variable nom
+			$mail = $request->get('mail');
+			$message = $request->get('message');
+
+			if(empty($name) || empty($mail)  || empty($message) ) {
+					$error = "Remplir tous les champs!";
+			}
+
+			if(empty($error)) {
+				$contact = new Contact;
+				$contact->setName($name);
+				$contact->setMail($mail);
+				$contact->setMessage($message);
+				$em->persist($contact);
+				$em->flush();
+
+				$success = "Votre message a bien été envoyé !";
+
+			}
+		}
 
 
 
 		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
+				'error' => $error,
+				'success' => $success
 
 			));
 
@@ -388,6 +422,7 @@ class MainController extends controller {
  		$shopRepository = $em->getRepository('HTMainBundle:Shop');
  		// $userShop = $shopRepository->findByUser($id)[0];
  		$userShop = $user->getShop();
+		$userfavs = $user->getFavProduct();
 
  		dump($userShop);
 
@@ -400,7 +435,8 @@ class MainController extends controller {
  			'id' => $id,
  			'user' => $user,
  			'userShop' => $userShop,
- 			'products' => $products
+ 			'products' => $products,
+			'userFavs' => $userfavs
  		));
  	}
 
@@ -519,6 +555,40 @@ class MainController extends controller {
 			));
 	}
 
+	public function favAction(Request $request) {
+		$statut = [];
+		$id = $request->query->get('id');
+		$user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+		$em = $this->getDoctrine()->getManager();
+		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		$product = $productRepository->find($id);
+
+		$user->addFavProduct($product);
+
+		$em->persist($user);
+		$em->flush();
+
+		return new JsonResponse($statut);
+	}
+
+	public function removeFavAction(Request $request) {
+		$statut = [];
+		$id = $request->query->get('id');
+		$user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+		$em = $this->getDoctrine()->getManager();
+		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		$product = $productRepository->find($id);
+
+		$user->removeFavProduct($product);
+
+		$em->persist($user);
+		$em->flush();
+
+		return new JsonResponse($statut);
+	}
+
 	private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {
 	   //Test1: fichier correctement uploadé
 		$error= "";
@@ -549,6 +619,28 @@ class MainController extends controller {
 
 	     return $file->move("web/img/", $name );
 		}
+
+		public function shopPageAction($id) {
+			$pageName = 'Shop Page';
+
+      // Create a robot (entity manager = $em) that will fetch info from database
+			$em = $this->getDoctrine()->getManager();
+
+      // Telling which table to fetch in the database
+			$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
+
+			// fetch info from shop according to specified ID
+			$shop = $shopRepository->find($id);
+
+			// Twig names
+			return $this->render('HTMainBundle:Main:shopPage.html.twig', array(
+				'title' => $this->title,
+				'pageName' => $pageName,
+				'id' => $id,
+				'shop' => $shop // refers to table Shop (see line 549)
+			));
+		}
+
 
 
 

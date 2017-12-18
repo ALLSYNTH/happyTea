@@ -1,31 +1,56 @@
 {% extends "HTMainBundle::layout.html.twig" %}
 
 {% block body %}
-<div class="container">
-  {% if true == app.user.isBanned %}
-    <div class="alert alert-danger">
-      Vous avez été banni.
-    </div>
-  {% endif %}
-  <h2>Page de l'utilisateur n°{{ id }}</h2>
-  <ul>
-    <li>{{ user.username }}</li>
-    <li>{{ user.mail }}</li>
-    {% if user.siret is defined %}
-    <li>{{ user.siret }}</li>
-    {% endif %}
-  </ul>
-  <h3>Shop de {{ user.username }}</h3>
 
-    {% if userShop.logo is defined %}
-    <ul>
-      <li>{{ userShop.name }}</li>
-      <li>{{ userShop.logo }}</li>
-
-      <li>{{ userShop.adress }}</li>
-      <li>{{ userShop.url }}</li>
-    </ul>
-      {% endif %}
-     
+<div class="container-fluid">
+  <div class="row banner user d-flex align-items-center">
+    <h1 class="col-12 animated zoomIn">Welcome home, {{user.username}} !</h1>
+  </div>
 </div>
+
+
+<a class="simplelink" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}"><h3 class="text-center">Allez à mon shop</h3></a>
+<hr>
+<br>
+
+<h2 class="simpletitle text-center">Mes favoris ! </h2>
+
+<br>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-2 filtercontainerfav text-center fadeInRightBig animated">
+      <div id="filters" class="button-group">
+        <button type="button" class="btn btn-success filterbutton" data-filter="*">Tout les thés</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="oir">Thé noir</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="ert">Thé vert</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="lanc">Thé blanc</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="utre">Autre</button>
+        <br>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row grid">
+        {% for userFav in userFavs %}
+          <a href="{{path('ht_main_teas', {'id': userFav.id} )}}"class="simplelink">
+            <div class="col-3 teacontainer element-item" data-category="{{userFav.category.name}}">
+            <div class="teainformations"> {{userFav.name}} </div>
+            <div class="teasubinformations">{{userFav.price}} euros</div>
+            <div class="teasubinformations type">{{userFav.category.name}}</div>
+            <br>
+            <img src='/happyTea/web/web/img/{{userFav.picture}}' class="img-responsive filterimg">
+          </div>
+        </a>
+          
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

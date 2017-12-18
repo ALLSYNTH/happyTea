@@ -62,9 +62,23 @@ ht_main_updateProduct:
 ht_main_ajaxProduct:
     path: /ajaxProduct/{id}
     defaults: { _controller: HTMainBundle:Main:ajaxCallProduct }
+
+ht_main_shopPage:
+    path:    /shopPage/{id}
+    defaults:
+        _controller: HTMainBundle:Main:shopPage
+
     requirements:
         id: \d+
 
 ht_main_sitemap:
     path:   /sitemap
     defaults: { _controller: HTMainBundle:Main:sitemap }
+
+ht_main_fav:
+    path:     /favAjax
+    defaults: { _controller: HTMainBundle:Main:fav }
+
+ht_main_removeFav:
+    path:     /removeFavAjax
+    defaults: { _controller: HTMainBundle:Main:removeFav }

@@ -1,6 +1,39 @@
 {% extends "HTMainBundle::layout.html.twig" %}
 
 {% block body %}
+<div class="container-fluid">
+	<div class="row banner team d-flex align-items-center">
+		<h1 class="col-12 animated zoomIn">Boutiques de Thé</h1>
+	</div>
+</div>
+
+<div class="container-fluid shoplist">
+  <div class="row">
+
+    {% for shop in shops %}
+
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h2>{{shop.name}}</h2>
+        <figure class="img-responsive">
+          <img src="{{ shop.logo }}" class="img-responsive" alt="">
+        </figure>
+        <div class="card-block">
+          <p class="shoplist address">{{shop.adress}}</>
+          <p class="shoplist description">
+            {{shop.description}}
+          </p>
+          <a href="../main/shop/{{shop.id}}" class="">voir la boutique</a>
+        </div>
+      </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+
 <div class="container">
   <div class="row">
     {% for shop in shops %}

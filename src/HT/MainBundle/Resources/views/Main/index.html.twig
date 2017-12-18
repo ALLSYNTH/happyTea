@@ -4,39 +4,6 @@
 {% block body %}
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-2 filtercontainer text-center fadeInRightBig animated">
-      <div id="filters" class="button-group">
-        <button type="button" class="btn btn-success filterbutton" data-filter="*">Tout les thés</button>
-        <br>
-        <button type="button" class="btn btn-success filterbutton" data-filter="oir">Thé noir</button>
-        <br>
-        <button type="button" class="btn btn-success filterbutton" data-filter="ert">Thé vert</button>
-        <br>
-        <button type="button" class="btn btn-success filterbutton" data-filter="lanc">Thé blanc</button>
-        <br>
-        <button type="button" class="btn btn-success filterbutton" data-filter="utre">Autre</button>
-        <br>
-      </div>
-    </div>
-    <div class="col-8">
-      <div class="row grid">
-        {% for product in products %}
-          <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
-            <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
-            <div class="teainformations"> {{product.name}} </div>
-            <div class="teasubinformations">{{product.price}} euros</div>
-            <div class="teasubinformations type">{{product.category.name}}</div>
-            <br>
-            <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
-          </div>
-        </a>
-          
-        {% endfor %}
-
-      </div>
-    </div>
-  </div>
 
   {#         ARTICLE / NEWS  
    +             #}
@@ -62,6 +29,39 @@
    
    
    {#   FIN ARTICLE / NEWS  #}
+  <div class="row">
+    <div class="col-2 filtercontainer text-center fadeInRightBig animated">
+      <div id="filters" class="button-group">
+        <button type="button" class="btn btn-success filterbutton" data-filter="*">Tout les thés</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="oir">Thé noir</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="ert">Thé vert</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="lanc">Thé blanc</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" data-filter="utre">Autre</button>
+        <br>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row grid">
+        {% for product in products %}
+          <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
+            <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
+            <div class="teainformations"> {{product.name}} </div>
+            <div class="teasubinformations">{{product.price}} €</div>
+            <div class="teasubinformations type">{{product.category.name}}</div>
+            <br>
+            <img src='/happyTea/web/web/img/{{product.picture}}'  class="img-responsive filterimg">
+          </div>
+        </a>
+
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
