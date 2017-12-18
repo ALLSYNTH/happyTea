@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 // notre controleur principal, c'est ici qu'il y aura toutes la logique du projet
@@ -60,6 +61,8 @@ class MainController extends controller {
 		$pageName = "thés";
 
 		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+		$favs = $utilisateur->getFavProduct();
+		dump($favs);
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -104,7 +107,8 @@ class MainController extends controller {
 				'success' => $success,
 				'error' => $error,
 				'products' => $products,
-				'user' => $utilisateur
+				'user' => $utilisateur,
+				'favs' =>$favs
 			));
 
 
@@ -537,6 +541,40 @@ class MainController extends controller {
 				'error' => $error,
 				'success' => $success
 			));
+	}
+
+	public function favAction(Request $request) {
+		$statut = [];
+		$id = $request->query->get('id');
+		$user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+		$em = $this->getDoctrine()->getManager();
+		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		$product = $productRepository->find($id);
+
+		$user->addFavProduct($product);
+
+		$em->persist($user);
+		$em->flush();
+
+		return new JsonResponse($statut);
+	}
+
+	public function removeFavAction(Request $request) {
+		$statut = [];
+		$id = $request->query->get('id');
+		$user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+		$em = $this->getDoctrine()->getManager();
+		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+		$product = $productRepository->find($id);
+
+		$user->removeFavProduct($product);
+
+		$em->persist($user);
+		$em->flush();
+
+		return new JsonResponse($statut);
 	}
 
 	private function upload($file,$name,$maxsize=FALSE,$extensions=FALSE) {

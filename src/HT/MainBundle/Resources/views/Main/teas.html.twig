@@ -2,7 +2,6 @@
 
 
 {% block body %}
-
 <div class="container teas">
 
   	{% if success %}
@@ -76,6 +75,15 @@
 			</aside>
 
 			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
+      {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+      <div class="alert alert-info">Vous devez être connecter pour pouvoir ajouter aux favoris.</div>
+      {% elseif true == user.isBanned %}
+      <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
+      {% elseif favs.empty %}
+      <button class="btn btn-lg btn-block fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
+      {% else %}
+      <button class="btn btn-lg btn-block supfav" type="button" data-path="{{ path('ht_main_removeFav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
+      {% endif %}
 
 		</div>
 	</section>
