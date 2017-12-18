@@ -53,6 +53,18 @@ ht_main_addProduct:
     path:   /addProduct
     defaults: { _controller: HTMainBundle:Main:addProduct }
 
+ht_main_updateProduct:
+    path:   /updateProduct/{id}
+    defaults: { _controller: HTMainBundle:Main:updateProduct }
+    requirements:
+        id: \d+
+
+ht_main_ajaxProduct:
+    path: /ajaxProduct/{id}
+    defaults: { _controller: HTMainBundle:Main:ajaxCallProduct }
+    requirements:
+        id: \d+
+
 ht_main_sitemap:
     path:   /sitemap
     defaults: { _controller: HTMainBundle:Main:sitemap }

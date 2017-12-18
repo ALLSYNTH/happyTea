@@ -1,0 +1,31 @@
+		{% block body %}
+		<h3>Liste de vos produits : </h3>
+		<table class="table table-striped table-hover ">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>nom</th>
+					<th>prix</th>
+					<th>description</th>
+					<th>catégorie</th>
+					<th>modifier produit</th>
+					<th>supprimer produit</th>
+					
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{product.id}}</td>
+						<td>{{product.name}}</td>
+						<td>{{product.price}}</td>
+						<td>{{product.description}}</td>
+						<td>{{product.category.name}}</td>
+						<td> <a href="{{ path( 'ht_main_updateProduct' , { 'id' :  product.id   } ) }}">modifier produit</a></td>
+						<td> <a href="#" id="remove-product-button" data-href=" {{path('ht_main_addProduct' )}}" data-req="remove-product" data-id="{{ product.id }}">supprimer produit</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% endblock %}

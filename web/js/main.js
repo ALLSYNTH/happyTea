@@ -225,6 +225,32 @@ $(function(){
 	 });
 
 
+	  /* JS AJAX UPDATE PRODUIT */ 
+
+	  //  $("body").on('click', '#remove-product-button', function(event){
+	  //    event.preventDefault();
+
+	  //      var path = $(this).data("href");
+	      
+	  //      var id = $(this).data("id"); 
+	  //      var req = $(this).data("req");
+
+	  //      console.log(req);
+
+
+
+	  //    $.ajax({
+	  //       url : path+'?id='+id+'&req='+req,
+	  //       type : 'GET',
+	  //       // data : data,
+
+	  //       dataType : 'html',
+	  //       success : function(code_html, statut){
+	  //        $('#ajaxTab-product').html(code_html); 
+	  //       }
+	  //    });
+
+	  // });
 
 
 
