@@ -58,6 +58,8 @@ class MainController extends controller {
 	public function teasAction($id, Request $request) { // modèle page thé
 		$pageName = "thés";
 
+		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
 		$em = $this->getDoctrine()->getManager();
 
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
@@ -66,7 +68,6 @@ class MainController extends controller {
 		$success = "";
 
 		if($request->isMethod('POST')) {
-					$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 					$content = $request->get('content');
 					$publishedAt = new \DateTime();
 					$comment = new Comment();
@@ -101,7 +102,8 @@ class MainController extends controller {
 				'comments' => $comments,
 				'success' => $success,
 				'error' => $error,
-				'products' => $products
+				'products' => $products,
+				'user' => $utilisateur
 			));
 
 
