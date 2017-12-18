@@ -68,6 +68,7 @@
 </section>
 
 {{ dump(shop) }}
-
-
+{% for shopProduct in shopProducts %}
+{{ shopProduct.name }}
+{% endfor %}
 {% endblock %}
