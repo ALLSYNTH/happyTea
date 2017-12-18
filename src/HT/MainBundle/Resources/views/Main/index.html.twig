@@ -50,13 +50,13 @@
           <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
             <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
             <div class="teainformations"> {{product.name}} </div>
-            <div class="teasubinformations">{{product.price}} euros</div>
+            <div class="teasubinformations">{{product.price}} €</div>
             <div class="teasubinformations type">{{product.category.name}}</div>
             <br>
-            <img src='/happyTea/web/web/img/{{product.picture}}' class="img-responsive filterimg">
+            <img src='/happyTea/web/web/img/{{product.picture}}'  class="img-responsive filterimg">
           </div>
         </a>
-          
+
         {% endfor %}
         
       </div>
