@@ -536,6 +536,28 @@ class MainController extends controller {
 	     return $file->move("web/img/", $name );
 		}
 
+		public function shopPageAction($id) {
+			$pageName = 'Shop';
+
+      // Create a robot (entity manager = $em) that will fetch info from database
+			$em = $this->getDoctrine()->getManager();
+
+      // Telling which table to fetch in the database
+			$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
+
+			// fetch info from shop according to specified ID
+			$shop = $shopRepository->find($id);
+
+			// Twig names
+			return $this->render('HTMainBundle:Main:shop.html.twig', array(
+				'title' => $this->title,
+				'pageName' => $pageName,
+				'id' => $id,
+				'shop' => $shop // refers to table Shop (see line 549)
+			));
+		}
+
+
 
 
 
