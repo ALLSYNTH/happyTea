@@ -628,16 +628,19 @@ class MainController extends controller {
 
       // Telling which table to fetch in the database
 			$shopRepository = $em->getRepository('HTMainBundle:Shop'); //em = 'entity manager'
+			$productRepository = $em->getRepository('HTMainBundle:Product');
 
 			// fetch info from shop according to specified ID
 			$shop = $shopRepository->find($id);
+			$shopProducts = $productRepository->findByShop($shop);
 
 			// Twig names
 			return $this->render('HTMainBundle:Main:shopPage.html.twig', array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'id' => $id,
-				'shop' => $shop // refers to table Shop (see line 549)
+				'shop' => $shop, // refers to table Shop (see line 549)
+				'shopProducts' => $shopProducts
 			));
 		}
 
