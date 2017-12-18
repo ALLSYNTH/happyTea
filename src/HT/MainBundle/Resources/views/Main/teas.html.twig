@@ -3,7 +3,6 @@
 
 {% block body %}
 
-
 <div class="container teas">
 
   	{% if success %}
@@ -176,12 +175,17 @@
 
 	<section  id="comments" class="row my-5 p-5 d-flex flex-column align-items-center">
 		<h2>Les avis sur le thé {{ product.name }}</h2>
-
+    {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="alert alert-info">Vous devez être connecter pour pouvoir poster un commentaire</div>
+    {% elseif true == user.isBanned %}
+    <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
+    {% else %}
 		<form method="post" class="my-5 col-12" action="">
 			<textarea name="content" placeholder="Votre commentaire ici..." rows="5" ></textarea>
 			<br>
 			<input class="btn btn-info" type="submit" value="Commenter">
 		</form>
+    {% endif %}
 
 		<div class="d-flex flex-column align-items-center">
 			{% for comment in comments %}
@@ -202,29 +206,29 @@
 {# Exemple boucle twig foreach #}
 
 {# Ici, on ouvre la boucle twig,
-on demande a parcourir tout les produit (product), 
+on demande a parcourir tout les produit (product),
 dans le tableau qui contient les produits (products).
 à l'intérieur de cette boucle on demandera certaines informations. #}
 
-{% for product in products %} 
+{% for product in products %}
 <div>
 
-	{# Dans cette boucle je vais demander des infos, ce sera toujours écrit ainsi: 
+	{# Dans cette boucle je vais demander des infos, ce sera toujours écrit ainsi:
 	nomdelatable.nomduchamp #}
 
   {{product.name}} {# Ici le nom #}
   {{product.price}} euros {# ici le prix, j'ai ajouté "euros" pour être précis #}
-  {{product.category.name}} {# ici la catégorie, ou type du thé #} 
+  {{product.category.name}} {# ici la catégorie, ou type du thé #}
   <img src='/happyTea/web/web/img/{{product.picture}}'>
-{# 
-  Pour l'image c'est un poil plus complexe, je t'explique. 
+{#
+  Pour l'image c'est un poil plus complexe, je t'explique.
   Avec {{product.picture}}, je vais récupérer le nom de l'image qui est dans notre projet symfony.
   La fonction "path()" de twig, pour cherche l'image, ne fonctionnait pas, donc j'ai fait autrement.
   Attention cependant, je suis pas sur que ce soit la bonne solution, on verra ça lundi ou mardi.
 
   Je met le chemin en dur vers le dossier ou sont stocké les images uploadés par les vendeurs,
   soit: /happyTea/web/web/img/
-  Dans le dossier img, se trouve l'image du produits. 
+  Dans le dossier img, se trouve l'image du produits.
   Pour qu'elle soit bien trouvé, j'ajoute juste la commande twig {{product.picture}}
   Ainsi, je récupère le nom de l'image du produit actuellement parcouru par le tableau. #}
 
