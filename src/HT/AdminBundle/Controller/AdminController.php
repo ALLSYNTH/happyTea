@@ -7,6 +7,7 @@ use HT\MainBundle\Entity\Shop;
 use HT\MainBundle\Entity\Product;
 use HT\MainBundle\Entity\Comment;
 use HT\UserBundle\Entity\User;
+use HT\AdminBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class AdminController extends controller {
 			protected $title = "HappyTea";
 
 
-			public function adminPageAction() {
+			public function adminPageAction(Request $request ) {
 
 					$em = $this->getDoctrine()->getManager();
 				$userRepository = $em->getRepository('HTUserBundle:User');
@@ -247,7 +248,7 @@ class AdminController extends controller {
 					));
 			}
 
-			public function contentAjaxAction() {
+			public function contentAjaxAction(Request $request) {
 
 				$em = $this->getDoctrine()->getManager();
 				$articleRepository = $em->getRepository('HTAdminBundle:Article');
