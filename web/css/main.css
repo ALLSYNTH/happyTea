@@ -21,6 +21,42 @@ body{
 	/*background-color: #e4f9f6;*/
 	padding-bottom: 70px;
 }
+
+/*Les bannières*/
+
+.shop.banner {
+	background-image: url("../img/background/banner-shop.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
+.shop.banner h1{
+	font-size:5em;
+}
+
+.user.banner {
+	background-image: url("../img/background/banner-user.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
+.user.banner h1{
+	font-size:5em;
+}
 /*CSS sur le layout (navbar et footer)*/
 
 .bg-faded{
@@ -127,6 +163,8 @@ body{
 .filterimg{
 	border-radius: 15px;
 	margin-top: 5px;
+	height: 14rem;
+	width: 14rem;
 }
 
 
@@ -216,10 +254,18 @@ body{
 }
 
 /* ------------------------------------------------
-	Applicable to Product page
+	Applicable to Shop page
 ------------------------------------------------ */
 
+.shoplogo{
+	border:2px dashed lightgreen;
+	width: 15em;
+	height: 15em;
+}
 
+/* ------------------------------------------------
+	Applicable to Product page
+------------------------------------------------ */
 
 .teas.badge-category {
 	padding: 5px 10px;
@@ -467,6 +513,16 @@ body{
 	/* ---- Contact Page ---- */
 	.contact.banner {
 		height: 250px;
+	}
+
+	/*---- Index Page ----*/
+	.filtercontainer{
+		position:fixed;
+		top: 20em;
+		right:4em;
+		background-color: rgba(204, 234, 231, 0.35);
+		border-radius: 30px;
+		border: 2px dashed #cceae7;
 	}
 
 }
