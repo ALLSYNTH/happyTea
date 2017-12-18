@@ -53,10 +53,21 @@ ht_main_addProduct:
     path:   /addProduct
     defaults: { _controller: HTMainBundle:Main:addProduct }
 
+ht_main_updateProduct:
+    path:   /updateProduct/{id}
+    defaults: { _controller: HTMainBundle:Main:updateProduct }
+    requirements:
+        id: \d+
+
+ht_main_ajaxProduct:
+    path: /ajaxProduct/{id}
+    defaults: { _controller: HTMainBundle:Main:ajaxCallProduct }
+
 ht_main_shopPage:
     path:    /shopPage/{id}
     defaults:
         _controller: HTMainBundle:Main:shopPage
+
     requirements:
         id: \d+
 

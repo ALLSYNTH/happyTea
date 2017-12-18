@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
+
 // notre controleur principal, c'est ici qu'il y aura toutes la logique du projet
 class MainController extends controller {
 
@@ -178,6 +179,7 @@ class MainController extends controller {
 			));
 	}
 
+
 	public function contactAction(Request $request) { // modèle page CGU //it's my POST method
 
 		$pageName = "contact";
@@ -206,6 +208,8 @@ class MainController extends controller {
 
 			}
 		}
+
+
 
 		return $this->render("HTMainBundle:Main:contact.html.twig", array(
 				'title' => $this->title,
@@ -448,19 +452,22 @@ class MainController extends controller {
 			$error = [];
 			$success = "";
 
+			$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+
+
+			$userId = $utilisateur->getId();
+
+			$em = $this->getDoctrine()->getManager();
+			$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
+
+			$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+			$products = $productRepository->findByShop($shop->getId());
+			// dump($products); 
+
 			 if($request->isMethod('POST')) {
 
-			 	$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 
-
-
-			 	$userId = $utilisateur->getId();
-
-			 	$em = $this->getDoctrine()->getManager();
-
-			 	$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
-
-			 	dump($shop);
 
 			 	$name = $request->get('name');
 			 	$price = $request->get('price');
@@ -537,11 +544,14 @@ class MainController extends controller {
 			 }
 
 
+
+
 		return $this->render('HTMainBundle:Main:addProduct.html.twig', array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'error' => $error,
-				'success' => $success
+				'success' => $success,
+				'products' => $products
 			));
 	}
 
@@ -635,7 +645,165 @@ class MainController extends controller {
 
 
 
+		public function updateProductAction($id, Request $request) {
 
+			
+
+			if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+				throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+
+			}
+
+				$pageName = "modifier produit";
+				$error = [];
+				$success = "";
+
+				$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+
+
+				$userId = $utilisateur->getId();
+
+				$em = $this->getDoctrine()->getManager();
+				$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
+
+				$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
+				
+
+				$product = $productRepository->find($id);
+
+				 if($request->isMethod('POST')) {
+
+
+
+				 	$name = $request->get('name');
+				 	$price = $request->get('price');
+				 	$description = $request->get('description');
+				 	$picture = $request->files->get('picture');
+				 	$category_id = $request->get('category');
+
+				 	$category = $em->getRepository('HTMainBundle:Category')->findById($category_id)[0];
+
+				 	if(empty($name)) {
+
+				 		$error['name'] = "Veuillez remplir le champ \"Nom\".";
+				 	}
+
+				 	if(empty($price)) {
+
+				 		$error['price'] = "Veuillez remplir le champ \"Price\".";
+				 	}
+
+				 	if(!is_numeric($price)) {
+
+				 		$error['price'] = "Le prix doit être un nombre.";
+				 	}
+
+				 	if(empty($description)) {
+
+				 		$error['description'] = "Veuillez remplir le champ \"Description\".";
+				 	}
+
+				 	if(empty($category)) {
+
+				 		$error['category'] = "Veuillez remplir le champ \"Catégorie\".";
+				 	}
+
+
+
+				 	if($picture == NULL && $product->getPicture() == NULL ) {
+
+				 		$error['picture'] = "Veuillez ajouter une image pour illustrer votre Shop.";
+				 	}
+
+				 	else {
+				 		$mime=$picture->guessClientExtension();
+				 		$uploadName = uniqid("doc_", true).'.'.$mime;
+				 		if(!$this->upload($picture, $uploadName, 1000000, array('png','gif','jpg','jpeg') )  ) {
+				 			$error['picture'] = "Votre fichier n'est pas à un format autorisé et/ou est trop volumineux.";
+				 		}
+
+				 	}
+
+
+
+					if(empty($error)) {
+
+
+
+						
+
+						$product->setShop($shop);
+						$product->setCategory($category);
+						$product->setPicture($uploadName);
+						$product->setDescription($description);
+						$product->setPrice($price);
+						$product->setName($name);
+
+						$em->persist($product);
+
+						$em->flush();
+
+						$success = "Le produit a bien été ajouté à votre shop.";
+
+
+					} 
+
+
+			}
+
+
+
+			return $this->render('HTMainBundle:Main:updateProduct.html.twig', array(
+							'title' => $this->title, 
+							'success' => $success,
+							'error' => $error, 
+							'pagename' => $pageName, 
+							'product' => $product 
+				));
+
+		}
+
+
+		public function ajaxCallProductAction($id , Request $request) {
+
+			// if($request->query->get('req') == "remove-product") {
+			// 		$em = $this->getDoctrine()->getManager();
+			// 		$productRepository = $em->getRepository('HTMainBundle:Product');
+			// 		$products = $productRepository->findAll();
+			// 		$statut = ""; 
+			// 		$productId = $request->query->get('id'); 
+			// 		// dump($productId); 
+			// 		$productToRemove = $productRepository->findOneById($productId); 
+			// 		// dump($productToRemove); 
+			// 		if(	$productToRemove != null ) {
+			// 		$em->remove($productToRemove);
+			// 		$em->flush(); 
+			// 		}
+					
+			// 		}
+
+						$em = $this->getDoctrine()->getManager();
+					$productRepository = $em->getRepository('HTMainBundle:Product');
+					$products = $productRepository->findAll();
+					$statut = ""; 
+					// $productId = $request->query->get('id'); 
+					// dump($productId); 
+					$productToRemove = $productRepository->findOneById($id); 
+					// dump($productToRemove); 
+					if(	$productToRemove != null ) {
+					$em->remove($productToRemove);
+					$em->flush(); 
+					}
+
+					return $this->redirectToRoute('ht_main_addProduct');
+
+					// return $this->render('HTMainBundle:Main:ajaxTabProduct.html.twig', array(
+					// 		'products' => $products
+					// 	)); 
+			
+		}
 
 
 

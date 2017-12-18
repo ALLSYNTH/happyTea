@@ -14,7 +14,7 @@
 	<div class="alert alert-success">{{ success }}  </div>
 	{% else %}
 	<div class="container">
-		<a href="{{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }}">< Revenir à la page mon Shop</a>
+		<a href="{{path('ht_main_addProduct')}}"> < Revenir à la page produit</a>
 		<form method="post" enctype="multipart/form-data">
 
 			<div> Tous les champs sont obligatoires :</div>
@@ -22,7 +22,7 @@
 
 			<div class="form-group">
 				<label for="name"> Nom du thé : </label>
-				<input type="name" class="form-control" placeholder="nom du thé..." name="name" id="name">
+				<input type="name" class="form-control" placeholder="nom du thé..." name="name" id="name" value="{{ product.name }}">
 				{% if error.name is defined %}
 						<div class="alert alert-warning"> {{ error.name }} </div>
 				{% endif %}
@@ -30,7 +30,7 @@
 
 			<div class="form-group">
 				<label for="price"> Prix du thé : </label>
-				<input type="text" class="form-control" name="price" placeholder="prix du thé"/>
+				<input type="text" class="form-control" name="price" placeholder="prix du thé" value=" {{ product.price }}"/>
 				{% if error.price is defined %}
 					<div class="alert alert-warning"> {{ error.price }} </div>
 				{% endif %}
@@ -38,7 +38,7 @@
 
 			<div class="form-group">
 				<label for="description"> Description du produit </label>
-				<textarea class="form-control" name="description"></textarea>
+				<textarea class="form-control" name="description"> {{ product.description }}</textarea>
 				{% if error.description is defined %}
 					<div class="alert alert-warning"> {{ error.description }} </div>
 				{% endif %}
@@ -54,11 +54,11 @@
 
 			<div class="form-group">
 				<label for="category">Catégorie :</label>
-				<select class="form-control" name="category" id="category">
-					<option value="1">Thé vert</option>
-					<option value="2">Thé noir</option>
-					<option value="3">Thé blanc</option>
-					<option value="4">Autre</option>
+				<select class="form-control" name="category" id="category" >
+					<option {% if product.category == "Thé vert" %} selected {% endif %} value="1">Thé vert</option>
+					<option  {% if product.category == "Thé noir" %} selected {% endif %}  value="2">Thé noir</option>
+					<option  {% if product.category == "Thé blanc" %} selected {% endif %}  value="3">Thé blanc</option>
+					<option  {% if product.category == "Autre" %} selected {% endif %}  value="4">Autre</option>
 				</select>
 				{% if error.category is defined %}
 					<div class="alert alert-warning"> {{ error.category }} </div>
@@ -75,38 +75,5 @@
 	</div>
 
 	{% endif %}
-	<div class="container" id="ajaxTab-product">
-		<h3>Liste de vos produits : </h3>
-		<table class="table table-striped table-hover ">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>nom</th>
-					<th>prix</th>
-					<th>description</th>
-					<th>catégorie</th>
-					<th>modifier produit</th>
-					<th>supprimer produit</th>
-					
-
-				</tr>
-			</thead>
-			<tbody>
-				{% for product in products %}
-					<tr>
-						<td>{{product.id}}</td>
-						<td>{{product.name}}</td>
-						<td>{{product.price}}</td>
-						<td>{{product.description}}</td>
-						<td>{{product.category.name}}</td>
-						<td> <a href="{{ path( 'ht_main_updateProduct' , { 'id' :  product.id   } ) }}">modifier produit</a></td>
-						<td> <a href="{{path('ht_main_ajaxProduct', {'id' : product.id}  )}}" id="remove-product-button" data-href=" {{path('ht_main_ajaxProduct', {'id' : product.id}  )}}" data-req="remove-product" data-id="{{ product.id }}">supprimer produit</a></td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-
-	</div>
-{% endif %}
+	{% endif %}
 {% endblock %}
