@@ -409,6 +409,7 @@ body{
 
 .teas h2 {
 	font-family: 'Miniver', cursive;
+	text-align: center;
 }
 
 .teas h3 {
@@ -540,7 +541,6 @@ body{
 
 .no-textdecoration, .no-textdecoration:hover, .no-textdecoration a, .no-textdecoration a:hover {
 	text-decoration: none;
-	color: white;
 }
 
 .white {
