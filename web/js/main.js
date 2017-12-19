@@ -83,7 +83,7 @@ $(function(){
 			 url : path+'?id='+id,
 			 type : 'GET',
 			 success : function(statut){
-	      $('.fav').html('Supprimer des favoris');
+	      $('.fav').addClass('supfav').html('Supprimer des favoris').removeClass('fav');
 	     }
 		});
 	});
@@ -99,7 +99,7 @@ $(function(){
 			 url : path+'?id='+id,
 			 type : 'GET',
 			 success : function(statut){
-	      $('.supfav').html('Ajouter aux favoris');
+	      $('.supfav').addClass('fav').html('Ajouter des favoris').removeClass('supfav');
 	     }
 		});
 	});
@@ -286,7 +286,7 @@ $(function(){
 
 	      var path = $(this).data("href");
 	      var id = $(this).data("id");
-	  
+
 	      var req = "check-article";
 
 

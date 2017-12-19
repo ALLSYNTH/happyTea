@@ -16,7 +16,6 @@
 	left: 90px;
 }*/
 
-
 body{
 	/*background-color: #e4f9f6;*/
 	padding-bottom: 70px;
@@ -27,7 +26,9 @@ body{
 	font-size: 2.5em;
 }
 
-/*Les bannières*/
+/* ------------------------------------------------
+					Banners
+------------------------------------------------ */
 
 .shop.banner {
 	background-image: url("../img/background/banner-shop.jpg");
@@ -60,6 +61,23 @@ body{
 }
 
 .user.banner h1{
+	font-size:5em;
+}
+
+.blog.banner {
+	background-image: url("../img/background/banner-blog.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
+.blog.banner h1{
 	font-size:5em;
 }
 /*CSS sur le layout (navbar et footer)*/
@@ -142,15 +160,18 @@ body{
 }
 
 .teacontainer{
-	transition: all 0.2s;
+	
 	padding: 5px;
 	border: 2px solid lightgreen;
 	border-radius: 4px;
 	text-align: center;
+	transform: scale(1);
 }
 
 .teacontainer:hover{
 	transform: scale(0.93);
+	border-radius: 50px;
+	transition: all 0.2s;
 }
 
 .teainformations{
@@ -404,7 +425,7 @@ body{
 }
 
 .shoppage.description {
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 .minitext{
@@ -416,12 +437,21 @@ body{
 .shoppage-badge {
 	padding: 5px 10px;
 	color: white;
-	background-color: #484848;
   border-radius: .25rem;
 	text-transform: uppercase;
 	font-size: 0.8em;
-	width: 7em;
+	width: 7.5em;
 	text-align: center;
+}
+
+.shoppage.otherproducts h4{
+	font-size: 1em;
+}
+
+.shoppage-logo {
+	max-width: 110px;
+	max-height: auto;
+	border-radius: 10%;
 }
 
 
@@ -484,6 +514,13 @@ body{
 	background-color: #2bbbfd;
 }
 
+.bg-autumn {
+	background-color: #D9A940;
+}
+
+.bg-orange {
+	background-color: rgb(255, 115, 0);
+}
 
 
 /*-----------------------------------------------------
@@ -584,10 +621,13 @@ body{
  	background-color: ;
  	padding: 0.5em;
  	border-radius: 1em;
- 	border:2px solid #EDF8F7;
+ 	border:3px solid #4ea678;
  }
 
-
+.article-content{
+	overflow: auto;
+	word-wrap: break-word;
+}
 /* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */

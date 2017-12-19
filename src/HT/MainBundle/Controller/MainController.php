@@ -34,14 +34,13 @@ class MainController extends controller {
 		 $products = $productRepository->findAll();
 
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
-		 $articles = $articleRepository->findByIsPublished(true);
-
+		 $articles = $articleRepository->findByIsPublished(true)[0];
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'products' => $products,
-				'articles' => $articles  // on envoie les variable dans notre page twig
+				'article' => $articles  // on envoie les variable dans notre page twig
 			));
 
 
@@ -124,11 +123,27 @@ class MainController extends controller {
 
 		return $this->render("HTMainBundle:Main:team.html.twig", array(
 				'title' => $this->title,
-				'pageName' => $pageName,
+				'pageName' => $pageName
 
 			));
 
 
+	}
+
+	public function blogAction() {
+		$pageName = "Blog";
+
+		$em = $this->getDoctrine()->getManager();
+
+		$articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
+		$articles = $articleRepository->findByIsPublished(true);
+
+		return $this->render("HTMainBundle:Main:blog.html.twig", array(
+				'title' => $this->title,
+				'pageName' => $pageName,
+				'articles' => $articles
+
+			));
 	}
 
 	public function sitemapAction(){
@@ -136,52 +151,10 @@ class MainController extends controller {
 
  		return $this->render("HTMainBundle:Main:sitemap.html.twig", array(
  				'title' => $this->title,
- 				'pageName' =>$pageName,
+ 				'pageName' =>$pageName
 
  		));
 		}
-
-	public function faqAction() { // modèle FAQ
-
-
-		$pageName = "FAQ";
-
-
-		//SCRIPT TEST POUR REMPLIR BDD
-
-		// // Les noms d'utilisateurs à créer
-		//     $listNames = array('Alex', 'Antoine', 'Claire', 'Quentin');
-		//     $manager = $this->getDoctrine()->getManager();
-
-		//     foreach ($listNames as $name) {
-		//       // On crée l'utilisateur
-		//       $user = new User;
-
-		//       // Le nom d'utilisateur et le mot de passe sont identiques pour l'instant
-		//       $user->setUsername($name);
-		//       $user->setPassword($name);
-
-		//       // On ne se sert pas du sel pour l'instant
-		//       $user->setSalt('');
-		//       // On définit uniquement le role ROLE_USER qui est le role de base
-		//       $user->setRoles(array('ROLE_USER', 'ROLE_SELLER'));
-
-		//       // On le persiste
-		//       $manager->persist($user);
-		//     }
-
-		//     // On déclenche l'enregistrement
-		//     $manager->flush();
-
-
-
-
-		return $this->render("HTMainBundle:Main:faq.html.twig", array(
-				'title' => $this->title,
-				'pageName' => $pageName,
-			));
-	}
-
 
 	public function contactAction(Request $request) { // modèle page CGU //it's my POST method
 
@@ -546,24 +519,11 @@ class MainController extends controller {
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
 
-		$user->addFavProduct($product);
-
-		$em->persist($user);
-		$em->flush();
-
-		return new JsonResponse($statut);
-	}
-
-	public function removeFavAction(Request $request) {
-		$statut = [];
-		$id = $request->query->get('id');
-		$user = $this->container->get('security.token_storage')->getToken()->getUser();
-
-		$em = $this->getDoctrine()->getManager();
-		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
-		$product = $productRepository->find($id);
-
-		$user->removeFavProduct($product);
+		if ($user->isFavProduct($product)) {
+			   $user->removeFavProduct($product);
+		} else {
+			   $user->addFavProduct($product);
+		}
 
 		$em->persist($user);
 		$em->flush();
