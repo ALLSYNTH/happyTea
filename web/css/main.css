@@ -404,7 +404,7 @@ body{
 }
 
 .shoppage.description {
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 .minitext{
@@ -425,6 +425,12 @@ body{
 
 .shoppage.otherproducts h4{
 	font-size: 1em;
+}
+
+.shoppage-logo {
+	max-width: 110px;
+	max-height: auto;
+	border-radius: 10%;
 }
 
 
@@ -490,6 +496,11 @@ body{
 .bg-autumn {
 	background-color: #D9A940;
 }
+
+.bg-orange {
+	background-color: rgb(255, 115, 0);
+}
+
 
 /*-----------------------------------------------------
 	Style Page admin

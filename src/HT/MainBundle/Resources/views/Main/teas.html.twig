@@ -15,7 +15,6 @@
 	<section class="row my-5 teas d-flex flex-column align-items-center">
 		<h1>{{ product.name }}</h1>
 		<h4>Les Thés de la boutique {{ product.shop.name }} </h4>
-
 	</section>
 
 	<!-- product image -->
@@ -28,8 +27,17 @@
 
 			<!-- category info -->
 			<div class="d-flex align-items-baseline justify-content-left">
-				<h4>Categorie:</h4>
-				<p class="ml-2 teas badge-category">{{ product.category.name }}</p>
+				<h4 class="pr-2">Categorie:</h4>
+				{% if product.category.name == "Thé vert"  %}
+					<p class="shoppage-badge bg-turquoise">{{ product.category.name }} </p>
+					{% elseif product.category.name == "Thé noir" %}
+					<p class="shoppage-badge bg-darkgrey">{{ product.category.name }} </p>
+					{% elseif product.category.name == "Thé blanc" %}
+					<p class="shoppage-badge bg-orange">{{ product.category.name }} </p>
+					{% else %}
+					<p class="shoppage-badge bg-autumn">{{ product.category.name }} </p>
+				{% endif %}
+
 			</div>
 
 			<!-- description text -->
@@ -106,16 +114,15 @@
 
 		<h2>La boutique</h2>
 
+
 		<div class="row my-5">
 			<figure class="col-12 offset-md-1 col-md-4">
-				<img class="img-responsive" src="https://i.pinimg.com/736x/91/b2/a1/91b2a15dbe78b38d6b5885d4a1a86b2e--afternoon-tea-drinking-tea.jpg" alt="">
+				<img class="img-responsive" src="{{ product.shop.logo }} " alt="">
 			</figure>
 
 			<div class="col-12 offset-md-1 col-md-6">
 				<h3>{{ product.shop.name }} </h3>
-				<p class="info-chart">
-					Après Mister T. de l’agence tous risques, découvrez maintenant Mister Tea qui vous sert une tasse de thé.
-				</p>
+				<p class="info-chart">{{ product.shop.description }}</p>
 				<a href="#">plus d'infos sur la page de la boutique</a>
 			</div>
 
@@ -131,65 +138,31 @@
 
 		<!-- display teas from similar categories // a mettre a jour plus tard avec for each + nommage twig-->
 
-		<div class="teas otherproducts d-flex">
+		<div class="teas otherproducts d-flex my-2">
 
-      {% for shopProduct in shopProducts %}
-      <div class="col-6 col-md-4">
-        <h4 class="text-center py-2">{{ shopProduct.name }}</h4>
-        <img src="https://www.graphicpear.com/wp-content/uploads/2017/10/6-1.jpg"  class="img-responsive card-img-top">
+      {% for product in products %}
+      <div class="col-6 col-md-4 col-lg-3">
+				<a class="no-textdecoration" href="{{path('ht_main_teas', {'id': product.id} )}}">
+        <h4 class="text-center py-2">{{ product.name }}</h4>
+        <img src="{{product.picture}}"  class="img-responsive card-img-top">
         <div class="p-2 d-flex justify-content-around">
-          <p class="shoppage-badge">{{ shopProduct.category.name }} </p>
-          <p class="">{{ shopProduct.price }} €</p>
+					{% if product.category.name == "Thé vert"  %}
+	          <p class="shoppage-badge bg-turquoise">{{ product.category.name }} </p>
+	          {% elseif product.category.name == "Thé noir" %}
+	          <p class="shoppage-badge bg-darkgrey">{{ product.category.name }} </p>
+	          {% elseif product.category.name == "Thé blanc" %}
+	          <p class="shoppage-badge bg-orange">{{ product.category.name }} </p>
+	          {% else %}
+	          <p class="shoppage-badge bg-autumn">{{ product.category.name }} </p>
+	        {% endif %}
+					<p class="">{{ product.price }} €</p>
         </div>
         <div class="d-flex justify-content-center">
-          <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}">voir ce thé</a>
+          <p>voir ce thé</p>
         </div>
+				</a>
       </div>
       {% endfor %}
-
-
-			<div class="col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
-			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
-			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
-			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
-			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
-			<div class="offset-1 col-10 col-md-3 d-flex flex-column align-items-center my-5">
-				<figure class="flex-column align-items-center">
-					<img src="{{ product.picture }}" class="img-responsive" alt="">
-				</figure>
-				<p class="text-truncate">{{ product.name }}</p>
-				<a href="../web/app_dev.php/main/teas/{{ product.id }}" >voir thé</a>
-			</div>
 
 		</div>
 
