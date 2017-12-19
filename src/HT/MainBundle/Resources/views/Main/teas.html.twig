@@ -132,6 +132,22 @@
 		<!-- display teas from similar categories // a mettre a jour plus tard avec for each + nommage twig-->
 
 		<div class="teas otherproducts d-flex">
+
+      {% for shopProduct in shopProducts %}
+      <div class="col-6 col-md-4">
+        <h4 class="text-center py-2">{{ shopProduct.name }}</h4>
+        <img src="https://www.graphicpear.com/wp-content/uploads/2017/10/6-1.jpg"  class="img-responsive card-img-top">
+        <div class="p-2 d-flex justify-content-around">
+          <p class="shoppage-badge">{{ shopProduct.category.name }} </p>
+          <p class="">{{ shopProduct.price }} €</p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}">voir ce thé</a>
+        </div>
+      </div>
+      {% endfor %}
+
+
 			<div class="col-10 col-md-3 d-flex flex-column align-items-center my-5">
 				<figure class="flex-column align-items-center">
 					<img src="{{ product.picture }}" class="img-responsive" alt="">

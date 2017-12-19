@@ -416,12 +416,15 @@ body{
 .shoppage-badge {
 	padding: 5px 10px;
 	color: white;
-	background-color: #484848;
   border-radius: .25rem;
 	text-transform: uppercase;
 	font-size: 0.8em;
 	width: 7.5em;
 	text-align: center;
+}
+
+.shoppage.otherproducts h4{
+	font-size: 1em;
 }
 
 
@@ -484,7 +487,9 @@ body{
 	background-color: #2bbbfd;
 }
 
-
+.bg-autumn {
+	background-color: #D9A940;
+}
 
 /*-----------------------------------------------------
 	Style Page admin
