@@ -86,7 +86,7 @@
     <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
 
       <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
-      <img src="{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+      <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
       <div class="p-2 d-flex justify-content-around">
         {% if shopProduct.category.name == "Thé vert"  %}
           <p class="shoppage-badge bg-turquoise">{{ shopProduct.category.name }} </p>
