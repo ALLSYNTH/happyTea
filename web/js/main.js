@@ -430,6 +430,24 @@ $(function(){
 			$(this).css("color", "white");
 		});
 
+	// fav button animation
+	$('#fav').hover(function(){
+    $(this).css("background-color", "#104a2c");
+		$(this).css("color", "white");
+    },
+		function(){
+			$(this).css("background-color", "#5cb85c");
+			$(this).css("color", "white");
+		});
+	$('#notfav').hover(function(){
+    $(this).css("background-color", "#104a2c");
+		$(this).css("color", "white");
+    },
+		function(){
+			$(this).css("background-color", "#5cb85c");
+			$(this).css("color", "white");
+		});
+
 	// redirection to shop site in new tab
 	$('#redirect-shop').on('click', function(event) {
     event.preventDefault();
