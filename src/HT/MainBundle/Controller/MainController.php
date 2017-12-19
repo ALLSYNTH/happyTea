@@ -63,6 +63,8 @@ class MainController extends controller {
 
 		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 		$favs = $utilisateur->getFavProduct();
+		dump($favs->toArray());
+
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -108,7 +110,7 @@ class MainController extends controller {
 				'error' => $error,
 				'products' => $products,
 				'user' => $utilisateur,
-				'favs' =>$favs
+				'favs' =>$favs->toArray()
 			));
 
 

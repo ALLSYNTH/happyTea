@@ -79,7 +79,6 @@ $(function(){
 		var path = $(this).data("path");
 		var id = $(this).data("id");
 
-		console.log(id);
 		$.ajax({
 			 url : path+'?id='+id,
 			 type : 'GET',
@@ -96,12 +95,11 @@ $(function(){
 		var path = $(this).data("path");
 		var id = $(this).data("id");
 
-		console.log(id);
 		$.ajax({
 			 url : path+'?id='+id,
 			 type : 'GET',
 			 success : function(statut){
-	      $('.fav').html('Ajouter aux favoris');
+	      $('.supfav').html('Ajouter aux favoris');
 	     }
 		});
 	});
@@ -259,14 +257,14 @@ $(function(){
 	 });
 
 
-	  /* JS AJAX UPDATE PRODUIT */ 
+	  /* JS AJAX UPDATE PRODUIT */
 
 	  //  $("body").on('click', '#remove-product-button', function(event){
 	  //    event.preventDefault();
 
 	  //      var path = $(this).data("href");
-	      
-	  //      var id = $(this).data("id"); 
+
+	  //      var id = $(this).data("id");
 	  //      var req = $(this).data("req");
 
 	  //      console.log(req);
@@ -280,7 +278,7 @@ $(function(){
 
 	  //       dataType : 'html',
 	  //       success : function(code_html, statut){
-	  //        $('#ajaxTab-product').html(code_html); 
+	  //        $('#ajaxTab-product').html(code_html);
 	  //       }
 	  //    });
 
