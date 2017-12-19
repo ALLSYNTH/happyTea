@@ -1,0 +1,37 @@
+{% extends "HTMainBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row banner blog d-flex align-items-center">
+    <h1 class="col-12 animated zoomIn">Toujours plus d'articles !</h1>
+  </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+	{% for article in articles %}
+
+	<div class="col-12 div-article">
+		<h2 class="text-center">{{article.title}}</h2>
+		<div class="row">
+			<div class="col-4">
+				<img class="img-article" src="/happyTea/web/web/img/{{article.picture}}" alt="image de {{article.title}}">
+			</div>
+			<div class="col-8 article-content">
+				<p>{{article.content}}</p>
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+</div>
+</div>
+
+
+
+{% endblock %}
+
