@@ -75,6 +75,13 @@ class Shop
     */
     private $user;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isBanned", type="boolean")
+     */
+    private $isBanned = false;
+
   
 
     /**
@@ -280,4 +287,28 @@ class Shop
     }
 
     
+
+    /**
+     * Set isBanned
+     *
+     * @param boolean $isBanned
+     *
+     * @return Shop
+     */
+    public function setIsBanned($isBanned)
+    {
+        $this->isBanned = $isBanned;
+
+        return $this;
+    }
+
+    /**
+     * Get isBanned
+     *
+     * @return boolean
+     */
+    public function getIsBanned()
+    {
+        return $this->isBanned;
+    }
 }

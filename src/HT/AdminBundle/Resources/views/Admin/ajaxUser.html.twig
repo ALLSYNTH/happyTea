@@ -50,6 +50,45 @@
 			</table>
 		</div>
 
+		<div>
+			<h3 class="pad-h3">Liste des shops</h3>
+			<div>
+				
+					<input type="text" id="search-shop" name="searchShop">
+					<a href="#" data-href= "{{ path('ht_admin_user')}}" data-req="search-shop"  id="search-button-shop"> Recherche </a>
+				
+
+			</div>
+
+			<table class="table table-striped table-hover ">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>nom</th>
+						<th>adresse</th>
+						<th>user</th>
+						<th>bannir</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for shop in shops %}
+					<tr>
+						{# {{dump(user.roles)}} #}
+						<td>{{shop.id}}</td>
+						<td>{{shop.name}}</td>
+						<td>{{shop.adress}}</td>
+						<td>{{shop.user.id}}</td>
+						
+						<td> <a href="#" class="ban-button-shop" data-req="ban-shop" data-ban = "{{ shop.isBanned  }}" data-href={{ path('ht_admin_user')}} data-id="{{ shop.id }}">{% if shop.isBanned %} Enlever ban {% else %} Bannir le shop {% endif %} </a> </td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
 
 
 

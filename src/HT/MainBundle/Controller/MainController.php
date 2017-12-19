@@ -795,6 +795,14 @@ class MainController extends controller {
 				$openingTimes['opening'] = $request->get('open');
 				$openingTimes['closing'] = $request->get('close');
 
+				if(!empty($openingTimes)) {
+
+					if($openingTimes['opening'] > $openingTimes['closing']) {
+
+						$error['openingTimes'] = "L'heure d'ouverture doit être antérieur à l'heure de fermeture."; 
+					}
+				}
+
 
 
 				if(empty($name)) {

@@ -28,7 +28,7 @@
 	<div>
 		<h3 class="pad-h3" >Les articles :</h3>
 		<div class="row">
-		  <div class="col-8">
+		  <div class="col-12">
 		{% for article in articles %}
 		<form method="post" action="" enctype="multipart/form-data" >
 		  <div class="row div-article-admin"> 
@@ -38,6 +38,9 @@
 		      <input class="form-control" type="file" name="up-picture">
 		    </div>
 		    <div class="col-8">
+
+		    	<div>Ecrit par : {{ article.writer }}</div>
+		    	<div>Date de publication : {% if ( article.isPublished ) %} {{article.publishedAt | date('d-m-Y | H:i')}}{% else %} L'article n'est pas publié {% endif %} </div>
 
 		      <input class="form-control" type="text" name="up-title" value="{{article.title}}">
 		      <br/>

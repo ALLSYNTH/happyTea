@@ -187,3 +187,4 @@ class Contact
         return $this->isTreated;
     }
 }
+

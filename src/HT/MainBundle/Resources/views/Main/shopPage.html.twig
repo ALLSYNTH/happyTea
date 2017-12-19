@@ -2,6 +2,11 @@
 {% block body %}
 
 
+
+  {% if ( shop.isBanned ) %}
+    <div class="alert alert-warning">Votre Shop a été banni parce qu'il ne remplissait pas les règles d'utilisations ! Veuillez contacter les administrateurs pour plus d'informations.</div>
+  {% else %}
+
 <div class="container py-5">
   <div class="row m-2">
     <section class="col-12 offset-md-1 col-md-10 shoppage d-flex flex-column justify-content-center">
@@ -70,15 +75,18 @@
 
 
     </section>
+
   </div>
-</div>
+
 
 <section class="container-fluid shoppage my-5">
 
-  <h2>Les Thés de la Boutique {{shop.name}}</h2>
 
-  <!-- les produits du shop -->
-  <div class="row my-5">
+    <h2>Les Thés de la Boutique {{shop.name}}</h2>
+
+    <!-- les produits du shop -->
+    <div class="row my-5">
+
 
     {% for shopProduct in shopProducts %}
     <div class="col-6 col-md-3 my-2 shoppage otherproducts">
@@ -107,6 +115,7 @@
       </a>
     </div>
 
+
     {% endfor %}
 
 
@@ -116,9 +125,12 @@
 
 
 
-  </div>
+    </div>
 
-</section>
+  </section>
+
+
+{% endif %}
 
 {{ dump(shop) }}
 {{ dump() }}
