@@ -41,7 +41,7 @@ class Comment
     private $user;
 
     /**
-    * @ORM\ManyToOne(targetEntity="HT\MainBundle\Entity\Product")
+    * @ORM\ManyToOne(targetEntity="HT\MainBundle\Entity\Product", inversedBy="comment")
     */
     private $product;
 
