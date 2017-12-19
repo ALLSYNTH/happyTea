@@ -605,6 +605,27 @@ body{
 	visibility: none;
 }
 /*-----------------------------------------------------
+	Style Star-rating
+------------------------------------------------ */
+
+.fa-star:before {
+    content: "\f005";
+   /* color: yellowgreen;*/
+   /* color: lightgray;*/
+    font-size: 27px;
+}
+
+.yellowgreen {
+
+	color : yellowgreen;
+}
+
+.lightgray {
+
+	color : lightgray;
+}
+
+/*-----------------------------------------------------
 	Style Article/News
 ------------------------------------------------ */
 
