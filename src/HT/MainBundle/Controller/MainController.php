@@ -60,10 +60,12 @@ class MainController extends controller {
 
 	public function teasAction($id, Request $request) { // modèle page thé
 		$pageName = "thés";
-
+		$favarray = '';
 		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
-		$favs = $utilisateur->getFavProduct();
-		dump($favs->toArray());
+		if( $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
+			$favs = $utilisateur->getFavProduct();
+			$favarray = $favs->toArray();
+		}
 
 
 		$em = $this->getDoctrine()->getManager();
@@ -110,7 +112,7 @@ class MainController extends controller {
 				'error' => $error,
 				'products' => $products,
 				'user' => $utilisateur,
-				'favs' =>$favs->toArray()
+				'favs' => $favarray
 			));
 
 
@@ -335,7 +337,7 @@ class MainController extends controller {
 		 $em->flush();
 		 $success = "Votre Shop a bien été ajouté !";
 		}
-    
+
 	 }
 
 		return $this->render("HTMainBundle:Main:addSeller.html.twig", array(
@@ -804,8 +806,8 @@ class MainController extends controller {
 		    	$success = "";
 
 		    	$em = $this->getDoctrine()->getManager();
-		    	$shopRepository = $em->getRepository('HTMainBundle:Shop'); 
-		    	$shop = $shopRepository->find($id); 
+		    	$shopRepository = $em->getRepository('HTMainBundle:Shop');
+		    	$shop = $shopRepository->find($id);
 
 				$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 
@@ -887,7 +889,7 @@ class MainController extends controller {
 
 
 
-				
+
 				 $shop->setName($name);
 				 $shop->setAdress($adress);
 				 $shop->setUrl($url);
@@ -906,7 +908,7 @@ class MainController extends controller {
 				 $em->flush();
 				 $success = "Votre Shop a bien été modifié !";
 				}
-		    
+
 			 }
 
 				return $this->render("HTMainBundle:Main:updateShop.html.twig", array(
