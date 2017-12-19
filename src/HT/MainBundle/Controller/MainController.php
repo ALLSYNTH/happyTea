@@ -141,7 +141,7 @@ class MainController extends controller {
 		return $this->render("HTMainBundle:Main:blog.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
-				'articles' => $articles 
+				'articles' => $articles
 
 			));
 	}
@@ -519,24 +519,11 @@ class MainController extends controller {
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
 
-		$user->addFavProduct($product);
-
-		$em->persist($user);
-		$em->flush();
-
-		return new JsonResponse($statut);
-	}
-
-	public function removeFavAction(Request $request) {
-		$statut = [];
-		$id = $request->query->get('id');
-		$user = $this->container->get('security.token_storage')->getToken()->getUser();
-
-		$em = $this->getDoctrine()->getManager();
-		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
-		$product = $productRepository->find($id);
-
-		$user->removeFavProduct($product);
+		if ($user->isFavProduct($product)) {
+			   $user->removeFavProduct($product);
+		} else {
+			   $user->addFavProduct($product);
+		}
 
 		$em->persist($user);
 		$em->flush();

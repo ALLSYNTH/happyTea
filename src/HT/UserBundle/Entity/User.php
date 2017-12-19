@@ -285,6 +285,16 @@ class User implements UserInterface
     }
 
     /**
+     * Is favProduct
+     *
+     * @param \HT\MainBundle\Entity\Product $favProduct
+     */
+    public function isFavProduct(\HT\MainBundle\Entity\Product $favProduct)
+    {
+        return $this->favProduct->contains($favProduct);
+    }
+
+    /**
      * Remove favProduct
      *
      * @param \HT\MainBundle\Entity\Product $favProduct
