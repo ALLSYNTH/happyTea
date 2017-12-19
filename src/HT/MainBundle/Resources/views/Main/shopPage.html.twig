@@ -9,9 +9,10 @@
 
 <div class="container py-5">
   <div class="row m-2">
+    <!-- Shop details -->
     <section class="col-12 offset-md-1 col-md-10 shoppage d-flex flex-column justify-content-center">
 
-      <!-- Shop logo and name -->
+      <!-- logo and name shop -->
       <div class="d-flex align-items-end">
         <figure>
           <img src="{{shop.logo}}" class="img-responsive shoppage-logo" alt="">
@@ -24,7 +25,7 @@
         <!-- description shop -->
       <p class="mt-5 shoppage description">{{shop.description}}</p>
 
-      <!-- infos shop : phone - site - adress - opening times -->
+      <!-- infos shop : opening times - phone - site - adress -->
       <div class="row">
 
         <div class="col-12 my-3 d-flex justify-content-center align-items-center">
@@ -49,25 +50,9 @@
               <p class="minitext">{{shop.adress}}</p>
             </div>
 
-
-
-
           </div>
-
-
         </div>
-
-
-
-
       </div>
-
-
-
-
-
-
-
       </div>
 
       </div>
@@ -80,61 +65,34 @@
 
 
 <section class="container-fluid shoppage my-5">
+  <h2>Les Thés de la Boutique {{shop.name}}</h2>
 
-
-    <h2>Les Thés de la Boutique {{shop.name}}</h2>
-
-    <!-- les produits du shop -->
-    <div class="row my-5">
-
-
+  <!-- cards with products of shop -->
+  <div class="row my-5">
     {% for shopProduct in shopProducts %}
     <div class="col-6 col-md-3 my-2 shoppage otherproducts">
-
-    <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
-
-      <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
-      <img src="{{ shopProduct.picture }}"  class="img-responsive card-img-top">
-      <div class="p-2 d-flex justify-content-around">
-        {% if shopProduct.category.name == "Thé vert"  %}
-          <p class="shoppage-badge bg-turquoise">{{ shopProduct.category.name }} </p>
-          {% elseif shopProduct.category.name == "Thé noir" %}
-          <p class="shoppage-badge bg-darkgrey">{{ shopProduct.category.name }} </p>
-          {% elseif shopProduct.category.name == "Thé blanc" %}
-          <p class="shoppage-badge bg-orange">{{ shopProduct.category.name }} </p>
-          {% else %}
-          <p class="shoppage-badge bg-autumn">{{ shopProduct.category.name }} </p>
-        {% endif %}
-
-        <h5 class="">{{ shopProduct.price }} €</h5>
-      </div>
-      <div class="d-flex justify-content-center">
-        <p>voir ce thé</p>
-      </div>
-
+      <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
+        <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
+        <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+        <div class="p-2 d-flex justify-content-around">
+          {% if shopProduct.category.name == "Thé vert"  %}
+            <p class="shoppage-badge bg-turquoise">{{ shopProduct.category.name }} </p>
+            {% elseif shopProduct.category.name == "Thé noir" %}
+            <p class="shoppage-badge bg-darkgrey">{{ shopProduct.category.name }} </p>
+            {% elseif shopProduct.category.name == "Thé blanc" %}
+            <p class="shoppage-badge bg-orange">{{ shopProduct.category.name }} </p>
+            {% else %}
+            <p class="shoppage-badge bg-autumn">{{ shopProduct.category.name }} </p>
+          {% endif %}
+          <h5>{{ shopProduct.price }} €</h5>
+        </div>
+        <div class="d-flex justify-content-center">
+          <p>voir ce thé</p>
+        </div>
       </a>
     </div>
-
-
     {% endfor %}
-
-
-
-
-
-
-
-
-    </div>
-
-  </section>
-
-
-{% endif %}
-
-{{ dump(shop) }}
-{{ dump() }}
-
-
+  </div>
+</section>
 
 {% endblock %}
