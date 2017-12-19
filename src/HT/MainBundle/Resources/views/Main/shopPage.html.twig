@@ -4,38 +4,65 @@
 
 <div class="container py-5">
   <div class="row m-2">
-    <section class="shoppage d-flex flex-column">
-      <h1>La boutique de {{ shop.name }}</h1>
+    <section class="col-12 offset-md-1 col-md-10 shoppage d-flex flex-column justify-content-center">
 
-      <!-- description shop -->
-      <div class="row">
-        <figure class="col-12 col-md-4">
-          <!-- logo shop -->
-          <img src="{{shop.logo}}" class="img-responsive" alt="">
+      <!-- Shop logo and name -->
+      <div class="d-flex align-items-end">
+        <figure>
+          <img src="{{shop.logo}}" class="img-responsive shoppage-logo" alt="">
         </figure>
-        <div class="col-md-8">
+        <h1 class="ml-4">La boutique de {{ shop.name }}</h1>
+      </div>
 
-        <p class="shoppage description">{{shop.description}}</p>
-        <!-- infos contact shop -->
-        <div class="row">
-          <div class="col-6 col-md-4 d-flex justify-content-center align-items-center">
-            <img class="pr-2" src="{{ asset('img/icons/phone.png') }}" alt="">
-            <p class="minitext">{{shop.phone}}</p>
-          </div>
-          <div class="col-6 col-md-4 d-flex justify-content-center align-items-center my-3">
-            <img class="pr-2" src="{{ asset('img/icons/link.png') }}" alt="">
-            <a href="{{shop.url}}" class="minitext">{{shop.url}}</a>
-          </div>
-          <div class="col-6 col-md-4 d-flex justify-content-center align-items-center">
-            <img class="pr-2" src="{{ asset('img/icons/location.png') }}" alt="">
-            <p class="minitext">{{shop.adress}}</p>
-          </div>
-          <div class="col-6 col-md-4 d-flex justify-content-center align-items-center">
+      <div class="">
 
-            <p class="minitext">ouvert en semaine de {{shop.openingTimes.opening}} - {{shop.openingTimes.closing}}</p>
+        <!-- description shop -->
+      <p class="mt-5 shoppage description">{{shop.description}}</p>
+
+      <!-- infos shop : phone - site - adress - opening times -->
+      <div class="row">
+
+        <div class="col-12 my-3 d-flex justify-content-center align-items-center">
+          <p class="minitext">ouvert en semaine de {{shop.openingTimes.opening}} - {{shop.openingTimes.closing}}</p>
+        </div>
+
+        <div class="col-12">
+          <div class="row d-flex">
+
+            <div class="col-6 col-md-4 d-flex justify-content-center align-items-center">
+              <img class="pr-2" src="{{ asset('img/icons/phone.png') }}" alt="">
+              <p class="minitext">{{shop.phone}}</p>
+            </div>
+
+            <div class="col-6 col-md-4 d-flex justify-content-center align-items-center my-3">
+              <img class="pr-2" src="{{ asset('img/icons/link.png') }}" alt="">
+              <a href="{{shop.url}}" class="minitext">le site de la boutique</a>
+            </div>
+
+            <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+              <img class="pr-2" src="{{ asset('img/icons/location.png') }}" alt="">
+              <p class="minitext">{{shop.adress}}</p>
+            </div>
+
+
+
+
           </div>
+
 
         </div>
+
+
+
+
+      </div>
+
+
+
+
+
+
+
       </div>
 
       </div>
@@ -66,7 +93,7 @@
           {% elseif shopProduct.category.name == "Thé noir" %}
           <p class="shoppage-badge bg-darkgrey">{{ shopProduct.category.name }} </p>
           {% elseif shopProduct.category.name == "Thé blanc" %}
-          <p class="shoppage-badge bg-autumn">{{ shopProduct.category.name }} </p>
+          <p class="shoppage-badge bg-orange">{{ shopProduct.category.name }} </p>
           {% else %}
           <p class="shoppage-badge bg-autumn">{{ shopProduct.category.name }} </p>
         {% endif %}
