@@ -64,12 +64,14 @@ class AdminController extends controller {
 
 
 					if(empty($error)) {
+						$presentUser = $this->container->get('security.token_storage')->getToken()->getUser();
 						 $article = new Article;
 						$article->setTitle($articleTitle);
 						$article->setSubtitle($subTitle);
 						$article->setContent($content);
 						$article->setPicture($uploadName); 
-						$article->setWriter('test'); 
+						$article->setWriter($presentUser->getUsername()); 
+
 
 					
 
@@ -160,6 +162,9 @@ class AdminController extends controller {
 				$userRepository = $em->getRepository('HTUserBundle:User');
 				$users = $userRepository->findAll(); 
 
+				$shopRepository = $em->getRepository('HTMainBundle:Shop');
+				$shops = $shopRepository->findAll(); 
+
 				if($request->query->get('id')!=null && $request->query->get('value')!= null) {
 
 					$user=$userRepository->find($request->query->get('id'));
@@ -194,6 +199,22 @@ class AdminController extends controller {
 
 				}
 
+				if($request->query->get('id')!=null && $request->query->get('req') == "ban-shop") {
+
+					$shop=$shopRepository->find($request->query->get('id'));
+					$ban=$request->query->get('ban');
+					if($ban==null) {
+						$ban=false; 
+					}
+
+					$shop->setIsBanned(!$ban); 
+
+					$em->persist($shop);
+
+					$em->flush(); 
+
+				}
+
 				if($request->query->get('req') == "search") {
 					$search = $request->query->get('search'); 
 					// $userRepository = $em->getRepository('HTUserBundle:User');
@@ -214,8 +235,30 @@ class AdminController extends controller {
 					
 				}
 
+				if($request->query->get('req') == "search-shop") {
+					$search = $request->query->get('search'); 
+					// $userRepository = $em->getRepository('HTUserBundle:User');
+
+					// $users = $userRepository->findByUsername($search); 
+
+					dump($search);
+
+					$query = $em->createQuery(
+					    "SELECT p
+					    FROM HTMainBundle:Shop p
+					    WHERE p.name
+					    LIKE :search 
+					    OR p.id LIKE :search"
+					)->setParameter('search', '%'.$search.'%');
+
+					$shops = $query->getResult();
+
+					
+				}
+
 				return $this->render('HTAdminBundle:Admin:ajaxUser.html.twig', array(
 						'users' => $users,
+						'shops' => $shops 
 					));
 			}
 
@@ -279,6 +322,7 @@ class AdminController extends controller {
 					$article = $articleRepository->find($id);
 					$stat = $article->getIsPublished(); 
 					$article->setIsPublished(!$stat); 
+					$article->setPublishedAt( new \Datetime); 
 					$em->persist($article);
 					$em->flush(); 
 				}

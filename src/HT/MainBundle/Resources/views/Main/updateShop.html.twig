@@ -56,9 +56,13 @@
 				<p>Horaires d'ouverture :</p>
 				
 				<label>Entre : </label>
-				<input class="form-control" type="text" name="open" {% if shop.openingTimes.opening is defined %} value="{{shop.openingTimes.opening}}" {% endif %}><br/>
+				<input class="form-control" type="time" name="open" {% if shop.openingTimes.opening is defined %} value="{{shop.openingTimes.opening}}" {% endif %}><br/>
 				<label>Et : </label>
-				<input class="form-control" type="text" name="close"{% if shop.openingTimes.closing is defined %} value="{{shop.openingTimes.closing}}" {% endif %}><br/>
+				<input class="form-control" type="time" name="close"{% if shop.openingTimes.closing is defined %} value="{{shop.openingTimes.closing}}" {% endif %}>
+				{% if error.openingTimes is defined %}
+					<div class="alert alert-warning">{{ error.openingTimes }}</div>
+				{% endif %}
+				<br/>
 			</div>
 			<div class="form-group">
 				<label>Votre Logo ou Image : * </label>

@@ -83,7 +83,7 @@ $(function(){
 			 url : path+'?id='+id,
 			 type : 'GET',
 			 success : function(statut){
-	      $('.fav').html('Supprimer des favoris');
+	      $('.fav').addClass('supfav').html('Supprimer des favoris').removeClass('fav');
 	     }
 		});
 	});
@@ -99,7 +99,7 @@ $(function(){
 			 url : path+'?id='+id,
 			 type : 'GET',
 			 success : function(statut){
-	      $('.supfav').html('Ajouter aux favoris');
+	      $('.supfav').addClass('fav').html('Ajouter des favoris').removeClass('supfav');
 	     }
 		});
 	});
@@ -228,6 +228,31 @@ $(function(){
 
 	});
 
+	  $("body").on('click', '#search-button-shop', function(event){
+	    event.preventDefault();
+
+	      var path = $(this).data("href");
+	      var search = $("#search-shop").val();
+
+	      var req = $(this).data("req");
+
+	      console.log(req);
+
+
+
+	    $.ajax({
+	       url : path+'?search='+search+'&req='+req,
+	       type : 'GET',
+	       // data : data,
+
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+
+	 });
+
 	  $("body").on('click', '.button-article', function(event){
 	    event.preventDefault();
 
@@ -261,7 +286,7 @@ $(function(){
 
 	      var path = $(this).data("href");
 	      var id = $(this).data("id");
-	  
+
 	      var req = "check-article";
 
 
@@ -270,6 +295,34 @@ $(function(){
 	       url : path+'?id='+id+'&req='+req,
 	       type : 'GET',
 	       // data : data,
+
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+
+	  });
+
+
+
+	  // requete ban shop
+
+	  $("body").on('click', '.ban-button-shop', function(event){
+	    event.preventDefault();
+
+	      var path = $(this).data("href");
+	      var id = $(this).data("id");
+	      var ban = $(this).data("ban");
+	      var req = $(this).data("req");
+
+
+	       console.log(ban);
+
+	    $.ajax({
+	       url : path+'?id='+id+'&ban='+ban+'&req='+req,
+	       type : 'GET',
+
 
 	       dataType : 'html',
 	       success : function(code_html, statut){
@@ -369,6 +422,24 @@ $(function(){
 
 	// style on & out hover
 	$('#redirect-shop').hover(function(){
+    $(this).css("background-color", "#104a2c");
+		$(this).css("color", "white");
+    },
+		function(){
+			$(this).css("background-color", "#5cb85c");
+			$(this).css("color", "white");
+		});
+
+	// fav button animation
+	$('#fav').hover(function(){
+    $(this).css("background-color", "#104a2c");
+		$(this).css("color", "white");
+    },
+		function(){
+			$(this).css("background-color", "#5cb85c");
+			$(this).css("color", "white");
+		});
+	$('#notfav').hover(function(){
     $(this).css("background-color", "#104a2c");
 		$(this).css("color", "white");
     },

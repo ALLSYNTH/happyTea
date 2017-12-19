@@ -2,6 +2,11 @@
 {% block body %}
 
 
+
+  {% if ( shop.isBanned ) %}
+    <div class="alert alert-warning">Votre Shop a été banni parce qu'il ne remplissait pas les règles d'utilisations ! Veuillez contacter les administrateurs pour plus d'informations.</div>
+  {% else %}
+
 <div class="container py-5">
   <div class="row m-2">
     <!-- Shop details -->
@@ -55,8 +60,9 @@
 
 
     </section>
+
   </div>
-</div>
+
 
 <section class="container-fluid shoppage my-5">
   <h2>Les Thés de la Boutique {{shop.name}}</h2>
