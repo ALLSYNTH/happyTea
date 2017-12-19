@@ -23,7 +23,9 @@ class AdminController extends controller {
 
 			public function adminPageAction(Request $request ) {
 
-					$em = $this->getDoctrine()->getManager();
+					$success = "";
+					
+ 					$em = $this->getDoctrine()->getManager();
 				$userRepository = $em->getRepository('HTUserBundle:User');
 				$users = $userRepository->findAll();
 
@@ -150,7 +152,9 @@ class AdminController extends controller {
 				return $this->render('HTAdminBundle:Admin:adminPage.html.twig', array(
 						'title' => $this->title,
 						'users' => $users,
-						'shops' => $shops
+						'shops' => $shops,
+						'success' => $success,
+						
 					));
 
 			}

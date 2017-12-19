@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Miniver');
 
 /*Police de test*/
-@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Lora|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
 
 
 /*nav h1 {
@@ -186,6 +186,10 @@ body{
 	margin-bottom: 0.5em;
 	border-radius: 15px;
 	border: 2px solid;
+	font-size: 1em;
+	word-wrap: break-word;
+	width:80%;
+	overflow: hidden;
 }
 
 .filterbutton:focus{
@@ -211,8 +215,8 @@ body{
 }
 
 .teacontainer:hover{
-	transform: scale(0.93);
-	border-radius: 50px;
+	transform: scale(0.96);
+	border-radius: 10px;
 	transition: all 0.2s;
 }
 
@@ -242,7 +246,6 @@ body{
 	height: 14rem;
 	width: 14rem;
 }
-
 
 
 /* ------------------------------------------------
@@ -676,6 +679,27 @@ body{
 	visibility: none;
 }
 /*-----------------------------------------------------
+	Style Star-rating
+------------------------------------------------ */
+
+.fa-star:before {
+    content: "\f005";
+   /* color: yellowgreen;*/
+   /* color: lightgray;*/
+    font-size: 27px;
+}
+
+.yellowgreen {
+
+	color : yellowgreen;
+}
+
+.lightgray {
+
+	color : lightgray;
+}
+
+/*-----------------------------------------------------
 	Style Article/News
 ------------------------------------------------ */
 
@@ -684,7 +708,25 @@ body{
  	height: 100%;
  	width: 100%;
  	box-sizing: border-box;
+ 	border:1px solid black;
  }
+
+.article-title{
+	font-family: 'Lobster', arial;
+}
+
+.article-subtitle{
+	font-family: 'Courgette', arial;
+	font-size: 0.8em;
+}
+
+.article-author{
+	font-size: 0.7em;
+}
+
+.article-content{
+	font-family: 'Lora', arial;
+}
 
  .div-article {
  	margin-top: 1em;

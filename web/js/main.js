@@ -360,9 +360,81 @@ $(function(){
 
 	  // });
 
+// JAVASCRIPT POUR STAR-RATING
+
+// $(".fa-star").mouseenter(function() {
+// 	$(this).css( 'color' , 'yellowgreen' );
+// 	console.log($(this));
+
+// });
+function recupStyle(elem, propriete){
+    var prop = window.getComputedStyle(elem,null).getPropertyValue(propriete);
+   return prop;
+}
+
+function fadeOutTimer() {
+
+	$('.fadeOutTimer').fadeOut('slow');
+}
+
+var time = setTimeout(fadeOutTimer(), 4000); 
 
 
+	$('.fa-star').css("color" , "lightgray");
+	$('.fa-star').hover(function(){
+    // $(this).css("background-color", "lightgray");
+	
+		// $(this).css("color", "yellowgreen");
+			if($(this).css("color") == 'rgb(154, 205, 50)') {
+				var rate = $(this).data('rate');
+				$(this).css("color", "lightgray");
+			}
+			else {
+				$(this).css("color", "yellowgreen");
+			}
+    },
+		function(){
+			// $(this).css("background-color", "yellowgreen");
+			element = $(this); 
+			console.log($(this).css("color"));
+			if($(this).css("color") == 'rgb(154, 205, 50)') {
+				$(this).css("color", "lightgray");
+			}
+			else {
+				$(this).css("color", "yellowgreen");
+			}
+		});
 
+	$("body").on('click', '.fa-star', function(event){
+	  event.preventDefault();
+
+	    var path = $('.rating-star').data("href");
+	    var id = $('.rating-star').data("id");
+	   	var rate = $(this).data('rate');
+	    var req = $('.rating-star').data("req");
+	    for(var i = 0; i < 5  ; i++) {
+	    	if(i <( rate-1)) {
+	    		$('.fa-star').eq(i).css("color", "yellowgreen");
+	    	}
+	    	else {
+	    		$('.fa-star').eq(i).css("color", "lightgray");
+	    	}
+	    }
+
+	     // console.log(ban);
+
+	  $.ajax({
+	     url : path+'?id='+id+'&rate='+rate+'&req='+req,
+	     type : 'GET',
+
+
+	     dataType : 'html',
+	     success : function(code_html, statut){
+	
+	     }
+	  });
+
+	});
 
 /*ISOTOPE*/
 
@@ -371,7 +443,8 @@ $(function(){
 		itemSelector: '.element-item',
 		layoutMode:'fitRows',
 		getSortData: {
-			name:'.category'
+			name:'.category',
+			number:'.number parseInt'
 		}
 	});
 
@@ -397,6 +470,11 @@ $(function(){
 	  utre: function(){
 	  	var name = $(this).find('.type').text();
 	  	return name.match(/utre$/);
+	  },
+
+	  numberGreaterThan50: function() {
+	    var number = $(this).find('.number').text();
+	    return parseInt( number, 10 ) > 50;
 	  }
 	};
 
@@ -407,6 +485,13 @@ $(function(){
 	  filterValue = filterFns[ filterValue ] || filterValue;
 	  $grid.isotope({ filter: filterValue });
 	});
+
+	// bind sort button click
+	$('#filters').on( 'click', '#sorts', function() {
+	  var sortByValue = $(this).attr('data-sort-by');
+	  $grid.isotope({ sortBy: sortByValue });
+	});
+
 });
 
 

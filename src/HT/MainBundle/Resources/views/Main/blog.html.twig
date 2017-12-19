@@ -16,13 +16,25 @@
 	{% for article in articles %}
 
 	<div class="col-12 div-article">
-		<h2 class="text-center">{{article.title}}</h2>
+		<span> - publié le {{article.publishedAt | date('d-m-Y | H:i')}}</span>
+		<br>
+		<h2 class="text-center">
+			<span class="article-title">{{article.title}} </span> 
+			<span class="article-author"> - par {{article.writer}}</span>
+		</h2>
+		<h3 class="text-center font-italic">
+			<span class="article-subtitle">{{article.subtitle}}</span>
+		</h3>
+
+		<br>
+
+
 		<div class="row">
 			<div class="col-4">
 				<img class="img-article" src="/happyTea/web/web/img/{{article.picture}}" alt="image de {{article.title}}">
 			</div>
 			<div class="col-8 article-content">
-				<p>{{article.content}}</p>
+				<p class="text-justify m-1 article-content">{{article.content}}</p>
 			</div>
 		</div>
 	</div>

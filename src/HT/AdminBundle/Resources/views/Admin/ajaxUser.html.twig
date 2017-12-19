@@ -35,12 +35,25 @@
 						<td>{{user.mail}}</td>
 						<td>{% if user.shop %}<a href="{{ path('ht_main_shop', { 'id' : user.shop.id }) }}">{{user.shop.name}}</a>{% endif %}
 						<td>
-							<select class="select-role" data-href={{ path('ht_admin_user')}} data-id={{ user.id }}>
-								<option value="1" {% if user.roles | length == 1 %} selected {% endif %}>utilisateur</option>
-								<option value="2" {% if user.roles | length == 2 %} selected {% endif %}>vendeur </option>
-								<option value="3" {% if user.roles | length == 3 %} selected {% endif %}>administrateur</option>
-								<option value="4" {% if user.roles | length == 4 %} selected {% endif %}>super-administrateur</option>
-							</select>
+							{% if (is_granted('ROLE_SUPER_ADMIN')) %}
+								<select class="select-role" data-href={{ path('ht_admin_user')}} data-id={{ user.id }}>
+									<option value="1" {% if user.roles | length == 1 %} selected {% endif %}>utilisateur</option>
+									<option value="2" {% if user.roles | length == 2 %} selected {% endif %}>vendeur </option>
+									<option value="3" {% if user.roles | length == 3 %} selected {% endif %}>administrateur</option>
+									<option value="4" {% if user.roles | length == 4 %} selected {% endif %}>super-administrateur</option>
+								</select>
+							{% else %}
+								{% if user.roles | length == 4 %}
+									super-administrateur
+								{% else %}
+									<select class="select-role" data-href={{ path('ht_admin_user')}} data-id={{ user.id }}>
+										<option value="1" {% if user.roles | length == 1 %} selected {% endif %}>utilisateur</option>
+										<option value="2" {% if user.roles | length == 2 %} selected {% endif %}>vendeur </option>
+										<option value="3" {% if user.roles | length == 3 %} selected {% endif %}>administrateur</option>
+									</select>
+								{% endif %}
+							{% endif %}
+
 						</td>
 						<td> <a href="#" class="ban-button" data-req="ban" data-ban = "{{ user.isBanned  }}" data-href={{ path('ht_admin_user')}} data-id="{{ user.id }}">{% if user.isBanned %} Enlever ban {% else %} Bannir utilisateur {% endif %} </a> </td>
 					</tr>

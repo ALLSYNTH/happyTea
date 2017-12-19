@@ -92,3 +92,7 @@ ht_main_fav:
 ht_main_removeFav:
     path:     /removeFavAjax
     defaults: { _controller: HTMainBundle:Main:removeFav }
+
+ht_ajax_rate: 
+    path:      /ajaxRate
+    defaults: { _controller: HTMainBundle:Main:ajaxRate }
