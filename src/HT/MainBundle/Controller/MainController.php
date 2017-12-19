@@ -335,28 +335,7 @@ class MainController extends controller {
 		 $em->flush();
 		 $success = "Votre Shop a bien été ajouté !";
 		}
-    //
-		// // on créé l'entity manager
-		// $em = $this->getDoctrine()->getManager();
-    //
-		// // Étape 1 : On « persiste » l'entité
-		// $em->persist($seller);
-    //
-		//     // Étape 2 : On « flush » tout ce qui a été persisté avant. l'entity manager envoie les informations dans la base de donnée
-		// $em->flush();
-
-		// getRepository sert à récupérer les informations dans la base de donnees. on recupérere donc les données du vendeur que l'ont vient juste de créer
-		//ceci remplace donc le select de mySql
-		// CHERCHER DANS LA BDD
-		// $sellerRepository = $em->getRepository('HTMainBundle:seller')->find($seller->getId());
-    //
-		// $nameTest= $sellerRepository->getName();
-		// $adressTest= $sellerRepository->getAdress();
-
-
-
-		// et voilà ! pas besoin de reqête SQL, vous pouvez vérifier, le nouveau vendeur à bien été ajouter à la base de donnée !
-
+    
 	 }
 
 		return $this->render("HTMainBundle:Main:addSeller.html.twig", array(
@@ -808,6 +787,141 @@ class MainController extends controller {
 					// 	));
 
 		}
+
+
+			public function updateSellerAction($id , Request $request) { // l'objet request sert à récupérer les données du formulaire
+
+				if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
+
+					throw new AccessDeniedException("Accès limité aux vendeurs de thés. ");
+
+				}
+
+				$pageName = "ajouter vendeur";
+				$nameTest = "";
+				$adressTest="";
+				$error = [];
+		    	$success = "";
+
+		    	$em = $this->getDoctrine()->getManager();
+		    	$shopRepository = $em->getRepository('HTMainBundle:Shop'); 
+		    	$shop = $shopRepository->find($id); 
+
+				$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+
+				dump($utilisateur);
+
+				$userId = $utilisateur->getId();
+
+
+
+			 // INSERER DANS LA BDD
+				// //on vérifie si le formulaire a bien été envoyé
+				 if($request->isMethod('POST')) {
+
+
+				 // est égal à $_POST['name'];
+				$name=$request->get('name');
+				$adress=$request->get('adress');
+				$url=$request->get('url');
+				$description=$request->get('description');
+				$phone=$request->get('phone');
+				$logo = $request->files->get('logo');
+
+				$openingTimes = [];
+
+				$openingTimes['opening'] = $request->get('open');
+				$openingTimes['closing'] = $request->get('close');
+
+
+
+				if(empty($name)) {
+					$error['name'] = "Veuillez remplir le champ \"Nom\".";
+
+				}
+
+
+
+				if(empty($url)) {
+					$error['url'] = "Veuillez remplir le champ \"Lien de votre site\".";
+
+				}
+
+				if(!filter_var($url, FILTER_VALIDATE_URL)) {
+
+					$error['url'] = "Votre lien n'est pas valide.";
+				}
+
+
+
+				if(strlen($description)< 10) {
+
+					$error['description'] = "Votre description doit faire au moins 10 caractères.";
+				}
+
+				if($logo == NULL && $shop->getLogo() == null ) {
+
+					$error['logo'] = "Veuillez ajouter une image pour illustrer votre Shop.";
+				}
+
+				elseif($logo != NULL ) {
+					$mime=$logo->guessClientExtension();
+					$uploadName = uniqid("doc_", true).'.'.$mime;
+					if(!$this->upload($logo, $uploadName, 1000000, array('png','gif','jpg','jpeg') )  ) {
+						$error['logo'] = "Votre fichier n'est pas à un format autorisé et/ou est trop volumineux.";
+					}
+
+				}
+
+				 dump($error);
+
+
+
+				//création de l'entité (objet qui nous sert à envoyer le nouveau vendeur dans la database)
+				if(empty($error)) {
+
+
+
+				dump($logo);
+
+
+
+
+				
+				 $shop->setName($name);
+				 $shop->setAdress($adress);
+				 $shop->setUrl($url);
+				 $shop->setDescription($description);
+				 $shop->setPhone($phone);
+				 $shop->setOpeningTimes($openingTimes);
+				 if($logo != NULL ) {
+				 $shop->setLogo($uploadName);
+				}
+				 $shop->setUser($utilisateur);
+
+				 $em = $this->getDoctrine()->getManager();
+
+				 $em->persist($shop);
+
+				 $em->flush();
+				 $success = "Votre Shop a bien été modifié !";
+				}
+		    
+			 }
+
+				return $this->render("HTMainBundle:Main:updateShop.html.twig", array(
+
+						'title' => $this->title,
+						'pageName' => $pageName,
+						'error' => $error,
+						'success' => $success,
+						'shop' => $shop
+
+
+					));
+
+
+			}
 
 
 

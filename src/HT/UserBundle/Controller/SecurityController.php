@@ -108,6 +108,7 @@ class SecurityController extends Controller
 			$user->setPassword($encoded); 
 			$user->setSalt(''); 
 			$user->setMail($mail); 
+			$user->setIsChecked(true); 
 			
 
 			$user->setRoles(array('ROLE_USER')); 
