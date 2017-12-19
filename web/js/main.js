@@ -540,4 +540,14 @@ $(function(){
     window.open(url);
 	});
 
+	// gentle scroll
+	$('#scroll').click(function(e) {
+    e.preventDefault();
+    var targetOffset = $($(this).attr('href')).offset().top;
+
+    $('html,body').animate({ scrollTop: targetOffset - 100 }, 500);
+});
+
+
+
 }); // END

@@ -30,6 +30,48 @@ body{
 					Banners
 ------------------------------------------------ */
 
+.jumbotron {
+	background-image: url("../img/home-banner.jpeg");
+	background-size: cover;
+	height: 800px;
+	z-index: 5;
+}
+
+.jumbotron.container {
+
+	background-color: rgba(0, 0, 0, 0.64);
+}
+
+.jumbotron h1 {
+	font-family: 'Pacifico', cursive;
+	font-size: 5em;
+	padding-bottom: 0.7em;
+}
+
+.jumbotron button {
+	border: 2px solid white;
+	background-color: transparent;
+	padding: 5px;
+}
+
+.jumbotron a {
+	color: white;
+	text-decoration: none;
+}
+
+@media (min-width: 768px) {
+
+	/* ---- home page - Jumbotron ---- */
+	.jumbotron h1 {
+		font-size: 9em;
+	}
+
+	.border {
+		border: 10px solid white;
+		padding: 5em;
+	}
+}
+
 .shop.banner {
 	background-image: url("../img/background/banner-shop.jpg");
 	background-size: cover;
@@ -224,6 +266,24 @@ body{
 	margin-bottom: 1.5em;
 }
 
+.shoplist.banner {
+	background-image: url("../img/background/banner-shoplist.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-size: 2.2em;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+}
+
+.shoplist h1 {
+	font-family: 'Pacifico', cursive;
+	font-size: 2em;
+	text-align: center;
+}
+
 
 /* card - team presentation */
 
@@ -352,6 +412,7 @@ body{
 
 .teas h2 {
 	font-family: 'Miniver', cursive;
+	text-align: center;
 }
 
 .teas h3 {
@@ -481,7 +542,7 @@ body{
 	height: auto%;
 }
 
-.no-textdecoration:hover{
+.no-textdecoration, .no-textdecoration:hover, .no-textdecoration a, .no-textdecoration a:hover {
 	text-decoration: none;
 }
 
@@ -501,8 +562,8 @@ body{
 	background-color: #fff;
 }
 
-.bg-dark {
-	background-color: rgba(48,48,48,0.75);
+.bg-dark, .bg-darkbanner {
+	background-color: rgba(48,48,48,0.6);
 	height: 100%;
 	width: 100%;
 }
