@@ -57,6 +57,13 @@ class Article
     private $writer;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="publishedAt", type="datetimetz", nullable=true)
+     */
+    private $publishedAt;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="isPublished", type="boolean")
@@ -216,5 +223,29 @@ class Article
     public function getIsPublished()
     {
         return $this->isPublished;
+    }
+
+    /**
+     * Set publishedAt
+     *
+     * @param \DateTime $publishedAt
+     *
+     * @return Article
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt
+     *
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
     }
 }

@@ -75,6 +75,13 @@ class Shop
     */
     private $user;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isBanned", type="boolean")
+     */
+    private $isBanned = false;
+
   
 
     /**

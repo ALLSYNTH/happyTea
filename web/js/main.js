@@ -228,6 +228,31 @@ $(function(){
 
 	});
 
+	  $("body").on('click', '#search-button-shop', function(event){
+	    event.preventDefault();
+
+	      var path = $(this).data("href");
+	      var search = $("#search-shop").val();
+
+	      var req = $(this).data("req");
+
+	      console.log(req);
+
+
+
+	    $.ajax({
+	       url : path+'?search='+search+'&req='+req,
+	       type : 'GET',
+	       // data : data,
+
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+
+	 });
+
 	  $("body").on('click', '.button-article', function(event){
 	    event.preventDefault();
 
@@ -270,6 +295,34 @@ $(function(){
 	       url : path+'?id='+id+'&req='+req,
 	       type : 'GET',
 	       // data : data,
+
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+
+	  });
+
+
+
+	  // requete ban shop
+
+	  $("body").on('click', '.ban-button-shop', function(event){
+	    event.preventDefault();
+
+	      var path = $(this).data("href");
+	      var id = $(this).data("id");
+	      var ban = $(this).data("ban");
+	      var req = $(this).data("req");
+
+
+	       console.log(ban);
+
+	    $.ajax({
+	       url : path+'?id='+id+'&ban='+ban+'&req='+req,
+	       type : 'GET',
+
 
 	       dataType : 'html',
 	       success : function(code_html, statut){

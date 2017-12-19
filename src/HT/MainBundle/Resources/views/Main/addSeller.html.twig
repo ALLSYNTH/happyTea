@@ -53,9 +53,12 @@
 			<div class="form-group">
 				<p>Horaires d'ouverture :</p>
 				<label>Entre : </label>
-				<input class="form-control" type="text" name="open"><br/>
+				<input class="form-control" type="time" name="open"><br/>
 				<label>Et : </label>
-				<input class="form-control" type="text" name="close"><br/>
+				<input class="form-control" type="time" name="close"><br/>
+				{% if error.openingTimes is defined %}
+					<div class="alert alert-warning">{{ error.openingTimes }}</div>
+				{% endif %}
 			</div>
 			<div class="form-group">
 				<label>Votre Logo ou Image : * </label>
