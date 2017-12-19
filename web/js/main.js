@@ -372,6 +372,13 @@ function recupStyle(elem, propriete){
    return prop;
 }
 
+function fadeOutTimer() {
+
+	$('.fadeOutTimer').fadeOut('slow');
+}
+
+var time = setTimeout(fadeOutTimer(), 4000); 
+
 
 	$('.fa-star').css("color" , "lightgray");
 	$('.fa-star').hover(function(){
@@ -379,6 +386,7 @@ function recupStyle(elem, propriete){
 	
 		// $(this).css("color", "yellowgreen");
 			if($(this).css("color") == 'rgb(154, 205, 50)') {
+				var rate = $(this).data('rate');
 				$(this).css("color", "lightgray");
 			}
 			else {
@@ -404,7 +412,14 @@ function recupStyle(elem, propriete){
 	    var id = $('.rating-star').data("id");
 	   	var rate = $(this).data('rate');
 	    var req = $('.rating-star').data("req");
-
+	    for(var i = 0; i < 5  ; i++) {
+	    	if(i <( rate-1)) {
+	    		$('.fa-star').eq(i).css("color", "yellowgreen");
+	    	}
+	    	else {
+	    		$('.fa-star').eq(i).css("color", "lightgray");
+	    	}
+	    }
 
 	     // console.log(ban);
 
@@ -415,10 +430,7 @@ function recupStyle(elem, propriete){
 
 	     dataType : 'html',
 	     success : function(code_html, statut){
-		     for(var i = 0; i < rate  ; i++) {
-		     	$('.fa-star').eq(i).css("color", "yellowgreen");
-
-		     }
+	
 	     }
 	  });
 

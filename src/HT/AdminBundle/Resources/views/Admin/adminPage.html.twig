@@ -10,9 +10,12 @@
 	     		background-color: lightgray; 
 	     	}
 	     </style>
-
+	
 	     <div class="container-fluid">
 	     	<div class="row header-admin">
+
+
+	     	
 		     	<div class="col">
 		     		<div >
 		     			<a class="action-button" href="#" data-href="{{path('ht_admin_user')}}">
@@ -42,6 +45,11 @@
 		     	</div>
 	     	</div>
 	     	<div id="mainDiv" class="container">
+	     		{% if success %}
+	     			<div class="alert alert-success fadeOutTimer"> {{success}} </div>
+
+	     		
+	     		{% endif %}
 	     		<div class="row admin-div-main">
 		     		<div class="col home-admin">
 		     			<p class="p-admin">nombre d'utilisateurs : {{ users  | length }}</p>
