@@ -34,6 +34,12 @@ ht_main_addSeller:
     path:    /addSeller
     defaults: { _controller: HTMainBundle:Main:addSeller }
 
+ht_main_updateShop:
+    path:   /updateShop/{id}
+    defaults: { _controller: HTMainBundle:Main:updateSeller }
+    requirements:
+        id: \d+
+
 ht_main_contact:
     path:   /contact
     defaults: { _controller: HTMainBundle:Main:contact }

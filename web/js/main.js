@@ -258,6 +258,29 @@ $(function(){
 
 	 });
 
+	  $("body").on('click', '#check-article', function(event){
+	    event.preventDefault();
+
+	      var path = $(this).data("href");
+	      var id = $(this).data("id");
+	  
+	      var req = "check-article";
+
+
+
+	    $.ajax({
+	       url : path+'?id='+id+'&req='+req,
+	       type : 'GET',
+	       // data : data,
+
+	       dataType : 'html',
+	       success : function(code_html, statut){
+	        $('#mainDiv').html(code_html);
+	       }
+	    });
+
+	  });
+
 
 	  /* JS AJAX UPDATE PRODUIT */ 
 

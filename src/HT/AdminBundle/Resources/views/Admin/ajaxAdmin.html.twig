@@ -25,7 +25,7 @@
 								<td>{{contact.mail}}</td>
 								<td>{{contact.message}}</td>
 								<td>{{contact.user}}</td>
-								<td>{{contact.isTreated}}</td>
+								<td> <a href="#" id="check-article" data-href="{{ path('ht_admin_admin') }}" data-id="{{contact.id}}">Marquer le message comme traité</a> </td>
 							</tr>
 
 							{% endfor %}

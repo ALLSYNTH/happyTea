@@ -240,8 +240,19 @@ class AdminController extends controller {
 					$em->flush(); 
 				}
 
-			$users = $userRepository->findByIsChecked(false);
+				if($request->query->get('id')!=null && $request->query->get('req')== "check-article")
+				{
 
+					$contact= $contactRepository->find($request->query->get('id'));
+					$contact->setIsTreated(true); 
+
+					$em->persist($contact); 
+
+					$em->flush(); 
+				}
+
+			$users = $userRepository->findByIsChecked(false);
+			$contacts = $contactRepository->findByIsTreated(false);
 				return $this->render('HTAdminBundle:Admin:ajaxAdmin.html.twig', array(
 						'contacts' => $contacts,
 						'users' => $users 
