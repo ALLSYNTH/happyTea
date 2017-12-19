@@ -169,8 +169,8 @@ body{
 }
 
 .teacontainer:hover{
-	transform: scale(0.93);
-	border-radius: 50px;
+	transform: scale(0.96);
+	border-radius: 10px;
 	transition: all 0.2s;
 }
 
@@ -200,7 +200,6 @@ body{
 	height: 14rem;
 	width: 14rem;
 }
-
 
 
 /* ------------------------------------------------

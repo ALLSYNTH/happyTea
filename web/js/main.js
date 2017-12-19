@@ -372,6 +372,7 @@ $(function(){
 		layoutMode:'fitRows',
 		getSortData: {
 			name:'.category'
+			number:'.number parseInt'
 		}
 	});
 
@@ -397,6 +398,11 @@ $(function(){
 	  utre: function(){
 	  	var name = $(this).find('.type').text();
 	  	return name.match(/utre$/);
+	  },
+
+	  numberGreaterThan50: function() {
+	    var number = $(this).find('.number').text();
+	    return parseInt( number, 10 ) > 50;
 	  }
 	};
 
@@ -407,6 +413,13 @@ $(function(){
 	  filterValue = filterFns[ filterValue ] || filterValue;
 	  $grid.isotope({ filter: filterValue });
 	});
+
+	// bind sort button click
+	$('#sorts').on( 'click', 'button', function() {
+	  var sortByValue = $(this).attr('data-sort-by');
+	  $grid.isotope({ sortBy: sortByValue });
+	});
+
 });
 
 
