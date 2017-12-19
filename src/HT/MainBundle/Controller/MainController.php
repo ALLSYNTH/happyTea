@@ -34,14 +34,13 @@ class MainController extends controller {
 		 $products = $productRepository->findAll();
 
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
-		 $articles = $articleRepository->findByIsPublished(true);
-
+		 $articles = $articleRepository->findByIsPublished(true)[0];
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'products' => $products,
-				'articles' => $articles  // on envoie les variable dans notre page twig
+				'article' => $articles  // on envoie les variable dans notre page twig
 			));
 
 
@@ -124,11 +123,27 @@ class MainController extends controller {
 
 		return $this->render("HTMainBundle:Main:team.html.twig", array(
 				'title' => $this->title,
-				'pageName' => $pageName,
+				'pageName' => $pageName
 
 			));
 
 
+	}
+
+	public function blogAction() {
+		$pageName = "Blog";
+
+		$em = $this->getDoctrine()->getManager();
+
+		$articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
+		$articles = $articleRepository->findByIsPublished(true);
+
+		return $this->render("HTMainBundle:Main:blog.html.twig", array(
+				'title' => $this->title,
+				'pageName' => $pageName,
+				'articles' => $articles 
+
+			));
 	}
 
 	public function sitemapAction(){
@@ -136,7 +151,7 @@ class MainController extends controller {
 
  		return $this->render("HTMainBundle:Main:sitemap.html.twig", array(
  				'title' => $this->title,
- 				'pageName' =>$pageName,
+ 				'pageName' =>$pageName
 
  		));
 		}

@@ -26,6 +26,10 @@ ht_main_team:
     path:    /team
     defaults: { _controller: HTMainBundle:Main:team }
 
+ht_main_blog:
+    path:   /blog
+    defaults: {_controller: HTMainBundle:Main:blog }
+
 ht_main_faq:
     path:    /FAQ
     defaults: { _controller: HTMainBundle:Main:faq }
