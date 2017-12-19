@@ -141,48 +141,6 @@ class MainController extends controller {
  		));
 		}
 
-	public function faqAction() { // modèle FAQ
-
-
-		$pageName = "FAQ";
-
-
-		//SCRIPT TEST POUR REMPLIR BDD
-
-		// // Les noms d'utilisateurs à créer
-		//     $listNames = array('Alex', 'Antoine', 'Claire', 'Quentin');
-		//     $manager = $this->getDoctrine()->getManager();
-
-		//     foreach ($listNames as $name) {
-		//       // On crée l'utilisateur
-		//       $user = new User;
-
-		//       // Le nom d'utilisateur et le mot de passe sont identiques pour l'instant
-		//       $user->setUsername($name);
-		//       $user->setPassword($name);
-
-		//       // On ne se sert pas du sel pour l'instant
-		//       $user->setSalt('');
-		//       // On définit uniquement le role ROLE_USER qui est le role de base
-		//       $user->setRoles(array('ROLE_USER', 'ROLE_SELLER'));
-
-		//       // On le persiste
-		//       $manager->persist($user);
-		//     }
-
-		//     // On déclenche l'enregistrement
-		//     $manager->flush();
-
-
-
-
-		return $this->render("HTMainBundle:Main:faq.html.twig", array(
-				'title' => $this->title,
-				'pageName' => $pageName,
-			));
-	}
-
-
 	public function contactAction(Request $request) { // modèle page CGU //it's my POST method
 
 		$pageName = "contact";
