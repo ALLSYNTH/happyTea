@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Miniver');
 
 /*Police de test*/
-@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Courgette|Lora|Dancing+Script|Indie+Flower|Julius+Sans+One|Lobster|Niconne|Rancho|Sacramento');
 
 
 /*nav h1 {
@@ -144,6 +144,10 @@ body{
 	margin-bottom: 0.5em;
 	border-radius: 15px;
 	border: 2px solid;
+	font-size: 1em;
+	word-wrap: break-word;
+	width:80%;
+	overflow: hidden;
 }
 
 .filterbutton:focus{
@@ -622,7 +626,25 @@ body{
  	height: 100%;
  	width: 100%;
  	box-sizing: border-box;
+ 	border:1px solid black;
  }
+
+.article-title{
+	font-family: 'Lobster', arial;
+}
+
+.article-subtitle{
+	font-family: 'Courgette', arial;
+	font-size: 0.8em;
+}
+
+.article-author{
+	font-size: 0.7em;
+}
+
+.article-content{
+	font-family: 'Lora', arial;
+}
 
  .div-article {
  	margin-top: 1em;

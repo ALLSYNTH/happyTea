@@ -371,7 +371,7 @@ $(function(){
 		itemSelector: '.element-item',
 		layoutMode:'fitRows',
 		getSortData: {
-			name:'.category'
+			name:'.category',
 			number:'.number parseInt'
 		}
 	});
@@ -415,7 +415,7 @@ $(function(){
 	});
 
 	// bind sort button click
-	$('#sorts').on( 'click', 'button', function() {
+	$('#filters').on( 'click', '#sorts', function() {
 	  var sortByValue = $(this).attr('data-sort-by');
 	  $grid.isotope({ sortBy: sortByValue });
 	});
