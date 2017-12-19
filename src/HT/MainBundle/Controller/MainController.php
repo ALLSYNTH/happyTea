@@ -63,7 +63,6 @@ class MainController extends controller {
 
 		$utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 		$favs = $utilisateur->getFavProduct();
-		dump($favs);
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -463,7 +462,7 @@ class MainController extends controller {
 
 			$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 			$products = $productRepository->findByShop($shop->getId());
-			// dump($products); 
+			// dump($products);
 
 			 if($request->isMethod('POST')) {
 
@@ -650,7 +649,7 @@ class MainController extends controller {
 
 		public function updateProductAction($id, Request $request) {
 
-			
+
 
 			if(!$this->get('security.authorization_checker')->isGranted('ROLE_SELLER')) {
 
@@ -672,7 +671,7 @@ class MainController extends controller {
 				$shop = $em->getRepository('HTMainBundle:Shop')->findByUser($userId)[0];
 
 				$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
-				
+
 
 				$product = $productRepository->find($id);
 
@@ -735,7 +734,7 @@ class MainController extends controller {
 
 
 
-						
+
 
 						$product->setShop($shop);
 						$product->setCategory($category);
@@ -751,7 +750,7 @@ class MainController extends controller {
 						$success = "Le produit a bien été ajouté à votre shop.";
 
 
-					} 
+					}
 
 
 			}
@@ -759,11 +758,11 @@ class MainController extends controller {
 
 
 			return $this->render('HTMainBundle:Main:updateProduct.html.twig', array(
-							'title' => $this->title, 
+							'title' => $this->title,
 							'success' => $success,
-							'error' => $error, 
-							'pagename' => $pageName, 
-							'product' => $product 
+							'error' => $error,
+							'pagename' => $pageName,
+							'product' => $product
 				));
 
 		}
@@ -775,37 +774,37 @@ class MainController extends controller {
 			// 		$em = $this->getDoctrine()->getManager();
 			// 		$productRepository = $em->getRepository('HTMainBundle:Product');
 			// 		$products = $productRepository->findAll();
-			// 		$statut = ""; 
-			// 		$productId = $request->query->get('id'); 
-			// 		// dump($productId); 
-			// 		$productToRemove = $productRepository->findOneById($productId); 
-			// 		// dump($productToRemove); 
+			// 		$statut = "";
+			// 		$productId = $request->query->get('id');
+			// 		// dump($productId);
+			// 		$productToRemove = $productRepository->findOneById($productId);
+			// 		// dump($productToRemove);
 			// 		if(	$productToRemove != null ) {
 			// 		$em->remove($productToRemove);
-			// 		$em->flush(); 
+			// 		$em->flush();
 			// 		}
-					
+
 			// 		}
 
 						$em = $this->getDoctrine()->getManager();
 					$productRepository = $em->getRepository('HTMainBundle:Product');
 					$products = $productRepository->findAll();
-					$statut = ""; 
-					// $productId = $request->query->get('id'); 
-					// dump($productId); 
-					$productToRemove = $productRepository->findOneById($id); 
-					// dump($productToRemove); 
+					$statut = "";
+					// $productId = $request->query->get('id');
+					// dump($productId);
+					$productToRemove = $productRepository->findOneById($id);
+					// dump($productToRemove);
 					if(	$productToRemove != null ) {
 					$em->remove($productToRemove);
-					$em->flush(); 
+					$em->flush();
 					}
 
 					return $this->redirectToRoute('ht_main_addProduct');
 
 					// return $this->render('HTMainBundle:Main:ajaxTabProduct.html.twig', array(
 					// 		'products' => $products
-					// 	)); 
-			
+					// 	));
+
 		}
 
 
