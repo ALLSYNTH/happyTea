@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-8">
-      <div class="row div-article"> 
+      <div class="row div-article animated fadeIn "> 
         <div class="col-4">
           <img class="img-article" src="/happyTea/web/web/img/{{article.picture}}">
         </div>
@@ -37,15 +37,20 @@
         <br>
         <button type="button" class="btn btn-success filterbutton" data-filter="utre">Autre</button>
         <br>
+        <br>
+        <button class="btn btn-success filterbutton" type="button" data-sort-by="original-order" id="sorts">Tri original</button>
+        <br>
+        <button type="button" class="btn btn-success filterbutton" id="sorts" data-sort-by="number">Prix</button>
       </div>
     </div>
+
     <div class="col-8">
       <div class="row grid">
         {% for product in products %}
-          <a href="{{path('ht_main_teas', {'id': product.id} )}}"class="simplelink">
-            <div class="col-3 teacontainer element-item" data-category="{{product.category.name}}">
+          <a href="{{path('ht_main_teas', {'id': product.id} )}}" class="simplelink" title="aller sur la page du thé !">
+            <div class="col-3 teacontainer element-item" data-category="{{product.category.name}} {{product.price}}">
             <div class="teainformations"> {{product.name}} </div>
-            <div class="teasubinformations">{{product.price}} €</div>
+            <div class="teasubinformations number">{{product.price}} euros</div>
             <div class="teasubinformations type">{{product.category.name}}</div>
             <br>
             <img src='/happyTea/web/web/img/{{product.picture}}'  class="img-responsive filterimg">

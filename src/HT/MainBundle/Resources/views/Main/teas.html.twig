@@ -228,6 +228,14 @@
     {% elseif true == user.isBanned %}
     <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
     {% else %}
+
+	  	{% if success %}
+		    <div class="alert alert-success">{{ success }}  </div>
+		{% endif %}
+		{% if error.length is defined %}
+		   <div class="alert alert-danger"> {{ error.length }} </div>
+		{% endif %}
+
 		<form method="post" class="my-5 col-12" action="">
 			<textarea name="content" placeholder="Votre commentaire ici..." rows="5" ></textarea>
 			<br>
