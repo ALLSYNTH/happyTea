@@ -61,6 +61,11 @@ class Product
     private $category;
 
     /**
+    * @ORM\OnetoMany(targetEntity="HT\MainBundle\Entity\Comment", mappedBy="product", orphanRemoval=true)
+    */
+    private $comment;
+
+    /**
      * Get id
      *
      * @return int
