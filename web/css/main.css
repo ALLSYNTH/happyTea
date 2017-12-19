@@ -160,7 +160,7 @@ body{
 }
 
 .teacontainer{
-	
+
 	padding: 5px;
 	border: 2px solid lightgreen;
 	border-radius: 4px;
@@ -321,6 +321,12 @@ body{
 	color: white;
 }
 
+.fav,
+.supfav {
+	background-color: #5cb85c;
+	color: white;
+}
+
 .teas.menu {
   font-family: Helvetica, sans-serif;
   font-size: 13px;
@@ -378,6 +384,10 @@ body{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.wordwrap{
+	word-wrap: wrap;
 }
 
 /* ------------------------------------------------

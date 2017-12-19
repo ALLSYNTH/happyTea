@@ -138,9 +138,9 @@
       {% elseif true == user.isBanned %}
       <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
       {% elseif product not in favs %}
-      <button class="btn btn-lg btn-block fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
+      <button id="fav" class="btn btn-lg btn-block fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
       {% else %}
-      <button class="btn btn-lg btn-block supfav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
+      <button id="notfav" class="btn btn-lg btn-block supfav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
       {% endif %}
 
 
@@ -195,7 +195,7 @@
       <div class="col-6 col-md-4 col-lg-3">
 				<a class="no-textdecoration" href="{{path('ht_main_teas', {'id': product.id} )}}">
         <h4 class="text-center py-2">{{ product.name }}</h4>
-        <img src="{{product.picture}}"  class="img-responsive card-img-top">
+        <img src="/happyTea/web/web/img/{{product.picture}}"  class="img-responsive card-img-top">
         <div class="p-2 d-flex justify-content-around">
 					{% if product.category.name == "Thé vert"  %}
 	          <p class="shoppage-badge bg-turquoise">{{ product.category.name }} </p>
@@ -235,53 +235,23 @@
 		</form>
     {% endif %}
 
-		<div class="d-flex flex-column align-items-center">
-			{% for comment in comments %}
-			<div class="my-2 col-10 col-lg-6">
-				<div class="d-flex justify-content-between">
-					<h6>{{ comment.user.username }}</h6>
-					<h4>{{ comment.publishedAt.date | date('d-m-Y | H:i') }}</h4>
-				</div>
-				<p>{{ comment.content }}</p>
-			</div>
-			{% endfor %}
-		</div>
-
 	</section>
 
+<section class="row">
+  <div class="offset-1 col-10 offset-lg-3 col-lg-6">
+    {% for comment in comments %}
+    <div class="my-5">
+      <div class="d-flex justify-content-between">
+        <h6>{{ comment.user.username }}</h6>
+        <h4>{{ comment.publishedAt.date | date('d-m-Y | H:i') }}</h4>
+      </div>
+      <p class="article-content">{{ comment.content }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+
 </div>
-
-{# Exemple boucle twig foreach #}
-
-{# Ici, on ouvre la boucle twig,
-on demande a parcourir tout les produit (product),
-dans le tableau qui contient les produits (products).
-à l'intérieur de cette boucle on demandera certaines informations. #}
-
-{% for product in products %}
-<div>
-
-	{# Dans cette boucle je vais demander des infos, ce sera toujours écrit ainsi:
-	nomdelatable.nomduchamp #}
-
-  {{product.name}} {# Ici le nom #}
-  {{product.price}} euros {# ici le prix, j'ai ajouté "euros" pour être précis #}
-  {{product.category.name}} {# ici la catégorie, ou type du thé #}
-  <img src='/happyTea/web/web/img/{{product.picture}}'>
-{#
-  Pour l'image c'est un poil plus complexe, je t'explique.
-  Avec {{product.picture}}, je vais récupérer le nom de l'image qui est dans notre projet symfony.
-  La fonction "path()" de twig, pour cherche l'image, ne fonctionnait pas, donc j'ai fait autrement.
-  Attention cependant, je suis pas sur que ce soit la bonne solution, on verra ça lundi ou mardi.
-
-  Je met le chemin en dur vers le dossier ou sont stocké les images uploadés par les vendeurs,
-  soit: /happyTea/web/web/img/
-  Dans le dossier img, se trouve l'image du produits.
-  Pour qu'elle soit bien trouvé, j'ajoute juste la commande twig {{product.picture}}
-  Ainsi, je récupère le nom de l'image du produit actuellement parcouru par le tableau. #}
-
-  <br> <br>
-</div>
-{% endfor %} {# On ferme la condition #}
 
 {% endblock %}
