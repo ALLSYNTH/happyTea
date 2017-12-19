@@ -360,9 +360,69 @@ $(function(){
 
 	  // });
 
+// JAVASCRIPT POUR STAR-RATING
+
+// $(".fa-star").mouseenter(function() {
+// 	$(this).css( 'color' , 'yellowgreen' );
+// 	console.log($(this));
+
+// });
+function recupStyle(elem, propriete){
+    var prop = window.getComputedStyle(elem,null).getPropertyValue(propriete);
+   return prop;
+}
 
 
+	$('.fa-star').css("color" , "lightgray");
+	$('.fa-star').hover(function(){
+    // $(this).css("background-color", "lightgray");
+	
+		// $(this).css("color", "yellowgreen");
+			if($(this).css("color") == 'rgb(154, 205, 50)') {
+				$(this).css("color", "lightgray");
+			}
+			else {
+				$(this).css("color", "yellowgreen");
+			}
+    },
+		function(){
+			// $(this).css("background-color", "yellowgreen");
+			element = $(this); 
+			console.log($(this).css("color"));
+			if($(this).css("color") == 'rgb(154, 205, 50)') {
+				$(this).css("color", "lightgray");
+			}
+			else {
+				$(this).css("color", "yellowgreen");
+			}
+		});
 
+	$("body").on('click', '.fa-star', function(event){
+	  event.preventDefault();
+
+	    var path = $('.rating-star').data("href");
+	    var id = $('.rating-star').data("id");
+	   	var rate = $(this).data('rate');
+	    var req = $('.rating-star').data("req");
+
+
+	     // console.log(ban);
+
+	  $.ajax({
+	     url : path+'?id='+id+'&rate='+rate+'&req='+req,
+	     type : 'GET',
+
+
+	     dataType : 'html',
+	     success : function(code_html, statut){
+		     for(var i = 0; i < rate  ; i++) {
+		     	$('.fa-star').eq(i).css("color", "yellowgreen");
+
+		     }
+	     }
+	  });
+
+	});
 
 /*ISOTOPE*/
 

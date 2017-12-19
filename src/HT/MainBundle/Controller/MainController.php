@@ -34,7 +34,9 @@ class MainController extends controller {
 		 $products = $productRepository->findAll();
 
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
+		 if(null != $articleRepository->findByIsPublished(true) ) {
 		 $articles = $articleRepository->findByIsPublished(true)[0];
+		}
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
@@ -892,6 +894,12 @@ class MainController extends controller {
 
 
 			}
+
+
+		public function ajaxRateAction(Request $request) {
+			$statut=""; 
+			return new JsonResponse($statut);
+		}
 
 
 
