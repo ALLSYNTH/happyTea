@@ -85,9 +85,29 @@ body{
 	text-align: center;
 }
 
+
 .shop.banner h1{
 	font-size:5em;
 }
+
+
+.sitemap.banner h1{
+	font-size:5em;
+}
+
+.sitemap.banner {
+	background-image: url("../img/background/banner-sitemap.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: #009688;
+	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
+	height: 300px;
+	background-attachment: fixed;
+	margin-bottom: 1.5em;
+	font-family: 'Pacifico', cursive;
+	text-align: center;
+}
+
 
 .user.banner {
 	background-image: url("../img/background/banner-user.jpg");
@@ -136,8 +156,6 @@ body{
   position: fixed;
   bottom:0;
   background-color: rgba(153,213,207, 0.5);
-  border-radius: 90px;
-  margin-bottom: 2px;
 }
 
 .simplelink{
