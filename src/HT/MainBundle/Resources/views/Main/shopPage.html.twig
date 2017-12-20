@@ -29,7 +29,7 @@
       <div class="row">
 
         <div class="col-12 my-3 d-flex justify-content-center align-items-center">
-          {% if shop.openingTimes.opening is defined and shop.openingTimes.closing is defined %}
+          {% if shop.openingTimes.opening and shop.openingTimes.closing %}
             <p class="minitext">
               ouvert en semaine de {{shop.openingTimes.opening}} - {{shop.openingTimes.closing}}
             </p>
