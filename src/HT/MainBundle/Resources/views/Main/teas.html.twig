@@ -56,7 +56,7 @@
 			{% elseif true == user.isBanned %}
 				<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
 			{% else %}
-					<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate=""> 
+					<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate="">
 				  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
 				  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
 				  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
@@ -130,17 +130,17 @@
         <div class="col-4 text-center">
 					<img class="pb-3" src="{{ asset('img/icons/time.png') }}" alt="">
 					<h4>Temps pour infusion</h4>
-					<p class="info-chart">0.5'</p>
+					<p class="info-chart">5 min</p>
 				</div>
 				<div class="col-4 text-center">
 					<img class="pb-3" src="{{ asset('img/icons/thermometer.png') }}" alt="">
 					<h4>Température d'infusion</h4>
-					<p class="info-chart">1000°C</p>
+					<p class="info-chart">80°C</p>
 				</div>
 				<div class="col-4 text-center">
 					<img class="pb-3" src="{{ asset('img/icons/teacup.png') }}" alt="">
 					<h4>Moment de la journée</h4>
-					<p class="info-chart">toujours pas</p>
+					<p class="info-chart">N'importe quand</p>
 				</div>
         {% endif %}
 
@@ -183,7 +183,7 @@
 
 		<div class="row my-5">
 			<figure class="col-12 offset-md-1 col-md-4">
-				<img class="img-responsive" src="{{ product.shop.logo }} " alt="">
+				<img class="img-responsive" src="/happyTea/web/web/img/{{ product.shop.logo }} " alt="">
 			</figure>
 
 			<div class="col-12 offset-md-1 col-md-6">
