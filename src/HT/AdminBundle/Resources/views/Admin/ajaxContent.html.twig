@@ -6,11 +6,11 @@
 		<form method="post" action="" enctype="multipart/form-data" >
 			<div class="form-group">
 				<label for="title">Titre de l'article :</label>
-				<input class="form-control" name="title" type="text" placeholder="titre..."></input>
+				<input class="form-control" name="title" type="text" placeholder="titre..." value="{{app.request.get('title')}}"></input>
 			</div>
 			<div class="form-group">
 				<label for="subtitle"> Sous-titre de l'article :</label>
-				<input class="form-control" name="subtitle" type="text" placeholder="sous-titre..."></input>
+				<input class="form-control" name="subtitle" type="text" placeholder="sous-titre..." value="{{app.request.get('subtitle')}}"></input>
 			</div>
 			<div class="form-group">
 				<label for="picture"> Photo de l'article :</label>
@@ -18,7 +18,8 @@
 			</div>
 			<div class="form-group">
 				<label for="content"> Contenu : </label>
-				<textarea class="form-control" name="content" placeholder="Votre texte..."></textarea>
+				<textarea class="form-control" name="content" placeholder="Votre texte...">
+					{{app.request.get('content')}}</textarea>
 				<input class="hidden" value="ad-form" name="form-tag">
 			</div>
 			<input type="submit">
@@ -60,7 +61,7 @@
 		    </div>
 		  
 		  {# </div> #}
-		  
+
 		  </form>
 		{% endfor %}
 		  </div>

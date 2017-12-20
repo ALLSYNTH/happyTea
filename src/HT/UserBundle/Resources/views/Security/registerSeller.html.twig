@@ -24,7 +24,7 @@
 
 			<div class="form-group">
 				<label for="username"> Nom d'utilisateur: </label>
-				<input type="text" class="form-control" id="username" name="username" />
+				<input type="text" class="form-control" id="username" name="username" value="{{app.request.get('username')}}"/>
 				{% if error.username is defined %}
 					<div class="alert alert-warning"> {{ error.username }} </div>
 				{% endif %}
@@ -32,7 +32,7 @@
 			
 			<div class= "form-group">
 				<label for="mail"> Adresse mail : </label>
-				<input type="text" class="form-control" id="mail" name="mail" />
+				<input type="text" class="form-control" id="mail" name="mail" value="{{app.request.get('mail')}}" />
 				{% if error.mail is defined  %}
 					<div class="alert alert-warning"> {{ error.mail }} </div>
 				{% endif %}
@@ -54,7 +54,7 @@
 
 				<div class= "form-group">
 					<label for="siret"> Numéro de SIRET : </label>
-					<input type="text" class="form-control" id="siret" name="siret"/>
+					<input type="text" class="form-control" id="siret" name="siret" value="{{app.request.get('siret')}}"/>
 					{% if error.siret is defined  %}
 						<div class="alert alert-warning"> {{ error.siret }} </div>
 					{% endif %}
