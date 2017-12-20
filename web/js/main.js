@@ -386,6 +386,9 @@ function fadeOutTimer() {
 
 
 var time = setTimeout(fadeOutTimer, 2000); 
+
+         // MyRating Star ******************/
+
 var productUserRate = $(".rating-star").data('userrate');
 console.log(productUserRate); 
 	if(productUserRate  == "") {
@@ -402,6 +405,31 @@ console.log(productUserRate);
 			}
 		}
 	}
+	var newRate = false; 
+	var rateGlobal; 
+	$(".rating-star").mouseout(function(){
+		if(newRate == false ) {
+			rateGlobal = $(this).data('userrate');
+		}
+		else {
+			rateGlobal = newRate; 
+		}
+			console.log(rateGlobal); 
+		if(rateGlobal  == "") {
+			$('.fa-star').css("color" , "lightgray");
+			
+		}
+		else {
+			for(var i = 0; i < 5  ; i++) {
+				if(i < (rateGlobal )) {
+					$('.fa-star').eq(i).css("color", "yellowgreen");
+				}
+				else {
+					$('.fa-star').eq(i).css("color", "lightgray");
+				}
+			}
+		}
+	});
 	
 	$('.fa-star').hover(function(){
     // $(this).css("background-color", "lightgray");
@@ -464,6 +492,8 @@ console.log(productUserRate);
 	    	}
 	    }
 	    $('.rating-star').addClass('isRated');
+	    $('.rating-star').attr('data-userrate', rate);
+	    newRate = rate; 
 	     // console.log(ban);
 
 	  $.ajax({
