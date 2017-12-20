@@ -21,7 +21,7 @@
 
 					<!-- branding logo -->
 					<a class="navbar-brand align-items-center" href="{{ path('ht_main_homepage')}}">
-						<img src="{{ asset('img/logo.png') }}" class="mainlogo">
+						<img src="{{ asset('img/logo.png') }}" class="mainlogo animated flip">
 					</a>
 
 					<div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
@@ -114,12 +114,12 @@
 		{% endblock %}
 
 
-			<footer id="footer">
+			<footer id="footer" class="animated fadeIn">
 				<div class="container">
 					<div class="d-flex justify-content-between align-items-center">
-						<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
+						<a class="navbar-brand k" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
 						<p class="m-0">HappyTea - un projet WF3 </p>
-						<a href="https://twitter.com/happytea_m" target="_blank"><img src="{{ asset('img/icons/twitter.png')}}"  class="img-responsive" alt="icone twitter"></a>
+						<a href="https://twitter.com/happytea_m" target="_blank"><img src="{{ asset('img/icons/twitter.png')}}"  class="img-responsive animated flash" alt="icone twitter"></a>
 					</div>
 				</div>
 			</footer>
