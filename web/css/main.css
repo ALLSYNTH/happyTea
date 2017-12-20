@@ -617,6 +617,13 @@ body{
 	background-color: rgb(255, 115, 0);
 }
 
+.comment-cross {
+
+	color: red;
+	font-size: 20px;
+	cursor: pointer;
+}
+
 
 /*-----------------------------------------------------
 	Style Page admin
