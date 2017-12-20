@@ -16,6 +16,9 @@
 {% if success  %}
   <div class="alert-success">{{ success }}</div>
 {% endif %}
+{% if error %}
+  <div class="alert alert-warning"> {{ error }} </div>
+{% endif %}
 {% if false == is_granted('ROLE_SELLER') %}
   <div class="container">
   <div class="row justify-content-center">
@@ -28,10 +31,8 @@
 
         <label for="siret"> Numéro de SIRET : </label>
         <input type="text" class="form-control" id="siret" name="siret"/>
-        {% if error %}
-          <div class="alert alert-warning"> {{ error }} </div>
-        {% endif %}
-        <input type="submit" value="Inscription"/>
+
+        <input type="submit" class="btn btn-primary btn-marg" value="Inscription"/>
       </form>
     </div>
   </div>
