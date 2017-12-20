@@ -57,16 +57,22 @@
 				        		<a class="nav-link" href="{{path('ht_main_user', {'id': app.user.id} )}}">Ma théière</a>
 				      		</li>
 
-				     		{% if is_granted('ROLE_SELLER') %}
-
-					     	<li class="nav-item {%if app.request.attributes.get('_route') == 'ht_main_shop' %} active {% endif %}">
-					        	<a class="nav-link" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}">Mon shop</a>
-					      	</li>
-
-				  			{% endif %}
-
 					  		{% endif %}
 
+		  				 	<li class="nav-item dropdown {% if app.request.attributes.get('_route') == 'ht_main_addSeller' or  app.request.attributes.get('_route') == 'ht_main_shop' or app.request.attributes.get('_route') == 'ht_main_shopList' %}  active {% endif %}">
+		  		        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  		          			Boutiques
+		  		        		</a>
+		  		        		<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		  		          			<a class="dropdown-item" href="{{ path('ht_main_shopList') }}">Listes des boutiques</a>
+
+		  		          			{% if is_granted('ROLE_SELLER') %}
+
+		  		          			<a class="dropdown-item" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}">Ma boutique</a>
+
+		  		          			{% endif %}
+		  		        		</div>
+		  		      		</li>
 					  		{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
 						</ul>
 
