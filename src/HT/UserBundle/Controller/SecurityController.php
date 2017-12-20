@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use HT\UserBundle\Entity\User; 
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
 class SecurityController extends Controller 
@@ -26,9 +26,7 @@ class SecurityController extends Controller
 			return $this->redirectToRoute('ht_main_homepage');
 		}
 
-			    // Le service authentication_utils permet de récupérer le nom d'utilisateur
-    // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-    // (mauvais mot de passe par exemple)
+
     $authenticationUtils = $this->get('security.authentication_utils');
 
     return $this->render('HTUserBundle:Security:login.html.twig', array(
@@ -124,6 +122,13 @@ class SecurityController extends Controller
 			$em->flush(); 
 
 			$success=true;
+
+			// if($user != null) {
+			$token = new UsernamePasswordToken($user, null, 'users', $user->getRoles());
+			 
+			$this->container->get('security.token_storage')->setToken($token);
+			$this->get('session')->set('_security_users', serialize($token));
+			// }
 
 
 			}
@@ -240,6 +245,16 @@ class SecurityController extends Controller
 
 			$em->flush(); 
 			$success=true;
+
+			// if($user != null) {
+			$token = new UsernamePasswordToken($user, null, 'users', $user->getRoles());
+			 
+			$this->container->get('security.token_storage')->setToken($token);
+			$this->get('session')->set('_security_users', serialize($token));
+			// }
+
+
+			
 
 
 			}
