@@ -377,21 +377,33 @@ function fadeOutTimer() {
 	$('.fadeOutTimer').fadeOut('slow');
 }
 
-var time = setTimeout(fadeOutTimer(), 4000); 
+var time = setTimeout(fadeOutTimer, 2500); 
 
 
 	$('.fa-star').css("color" , "lightgray");
 	$('.fa-star').hover(function(){
     // $(this).css("background-color", "lightgray");
-	
+
+
 		// $(this).css("color", "yellowgreen");
 			if($(this).css("color") == 'rgb(154, 205, 50)') {
-				var rate = $(this).data('rate');
+			
 				$(this).css("color", "lightgray");
 			}
 			else {
 				$(this).css("color", "yellowgreen");
 			}
+	    	var rate = $(this).data('rate');
+	    	
+			for(var i = 0; i < 5  ; i++) {
+				if(i <( rate)) {
+					$('.fa-star').eq(i).css("color", "yellowgreen");
+				}
+				else {
+					$('.fa-star').eq(i).css("color", "lightgray");
+				}
+			}
+
     },
 		function(){
 			// $(this).css("background-color", "yellowgreen");
@@ -402,6 +414,15 @@ var time = setTimeout(fadeOutTimer(), 4000);
 			}
 			else {
 				$(this).css("color", "yellowgreen");
+			}
+			if(!$('.rating-star').hasClass('isRated')) {
+				for(var i = 0; i < 5  ; i++) {
+				
+						
+					
+						$('.fa-star').eq(i).css("color", "lightgray");
+					
+				}
 			}
 		});
 
@@ -420,7 +441,7 @@ var time = setTimeout(fadeOutTimer(), 4000);
 	    		$('.fa-star').eq(i).css("color", "lightgray");
 	    	}
 	    }
-
+	    $('.rating-star').addClass('isRated'); 
 	     // console.log(ban);
 
 	  $.ajax({
@@ -549,5 +570,8 @@ $(function(){
 });
 
 
+$('#waypoint').waypoint(function(direction) {
+  $('.filtercontainer').toggleClass('way-hidden');
+});
 
 }); // END

@@ -24,6 +24,7 @@ class AdminController extends controller {
 			public function adminPageAction(Request $request ) {
 
 					$success = "";
+					$error = ""; 
 					
  					$em = $this->getDoctrine()->getManager();
 				$userRepository = $em->getRepository('HTUserBundle:User');
@@ -154,6 +155,7 @@ class AdminController extends controller {
 						'users' => $users,
 						'shops' => $shops,
 						'success' => $success,
+						'error' => $error
 						
 					));
 
@@ -161,6 +163,8 @@ class AdminController extends controller {
 
 
 			public function userAjaxAction(Request $request) {
+
+				$success = ""; 
 
 				$em = $this->getDoctrine()->getManager();
 				$userRepository = $em->getRepository('HTUserBundle:User');
@@ -262,7 +266,8 @@ class AdminController extends controller {
 
 				return $this->render('HTAdminBundle:Admin:ajaxUser.html.twig', array(
 						'users' => $users,
-						'shops' => $shops 
+						'shops' => $shops,
+						'success' => $success,  
 					));
 			}
 

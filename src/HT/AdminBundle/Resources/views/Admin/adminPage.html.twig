@@ -50,6 +50,16 @@
 
 	     		
 	     		{% endif %}
+	     		{% if error.empty is defined %}
+	     			<div class="alert alert-warning fadeOutTimer"> {{error.empty}} </div>
+
+	     		
+	     		{% endif %}
+	     		{% if error.picture is defined %}
+	     			<div class="alert alert-warning fadeOutTimer"> {{error.picture}} </div>
+
+	     		
+	     		{% endif %}
 	     		<div class="row admin-div-main">
 		     		<div class="col home-admin">
 		     			<p class="p-admin">nombre d'utilisateurs : {{ users  | length }}</p>

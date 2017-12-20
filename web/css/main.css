@@ -252,6 +252,9 @@ body{
 	width: 14rem;
 }
 
+.way-hidden{
+	display: none;
+}
 
 /* ------------------------------------------------
 	Styles Page Team

@@ -14,8 +14,8 @@
 <div class="container">
 	<div class="row">
 	{% for article in articles %}
-
-	<div class="col-12 div-article">
+		
+	<div class="col-12 div-article" data-aos="fade-up">
 		<span> - publié le {{article.publishedAt | date('d-m-Y | H:i')}}</span>
 		<br>
 		<h2 class="text-center">
