@@ -549,5 +549,8 @@ $(function(){
 });
 
 
+$('#waypoint').waypoint(function(direction) {
+  $('.filtercontainer').toggleClass('way-hidden');
+});
 
 }); // END
