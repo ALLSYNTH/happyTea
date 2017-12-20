@@ -20,39 +20,6 @@
 	<section class="row d-flex teas">
 		<figure class="col-12 col-md-6">
 			<img src="/happyTea/web/web/img/{{product.picture}}" class="img-responsive" alt="">
-
-
-			<!-- rating features // visible sm -->
-			<div class="row hidden-md-up">
-				<div class="col-6 d-flex justify-content-center">
-					{# 	rating user #}
-					{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-						<div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
-					{% elseif true == user.isBanned %}
-						<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
-					{% else %}
-							<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate="">
-							<i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
-								</div>
-					 {% endif %}
-				</div>
-				<div class="col-6 d-flex justify-content-center">
-					<!-- button Add / Delete favorites -->
-					{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-					<div class="alert alert-info">Vous devez être connecté pour pouvoir ajouter aux favoris.</div>
-					{% elseif true == user.isBanned %}
-					<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
-					{% elseif product not in favs %}
-					<button id="fav" class="btn btn-sm btn btn-primary fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
-					{% else %}
-					<button id="notfav" class="btn btn-sm btn-primary supfav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
-					{% endif %}
-				</div>
-			</div>
 		</figure>
 
 		<div class="col-12 offset-md-1 col-md-5">
@@ -76,65 +43,48 @@
 			<h4>description</h4>
 			<p>{{ product.description }}</p>
 
-			<!-- rating features -->
-			<div class="row hidden-sm-down">
-				<div class="col-12 col-sm-6 ">
-					{# 	rating user #}
-					{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-						<div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
-					{% elseif true == user.isBanned %}
-						<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
-					{% else %}
-							<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate="">
-							<i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
-							<i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
-								</div>
-					 {% endif %}
-				</div>
-				<div class="col-12 col-sm-6">
-					<!-- button Add / Delete favorites -->
-					{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-					<div class="alert alert-info">Vous devez être connecté pour pouvoir ajouter aux favoris.</div>
-					{% elseif true == user.isBanned %}
-					<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
-					{% elseif product not in favs %}
-					<button id="fav" class="btn btn-sm btn btn-primary fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
-					{% else %}
-					<button id="notfav" class="btn btn-sm btn-primary supfav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
-					{% endif %}
-				</div>
-			</div>
-
-			<!-- rating info -->
-			<div class="d-flex flex-md-column">
-				<div class="col-6 col-md-12 d-flex align-items-baseline  my-3">
+			<div class="">
+				<!-- rating info -->
+				<div class="col-12 d-flex align-items-baseline  my-3">
 					<img class="pr-2" src="{{ asset('img/icons/love-avis.png') }}" alt="">
 					<h4 class="teas info">Note générale : {{ avgRate|round(1) }}</h4>
 				</div>
 
-			{# 	rating user #}
+				<!-- rating features -->
+				<div class="row">
+					<div class="col-6 d-flex justify-content-center">
+						{# 	rating user #}
+						{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+							<div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
+						{% elseif true == user.isBanned %}
+							<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
+						{% else %}
+								<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate="">
+								<i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
+								<i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
+								<i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
+								<i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
+								<i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
+									</div>
+						 {% endif %}
+					</div>
+					<div class="col-6 d-flex justify-content-center">
+						<!-- button Add / Delete favorites -->
+						{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+						<div class="alert alert-info">Vous devez être connecté pour pouvoir ajouter aux favoris.</div>
+						{% elseif true == user.isBanned %}
+						<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
+						{% elseif product not in favs %}
+						<button id="fav" class="btn btn-sm btn btn-primary fav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Ajouter aux favoris</button>
+						{% else %}
+						<button id="notfav" class="btn btn-sm btn-primary supfav" type="button" data-path="{{ path('ht_main_fav') }}" data-id="{{ product.id }}">Supprimer des favoris</button>
+						{% endif %}
+					</div>
+				</div>
 
-			{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-				<div class="alert alert-info">Vous devez être connecté pour pouvoir noter un produit</div>
-			{% elseif true == user.isBanned %}
-				<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à noter un produit</div>
-			{% else %}
-
-					<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-userrate="{{ productUserRate }}"> 
-
-				  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
-				  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
-				  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
-				  <i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
-				  <i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
-				  	</div>
-			 {% endif %}
 
 				<!-- price info -->
-				<div class="col-6 col-md-12 d-flex align-items-baseline my-3">
+				<div class="col-12 d-flex align-items-baseline my-3">
 					<img class="pr-2" src="{{ asset('img/icons/price.png') }}" alt="">
 					<h4 class="teas info">A partir de: {{ product.price }} €</h4>
 				</div>
