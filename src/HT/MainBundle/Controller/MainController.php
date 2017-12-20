@@ -444,7 +444,7 @@ class MainController extends Controller {
  				$user->setIsChecked(false); 
  				$em->persist($user); 
  				$em->flush(); 
- 				$success = "Votre demande à bien été enregistré. Un administrateur va valider votre informations et vous pourrai créer votre boutique."; 
+ 				$success = "Votre demande à bien été enregistré. Un administrateur va valider vos informations et vous pourrez créer votre boutique."; 
  			}
  		}
  		
