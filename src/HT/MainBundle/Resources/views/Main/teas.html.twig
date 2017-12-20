@@ -50,13 +50,19 @@
 					<h4 class="teas info">Note générale: XX </h4>
 				</div>
 			{# 	rating user #}
-				<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" > 
-			  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
-			  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
-			  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
-			  <i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
-			  <i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
-			  	</div>
+			{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
+				<div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
+			{% elseif true == user.isBanned %}
+				<div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
+			{% else %}
+					<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" data-rate=""> 
+				  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
+				  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
+				  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
+				  <i class="fa fa-star" data-rate="4"  aria-hidden="true"></i>
+				  <i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
+				  	</div>
+			 {% endif %}
 
 				<!-- price info -->
 				<div class="col-6 col-md-12 d-flex align-items-baseline my-3">
@@ -142,7 +148,7 @@
 
 			<button id="redirect-shop"  data-target="{{ product.shop.url }}" type="button" class="btn btn-lg btn-block">Aller sur site du Shop</button>
       {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-      <div class="alert alert-info">Vous devez être connecter pour pouvoir ajouter aux favoris.</div>
+      <div class="alert alert-info">Vous devez être connecté pour pouvoir ajouter aux favoris.</div>
       {% elseif true == user.isBanned %}
       <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à ajouter aux favoris.</div>
       {% elseif product not in favs %}
@@ -232,7 +238,7 @@
 	<section  id="comments" class="row my-5 p-5 d-flex flex-column align-items-center">
 		<h2>Les avis sur le thé {{ product.name }}</h2>
     {% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-    <div class="alert alert-info">Vous devez être connecter pour pouvoir poster un commentaire</div>
+    <div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
     {% elseif true == user.isBanned %}
     <div class="alert alert-danger">Vous avez été banni et n'êtes plus autorisé à poster des commentaires.</div>
     {% else %}
