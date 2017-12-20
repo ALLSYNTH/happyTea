@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
 
@@ -28,6 +29,10 @@ class MainController extends Controller {
 
 	public function indexAction() { // le modèle pour la page index. les modèles finissent toujours par Action
 		$pageName = "d'accueil";
+
+	
+
+
 
 		$this->createAdmin(); 
 
