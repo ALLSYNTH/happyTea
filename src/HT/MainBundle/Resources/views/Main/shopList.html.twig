@@ -14,11 +14,11 @@
 
     {% for shop in shops %}
 
-      <div class="col-12 col-sm-6 col-lg-4">
+      <div class="offset-1 col-10 offset-sm-0 col-sm-6 col-lg-4">
         <h2>{{shop.name}}</h2>
-        <figure class="img-responsive">
-          <img src="{{ shop.logo }}" class="img-responsive" alt="">
-        </figure>
+        <div class="card-fixed-height">
+          <img src="/happyTea/web/web/img/{{ shop.logo }}" class="img-responsive" alt="">
+        </div>
         <div class="card-block">
           <p class="shoplist address">{{shop.adress}}</>
           <p class="shoplist description">

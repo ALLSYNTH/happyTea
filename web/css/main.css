@@ -18,7 +18,7 @@
 
 body{
 	/*background-color: #e4f9f6;*/
-	padding-bottom: 70px;
+	/*padding-bottom: 70px;*/
 }
 
 .simpletitle{
@@ -59,19 +59,6 @@ body{
 	text-decoration: none;
 }
 
-@media (min-width: 768px) {
-
-	/* ---- home page - Jumbotron ---- */
-	.jumbotron h1 {
-		font-size: 9em;
-	}
-
-	.border {
-		border: 10px solid white;
-		padding: 5em;
-	}
-}
-
 .shop.banner {
 	background-image: url("../img/background/banner-shop.jpg");
 	background-size: cover;
@@ -110,7 +97,7 @@ body{
 
 
 .user.banner {
-	background-image: url("../img/background/banner-user.jpg");
+	background-image: url("../img/background/banner-user.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: #009688;
@@ -147,6 +134,14 @@ body{
 .bg-faded{
 	background-color: rgb(204,234,231);
 
+}
+
+.backToTop {
+		position: fixed;
+		bottom: 40px;
+		right: 20px;
+		font-size: 3rem;
+		color: #46a271;
 }
 
 #footer{
@@ -291,6 +286,7 @@ body{
 	background-image: url("../img/background/banner-shoplist.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: 10%;
 	font-size: 2.2em;
 	color: #009688;
 	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
@@ -377,8 +373,8 @@ body{
 
 .shoplogo{
 	border:2px dashed lightgreen;
-	width: 15em;
-	height: 15em;
+	width: 150px;
+	height: 150px;
 	transition: all 0.5s;
 }
 
@@ -560,7 +556,7 @@ body{
 
 .img-responsive{
 	width: 100%;
-	height: auto%;
+	height: auto;
 }
 
 .no-textdecoration, .no-textdecoration:hover, .no-textdecoration a, .no-textdecoration a:hover {
@@ -776,7 +772,7 @@ body{
 @media (max-width: 768px){
 
 	/* ---- Team Page & Contact Page ---- */
-	.team h1, .contact h1 {
+	.team h1, .contact h1{
 		font-size: 1.2em;
 		padding: 0;
 		margin: 0;
@@ -789,6 +785,10 @@ body{
 
 	/*---- Index Page ----*/
 
+	.shop.banner h1 {
+		font-size: 2em;
+	}
+
 }
 
 @media (min-width: 768px) {
@@ -800,5 +800,40 @@ body{
 
 	.teas form {
 		width: 70%;
+	}
+
+	.card-fixed-height {
+		overflow: hidden;
+		height: 23vw;
+	}
+
+	.product.card-fixed-height {
+		overflow: hidden;
+		height: 29vw;
+	}
+
+	/* ---- home page - Jumbotron ---- */
+	.jumbotron h1 {
+		font-size: 9em;
+	}
+
+	.jumbotron a {
+		padding: 5px 100px;
+	}
+
+	.border {
+		border: 10px solid white;
+		padding: 5em;
+	}
+
+}
+
+@media (min-width: 991px) {
+
+	/* ---- Product Page ---- */
+
+	.product.card-fixed-height {
+		overflow: hidden;
+		height: 25vw;
 	}
 }
