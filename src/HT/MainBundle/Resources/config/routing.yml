@@ -101,3 +101,6 @@ ht_remove_comment:
     defaults: { _controller: HTMainBundle:Main:removeComment }
     requirements:
         id: \d+  
+ht_became_seller: 
+    path:    /ht_became_seller
+    defaults: { _controller: HTMainBundle:Main:becameSeller }

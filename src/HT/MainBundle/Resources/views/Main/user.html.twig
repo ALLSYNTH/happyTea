@@ -8,10 +8,37 @@
   </div>
 </div>
 
-
+{% if true == is_granted('ROLE_SELLER') %}
 <a class="simplelink" href="{% if app.user.shop == null %} {{path('ht_main_addSeller')}} {% else %} {{path( 'ht_main_shop', { 'id' : app.user.shop.id } ) }} {% endif %}"><h3 class="text-center">Allez à mon shop</h3></a>
 <hr>
+{% endif %}
 <br>
+{% if success  %}
+  <div class="alert-success">{{ success }}</div>
+{% endif %}
+{% if false == is_granted('ROLE_SELLER') %}
+  <div class="container">
+  <div class="row justify-content-center">
+    <div class="text-center col-4" id="clickForSlide"> Vous êtes aussi vendeur ? Faites-vous connaître ! 
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class= "form-group col-4" id="slideUser">
+      <form action="" method="post">
+
+        <label for="siret"> Numéro de SIRET : </label>
+        <input type="text" class="form-control" id="siret" name="siret"/>
+        {% if error %}
+          <div class="alert alert-warning"> {{ error }} </div>
+        {% endif %}
+        <input type="submit" value="Inscription"/>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+  <br>
 
 <h2 class="simpletitle text-center">Mes favoris ! </h2>
 

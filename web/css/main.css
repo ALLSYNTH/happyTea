@@ -765,6 +765,22 @@ body{
 	overflow: auto;
 	word-wrap: break-word;
 }
+
+/*-----------------------------------------------------
+	Style USerSlide
+------------------------------------------------ */
+#slideUser {
+
+	display: none; 
+}
+
+#clickForSlide {
+
+	cursor: pointer; 
+	color: orange; 
+	border: 1px solid; 
+}
+
 /* ------------------------------------------------
 	Media Queries
 ------------------------------------------------ */
