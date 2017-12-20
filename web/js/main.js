@@ -377,10 +377,25 @@ function fadeOutTimer() {
 	$('.fadeOutTimer').fadeOut('slow');
 }
 
-var time = setTimeout(fadeOutTimer, 2500);
 
-
-	$('.fa-star').css("color" , "lightgray");
+var time = setTimeout(fadeOutTimer, 2000); 
+var productUserRate = $(".rating-star").data('userrate');
+console.log(productUserRate); 
+	if(productUserRate  == "") {
+		$('.fa-star').css("color" , "lightgray");
+		
+	}
+	else {
+		for(var i = 0; i < 5  ; i++) {
+			if(i < (productUserRate )) {
+				$('.fa-star').eq(i).css("color", "yellowgreen");
+			}
+			else {
+				$('.fa-star').eq(i).css("color", "lightgray");
+			}
+		}
+	}
+	
 	$('.fa-star').hover(function(){
     // $(this).css("background-color", "lightgray");
 

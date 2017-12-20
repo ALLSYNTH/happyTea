@@ -36,7 +36,8 @@ class MainController extends Controller {
 
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
 		 if(null != $articleRepository->findByIsPublished(true) ) {
-		 $articles = $articleRepository->findByIsPublished(true)[0];
+		 $articlesArray = $articleRepository->findBy(array('isPublished' => true), array('publishedAt' => 'desc'));
+		 $articles = $articlesArray[0]; 
 		}
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
@@ -109,6 +110,13 @@ class MainController extends Controller {
 				$rateRepository = $em->getRepository('HTMainBundle:Rate');
 				$avgRate = $rateRepository->findAvgpRate($product)[0][1];
 
+				if( $rateRepository->findOneBy( array("user" => $utilisateur, "product" => $product) ) ) {
+					$rate = $rateRepository->findOneBy( array("user" => $utilisateur, "product" => $product) );
+					$productUserRate = $rate->getRate();
+				} else {
+					$productUserRate = ""; 
+				}
+
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
@@ -120,7 +128,8 @@ class MainController extends Controller {
 				'products' => $products,
 				'user' => $utilisateur,
 				'favs' => $favarray,
-				'avgRate' => $avgRate
+				'avgRate' => $avgRate,
+				'productUserRate' => $productUserRate 
 			));
 
 
@@ -141,11 +150,14 @@ class MainController extends Controller {
 
 	public function blogAction() {
 		$pageName = "Blog";
-
+		$articles = "";
 		$em = $this->getDoctrine()->getManager();
 
 		$articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
-		$articles = $articleRepository->findByIsPublished(true);
+			if($articleRepository->findBy(array('isPublished' => true), array('publishedAt' => 'desc'))) {
+
+				$articles = $articleRepository->findBy(array('isPublished' => true), array('publishedAt' => 'desc'));
+		}
 
 		return $this->render("HTMainBundle:Main:blog.html.twig", array(
 				'title' => $this->title,
@@ -928,6 +940,32 @@ class MainController extends Controller {
 			$em->flush();
 
 			return new JsonResponse($statut);
+		}
+
+		public function removeCommentAction($id) {
+
+			if(!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') || !$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+
+				throw new AccessDeniedException("Accès limité administrateurs. ");
+
+			}
+
+
+			$em = $this->getDoctrine()->getManager();
+			$commentRepository = $em->getRepository('HTMainBundle:Comment');
+
+			 if($commentRepository->find($id)){
+
+				$comment = $commentRepository->find($id);
+				$product = $comment->getProduct();
+				$idProduct = $product->getId(); 
+				$em->remove($comment); 
+				$em->flush();
+			}
+
+			 
+
+			return $this->redirectToRoute('ht_main_teas' , array( 'id' => $idProduct ));
 		}
 
 
