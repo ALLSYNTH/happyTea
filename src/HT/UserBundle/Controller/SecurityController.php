@@ -130,12 +130,15 @@ class SecurityController extends Controller
 
 		}
 
+		dump($request); 
+
 		return $this->render('HTUserBundle:Security:register.html.twig', array(
 				'error' => $error,
 				'success' => $success,
 				
 				'title'   => $this->title,  
 				'pageName'=> $pageName,
+				'request' => $request 
 			));
 	}
 
