@@ -791,4 +791,24 @@ body{
 	.teas form {
 		width: 70%;
 	}
+
+	.card-fixed-height {
+		overflow: hidden;
+		height: 20vw;
+	}
+
+	.product.card-fixed-height {
+		overflow: hidden;
+		height: 29vw;
+	}
+}
+
+@media (min-width: 991px) {
+
+	/* ---- Product Page ---- */
+
+	.product.card-fixed-height {
+		overflow: hidden;
+		height: 25vw;
+	}
 }
