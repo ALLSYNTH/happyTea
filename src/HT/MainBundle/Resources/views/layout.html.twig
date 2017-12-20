@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
 	</head>
 	<body>
-		<header>
+		<header id="top">
 			<!-- bootstrap navbar -->
 			<nav class="navbar navbar-toggleable-md navbar-light bg-faded col-12">
 
@@ -68,7 +68,7 @@
 					  		{% endif %}
 
 					  		{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
-						</ul> 
+						</ul>
 
 						<ul class="navbar-nav">
 
@@ -102,7 +102,7 @@
 
 				      		<li class="nav-item {%if app.request.attributes.get('_route') == 'ht_admin_homepage' %} active {% endif %}">
 				      			<a class="nav-link" href="{{ path('ht_admin_homepage')}}">Admin</a>
-				      	{% endif %} 
+				      	{% endif %}
 				      		</li>
 				    	</ul>
 				    </div>
@@ -114,7 +114,9 @@
 		{% block body %}
 
 		{% endblock %}
-
+			<a href="#top">
+				<i class="fa fa-arrow-circle-up backToTop" aria-hidden="true"></i>
+			</a>
 
 			<footer id="footer" class="animated fadeIn">
 				<div class="container">
