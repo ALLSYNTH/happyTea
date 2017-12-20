@@ -444,6 +444,11 @@ class MainController extends Controller {
  				$user->setIsChecked(false); 
  				$em->persist($user); 
  				$em->flush(); 
+
+ 				$token = new UsernamePasswordToken($user, null, 'users', $user->getRoles());
+ 				 
+ 				$this->container->get('security.token_storage')->setToken($token);
+ 				$this->get('session')->set('_security_users', serialize($token));
  				$success = "Votre demande à bien été enregistré. Un administrateur va valider vos informations et vous pourrez créer votre boutique."; 
  			}
  		}
