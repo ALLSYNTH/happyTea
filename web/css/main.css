@@ -97,7 +97,7 @@ body{
 
 
 .user.banner {
-	background-image: url("../img/background/banner-user.jpg");
+	background-image: url("../img/background/banner-user.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: #009688;
@@ -286,6 +286,7 @@ body{
 	background-image: url("../img/background/banner-shoplist.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: 10%;
 	font-size: 2.2em;
 	color: #009688;
 	text-shadow: 3px 3px 8px rgba(50, 50, 50, 1);
