@@ -29,51 +29,58 @@
       <div class="row">
 
         <div class="col-12 my-3 d-flex justify-content-center align-items-center">
-          <p class="minitext">ouvert en semaine de {{shop.openingTimes.opening}} - {{shop.openingTimes.closing}}</p>
+          {% if shop.openingTimes.opening is defined and shop.openingTimes.closing is defined %}
+            <p class="minitext">
+              ouvert en semaine de {{shop.openingTimes.opening}} - {{shop.openingTimes.closing}}
+            </p>
+          {% endif %}
         </div>
 
         <div class="col-12">
           <div class="row d-flex">
 
             <div class="col-6 col-md-4 d-flex justify-content-center align-items-center">
-              <img class="pr-2" src="{{ asset('img/icons/phone.png') }}" alt="">
-              <p class="minitext">{{shop.phone}}</p>
+              {% if shop.phone is defined %}
+                <img class="pr-2" src="{{ asset('img/icons/phone.png') }}" alt="">
+                <p class="minitext">{{shop.phone}}</p>
+              {% endif %}
             </div>
 
             <div class="col-6 col-md-4 d-flex justify-content-center align-items-center my-3">
-              <img class="pr-2" src="{{ asset('img/icons/link.png') }}" alt="">
-              <a href="{{shop.url}}" class="minitext">le site de la boutique</a>
+              {% if shop.phone is defined %}
+                <img class="pr-2" src="{{ asset('img/icons/link.png') }}" alt="">
+                <a href="{{shop.url}}" class="minitext">le site de la boutique</a>
+              {% endif %}
             </div>
 
             <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
-              <img class="pr-2" src="{{ asset('img/icons/location.png') }}" alt="">
-              <p class="minitext">{{shop.adress}}</p>
+              {% if shop.adress is defined %}
+                <img class="pr-2" src="{{ asset('img/icons/location.png') }}" alt="">
+                <p class="minitext">{{shop.adress}}</p>
+              {% endif %}
             </div>
 
           </div>
         </div>
       </div>
       </div>
-
       </div>
-
-
-
     </section>
 
   </div>
 
-
 <section class="container-fluid shoppage my-5">
-  <h2>Les Thés de la Boutique {{shop.name}}</h2>
+  <h2 class="text-center">Les Thés de la Boutique {{shop.name}}</h2>
 
   <!-- cards with products of shop -->
   <div class="row my-5">
     {% for shopProduct in shopProducts %}
-    <div class="col-6 col-md-3 my-2 shoppage otherproducts">
+    <div class="offset-2 col-8 offset-sm-0 col-sm-6 col-md-4 col-lg-3 my-2 shoppage otherproducts">
       <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
         <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
-        <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+        <div class="product card-fixed-height">
+          <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+        </div>
         <div class="p-2 d-flex justify-content-around">
           {% if shopProduct.category.name == "Thé vert"  %}
             <p class="shoppage-badge bg-turquoise">{{ shopProduct.category.name }} </p>

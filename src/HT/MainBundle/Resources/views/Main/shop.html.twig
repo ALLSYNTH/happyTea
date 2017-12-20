@@ -10,37 +10,74 @@
 
 <div class="container text-center">
 
-  {% if shop.openingTimes.opening is defined or shop.openingTimes.closing is defined %}
-  <br>
-  {{ shop.openingTimes.opening }} {{ shop.openingTimes.closing }}
-  <br>
+  <div class="row my-5">
 
-  {% endif %}
+    <p class="offset-md-2 col-md-8 mb-5">
+      Vous voulez ajouter un produit ? Vous voulez mettre à jour les informetions de votre boutique ? C'est ici pour gérer le contenu de la page de mon shop.
+    </p>
 
-  <a href="{{ path('ht_main_shopPage', {'id' : app.user.shop.id} ) }}" class="simplelink">
+      <div class="col-12 offset-md-1 col-md-5 mt-3">
+        <a href="{{path('ht_main_addProduct')}}">
+            <button type="button" class="btn btn-outline-success">Par ici pour ajouter un produit!</button>
+        </a>
+      </div>
+      <div class="col-12 col-md-5 mt-3">
+        <a href="{{path('ht_main_updateShop', {'id' : shop.id })}}" class="">
+          <button type="button" class="btn btn-outline-primary">Modifier les infos de mon shop</button>
+        </a>
+      </div>
 
-    <h3> Aller a la page public du shop !</h3>
-    <hr>
-    <img src='/happyTea/web/web/img/{{ shop.logo }}' class="shoplogo">
+  </div>
 
-  </a>
-
-  <br>
-  <h2>
-    <a href="{{path('ht_main_addProduct')}}" class="simplelink ">
-      <br>
-      Vous voulez ajouter un produit ?
-      <br>
-      C'est par ici !
-    </a>
-  </h2>
-  <h2>
-    <a href="{{path('ht_main_updateShop', {'id' : shop.id })}}" class="simplelink ">
-      <br>
-      Vous voulez modifier votre shop ?
-      <br>
-      Suivez-nous !
-    </a>
-  </h2>
+  <div class="row mb-4">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Informations sur ma page Shop: </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nom de la boutique:</td>
+          <td>{{ shop.name }}</td>
+        </tr>
+        <tr>
+          <td>Site web de ma boutique:</td>
+          <td>{{ shop.url }}</td>
+        </tr>
+        <tr>
+          <td>adresse:</td>
+          <td>{{ shop.adress }}</td>
+        </tr>
+        <tr>
+          <td>phone:</td>
+          <td>{{ shop.phone }}</td>
+        </tr>
+        <tr>
+          <td>horaires:</td>
+          <td>
+            {{ shop.openingTimes.opening }} - {{ shop.openingTimes.closing }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<div class="container-fluid bg-turquoise p-5">
+  <div class="row text-white d-flex flex-column align-items-center justify-content-center">
+
+    <a href="{{ path('ht_main_shopPage', {'id' : app.user.shop.id} ) }}" class="">
+      <button type="button" class="text-white btn btn-lg btn-outline-secondary">Aller à la page public du shop!</button>
+    </a>
+
+    <div class="my-5">
+      <img src='/happyTea/web/web/img/{{ shop.logo }}' class="shoplogo img-fluid">
+    </div>
+
+  </div>
+</div>
+
+
 {% endblock %}
