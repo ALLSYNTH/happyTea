@@ -77,7 +77,6 @@ ht_main_shopPage:
     path:    /shopPage/{id}
     defaults:
         _controller: HTMainBundle:Main:shopPage
-
     requirements:
         id: \d+
 
@@ -96,3 +95,9 @@ ht_main_removeFav:
 ht_ajax_rate: 
     path:      /ajaxRate
     defaults: { _controller: HTMainBundle:Main:ajaxRate }
+
+ht_remove_comment:
+    path:     /removeComment/{id}
+    defaults: { _controller: HTMainBundle:Main:removeComment }
+    requirements:
+        id: \d+  
