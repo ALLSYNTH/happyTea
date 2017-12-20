@@ -18,7 +18,7 @@
 
 body{
 	/*background-color: #e4f9f6;*/
-	/*padding-bottom: 70px;*/
+	padding-bottom: 70px;
 }
 
 .simpletitle{
@@ -403,7 +403,7 @@ body{
 
 .fav,
 .supfav {
-	background-color: #5cb85c;
+	background-color: #0275d8;
 	color: white;
 }
 

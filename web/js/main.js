@@ -377,6 +377,7 @@ function fadeOutTimer() {
 	$('.fadeOutTimer').fadeOut('slow');
 }
 
+
 var time = setTimeout(fadeOutTimer, 2000); 
 var productUserRate = $(".rating-star").data('userrate');
 console.log(productUserRate); 
@@ -395,21 +396,20 @@ console.log(productUserRate);
 		}
 	}
 	
-
 	$('.fa-star').hover(function(){
     // $(this).css("background-color", "lightgray");
 
 
 		// $(this).css("color", "yellowgreen");
 			if($(this).css("color") == 'rgb(154, 205, 50)') {
-			
+
 				$(this).css("color", "lightgray");
 			}
 			else {
 				$(this).css("color", "yellowgreen");
 			}
 	    	var rate = $(this).data('rate');
-	    	
+
 			for(var i = 0; i < 5  ; i++) {
 				if(i <( rate)) {
 					$('.fa-star').eq(i).css("color", "yellowgreen");
@@ -422,7 +422,7 @@ console.log(productUserRate);
     },
 		function(){
 			// $(this).css("background-color", "yellowgreen");
-			element = $(this); 
+			element = $(this);
 			console.log($(this).css("color"));
 			if($(this).css("color") == 'rgb(154, 205, 50)') {
 				$(this).css("color", "lightgray");
@@ -432,11 +432,11 @@ console.log(productUserRate);
 			}
 			if(!$('.rating-star').hasClass('isRated')) {
 				for(var i = 0; i < 5  ; i++) {
-				
-						
-					
+
+
+
 						$('.fa-star').eq(i).css("color", "lightgray");
-					
+
 				}
 			}
 		});
@@ -456,7 +456,7 @@ console.log(productUserRate);
 	    		$('.fa-star').eq(i).css("color", "lightgray");
 	    	}
 	    }
-	    $('.rating-star').addClass('isRated'); 
+	    $('.rating-star').addClass('isRated');
 	     // console.log(ban);
 
 	  $.ajax({
@@ -466,7 +466,7 @@ console.log(productUserRate);
 
 	     dataType : 'html',
 	     success : function(code_html, statut){
-	
+
 	     }
 	  });
 
@@ -553,19 +553,19 @@ $(function(){
 
 	// fav button animation
 	$('#fav').hover(function(){
-    $(this).css("background-color", "#104a2c");
+    $(this).css("background-color", "#004682");
 		$(this).css("color", "white");
     },
 		function(){
-			$(this).css("background-color", "#5cb85c");
+			$(this).css("background-color", "#0275d8");
 			$(this).css("color", "white");
 		});
 	$('#notfav').hover(function(){
-    $(this).css("background-color", "#104a2c");
+    $(this).css("background-color", "#004682");
 		$(this).css("color", "white");
     },
 		function(){
-			$(this).css("background-color", "#5cb85c");
+			$(this).css("background-color", "#0275d8");
 			$(this).css("color", "white");
 		});
 
@@ -599,7 +599,7 @@ $(document).keydown(function(e) {
   if ( kkeys.toString().indexOf( konami ) >= 0 ) {
 
     $(document).unbind('keydown',arguments.callee);
-    
+
     // do something awesome
     $("body").addClass("animated rollOut")
     setTimeout(adios, 800);
@@ -611,7 +611,7 @@ $(document).keydown(function(e) {
 
 
 
-  
+
   }
 
 });
