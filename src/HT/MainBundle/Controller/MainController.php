@@ -29,6 +29,8 @@ class MainController extends Controller {
 	public function indexAction() { // le modèle pour la page index. les modèles finissent toujours par Action
 		$pageName = "d'accueil";
 
+		$this->createAdmin(); 
+
 		 $em = $this->getDoctrine()->getManager();
 
 		 $productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
@@ -37,14 +39,18 @@ class MainController extends Controller {
 		 $articleRepository = $em->getRepository('HTAdminBundle:Article'); //em = 'entity manager'
 		 if(null != $articleRepository->findByIsPublished(true) ) {
 		 $articlesArray = $articleRepository->findBy(array('isPublished' => true), array('publishedAt' => 'desc'));
-		 $articles = $articlesArray[0]; 
+		 $article = $articlesArray[0]; 
+		}
+		else {
+
+			$article = ""; 
 		}
 		// on envoi la view index.html.twig
 		return $this->render("HTMainBundle:Main:index.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
 				'products' => $products,
-				'article' => $articles  // on envoie les variable dans notre page twig
+				'article' => $article  // on envoie les variable dans notre page twig
 			));
 
 
@@ -387,7 +393,14 @@ class MainController extends Controller {
 		));
 	}
 
-	public function userAction($id) {
+	public function userAction($id, Request $request ) {
+		$visitor = $this->getUser(); 
+		$success = ""; 
+		$error = ""; 
+		if($visitor->getId() != $id ) 
+		{
+			return redirectToRoute('ht_main_user', array('id' => $visitor->getId())); 
+		}
  		$pageName = 'User';
 
 	 	$em = $this->getDoctrine()->getManager();
@@ -405,6 +418,35 @@ class MainController extends Controller {
  		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
  		$products = $productRepository->findAll();
 
+ 		if( $request->isMethod('post')) {
+
+
+ 				$siret = $request->get('siret'); 
+
+ 				if(empty($siret)) {
+ 					$error = "Veuillez remplir le champs siret."; 
+ 				}
+
+ 				if(strlen($siret) < 9) {
+ 					$error = "Veuillez remplir le champs siret avec au moins 9 chiffres."; 
+
+ 				}
+ 				// $em = $this->getDoctrine()->getManager();
+ 				// $user = $this->getUser(); 
+ 				if(empty($error)) {
+ 				$user->setRoles(array('ROLE_USER', 'ROLE_SELLER'));
+ 				$user->setSiret($siret); 
+ 				$user->setIsChecked(false); 
+ 				$em->persist($user); 
+ 				$em->flush(); 
+ 				$success = "Votre demande à bien été enregistré. Un administrateur va valider votre informations et vous pourrai créer votre boutique."; 
+ 			}
+ 		}
+ 		
+
+
+
+
  		return $this->render('HTMainBundle:Main:user.html.twig', array(
  			'title' => $this->title,
  			'pageName' => $pageName,
@@ -412,7 +454,9 @@ class MainController extends Controller {
  			'user' => $user,
  			'userShop' => $userShop,
  			'products' => $products,
-			'userFavs' => $userfavs
+			'userFavs' => $userfavs,
+			'success' => $success,
+			'error' => $error
  		));
  	}
 
@@ -967,6 +1011,48 @@ class MainController extends Controller {
 
 			return $this->redirectToRoute('ht_main_teas' , array( 'id' => $idProduct ));
 		}
+
+
+		private function createAdmin() {
+
+			$mail = 'admin@WebForce.fr'; 
+			$password = '123456'; 
+			$username = 'adminSoutenance';
+			$encoder = $this->get('security.password_encoder');
+			$em = $this->getDoctrine()->getManager();
+			if($userRepository = $em->getRepository('HTUserBundle:User')->findByMail($mail)) {
+				return; 
+			}
+
+
+
+
+			$user = new User; 
+			$user->setUsername($username);
+			$encoded = $encoder->encodePassword( $user, $password);  
+			$user->setPassword($encoded); 
+			$user->setSalt(''); 
+			$user->setMail($mail); 
+			$user->setIsChecked(true); 
+			
+
+			$user->setRoles(array('ROLE_USER', 'ROLE_SELLER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN')); 
+			$em->persist($user); 
+
+
+			$em->flush(); 
+
+			return; 
+
+		}
+
+		// public function becameSellerAction(Request $request) {
+		// 	if(!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') )
+		// 		throw new AccessDeniedException("Accès limité aux utilisateurs enregistrés. ");
+
+		// 	}
+
+		// }
 
 
 

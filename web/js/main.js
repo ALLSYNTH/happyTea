@@ -367,6 +367,13 @@ $(function(){
 // 	console.log($(this));
 
 // });
+// JS pour slide Use 
+$( "#clickForSlide" ).click(function() {
+  $( "#slideUser" ).slideToggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
 function recupStyle(elem, propriete){
     var prop = window.getComputedStyle(elem,null).getPropertyValue(propriete);
    return prop;

@@ -33,7 +33,7 @@
 						<td>{{user.id}}</td>
 						<td>{{user.username}}</td>
 						<td>{{user.mail}}</td>
-						<td>{% if user.shop %}<a href="{{ path('ht_main_shop', { 'id' : user.shop.id }) }}">{{user.shop.name}}</a>{% endif %}
+						<td>{% if user.shop %}<a href="{{ path('ht_main_shopPage', { 'id' : user.shop.id }) }}">{{user.shop.name}}</a>{% endif %}
 						<td>
 							{% if (is_granted('ROLE_SUPER_ADMIN')) %}
 								<select class="select-role" data-href={{ path('ht_admin_user')}} data-id={{ user.id }}>
