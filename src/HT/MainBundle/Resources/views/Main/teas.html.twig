@@ -47,9 +47,10 @@
 			<div class="d-flex flex-md-column">
 				<div class="col-6 col-md-12 d-flex align-items-baseline  my-3">
 					<img class="pr-2" src="{{ asset('img/icons/love-avis.png') }}" alt="">
-					<h4 class="teas info">Note générale: XX </h4>
+					<h4 class="teas info">Note générale : {{ avgRate|round(1) }}</h4>
 				</div>
 			{# 	rating user #}
+
 			{% if false == is_granted('IS_AUTHENTICATED_FULLY') %}
 				<div class="alert alert-info">Vous devez être connecté pour pouvoir poster un commentaire</div>
 			{% elseif true == user.isBanned %}
@@ -63,6 +64,7 @@
 				  <i class="fa fa-star" data-rate="5"  aria-hidden="true"></i>
 				  	</div>
 			 {% endif %}
+
 
 				<!-- price info -->
 				<div class="col-6 col-md-12 d-flex align-items-baseline my-3">
@@ -199,7 +201,7 @@
 
 	<section  id="products" class="row my-5 bg-clearblue p-5">
 
-		<h2 class="darkgrey">Thés de la boutique</h2>
+		<h2 class="darkgrey col-12">Thés de la boutique</h2>
 
 		<!-- display teas from similar categories // a mettre a jour plus tard avec for each + nommage twig-->
 

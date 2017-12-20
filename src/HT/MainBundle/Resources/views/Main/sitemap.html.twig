@@ -2,17 +2,25 @@
 
 
 {% block body %}
-	<div class="container shadowbox">
-		<br>
-		<h2 class="display-4 text-center">Sitemap d'Happytea</h2>
-		<br>
-		<li class="list-unstyled text-center">
-			<ul><a href="{{ path('ht_main_homepage') }}">Accueil</a></ul>
-			<ul><a href="{{ path('ht_main_team') }}">Equipe</a></ul>
-			<ul><a href="{{ path('login') }}">Login</a></ul>
-			<ul><a href="{{ path('register_seller') }}">Inscription Vendeur</a></ul>
-			<ul><a href="{{ path('register') }}">Inscription Consommateur</a></ul>
-		</li>
-	</div>
+
+<div class="container-fluid">
+  <div class="row banner sitemap d-flex align-items-center">
+    <h1 class="col-12 animated zoomIn">Egar(th)é ?</h1>
+  </div>
+</div>
+
+<div class="container shadowbox">
+	<li class="list-unstyled text-center">
+		<ul><a href="{{ path('ht_main_homepage') }}">Accueil</a></ul>
+		<ul><a href="{{ path('ht_main_team') }}">Equipe</a></ul>
+		<ul><a href="{{ path('ht_main_blog') }}">Blog</a></ul>
+		<ul><a href="{{ path('ht_main_contact') }}">Contact</a></ul>
+		<ul><a href="{{ path('ht_main_shopList') }}">Liste des boutiques</a></ul>
+		<ul><a href="{{ path('login') }}">Login</a></ul>
+		<ul><a href="{{ path('register_seller') }}">Inscription Vendeur</a></ul>
+		<ul><a href="{{ path('register') }}">Inscription Consommateur</a></ul>
+
+	</li>
+</div>
 
 {% endblock %}

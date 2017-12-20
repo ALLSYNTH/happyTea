@@ -6,6 +6,8 @@
 		<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css')}}">
+		<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
 	</head>
 	<body>
@@ -21,7 +23,7 @@
 
 					<!-- branding logo -->
 					<a class="navbar-brand align-items-center" href="{{ path('ht_main_homepage')}}">
-						<img src="{{ asset('img/logo.png') }}" class="mainlogo">
+						<img src="{{ asset('img/logo.png') }}" class="mainlogo animated flip">
 					</a>
 
 					<div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
@@ -114,12 +116,12 @@
 		{% endblock %}
 
 
-			<footer id="footer">
+			<footer id="footer" class="animated fadeIn">
 				<div class="container">
 					<div class="d-flex justify-content-between align-items-center">
-						<a class="navbar-brand simplelink" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
+						<a class="navbar-brand k" href="{{path ('ht_main_sitemap')}}" >sitemap</a>
 						<p class="m-0">HappyTea - un projet WF3 </p>
-						<a href="https://twitter.com/happytea_m" target="_blank"><img src="{{ asset('img/icons/twitter.png')}}"  class="img-responsive" alt="icone twitter"></a>
+						<a href="https://twitter.com/happytea_m" target="_blank"><img src="{{ asset('img/icons/twitter.png')}}"  class="img-responsive animated flash" alt="icone twitter"></a>
 					</div>
 				</div>
 			</footer>
@@ -129,6 +131,12 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+		<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+		<script>
+		    AOS.init();
+		</script>
+
 		<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 
