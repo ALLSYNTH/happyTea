@@ -75,10 +75,12 @@
   <!-- cards with products of shop -->
   <div class="row my-5">
     {% for shopProduct in shopProducts %}
-    <div class="col-6 col-md-3 my-2 shoppage otherproducts">
+    <div class="offset-2 col-8 offset-sm-0 col-sm-6 col-md-4 col-lg-3 my-2 shoppage otherproducts">
       <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
         <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
-        <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+        <div class="product card-fixed-height">
+          <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+        </div>
         <div class="p-2 d-flex justify-content-around">
           {% if shopProduct.category.name == "Thé vert"  %}
             <p class="shoppage-badge bg-turquoise">{{ shopProduct.category.name }} </p>
