@@ -812,6 +812,11 @@ body{
 		height: 29vw;
 	}
 
+	.team-fix-height {
+		overflow: hidden;
+		height: 34vw;
+	}
+
 	/* ---- home page - Jumbotron ---- */
 	.jumbotron h1 {
 		font-size: 9em;
