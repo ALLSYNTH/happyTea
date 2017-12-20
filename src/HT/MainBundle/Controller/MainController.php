@@ -6,6 +6,7 @@ namespace HT\MainBundle\Controller;
 use HT\MainBundle\Entity\Shop;
 use HT\MainBundle\Entity\Product;
 use HT\MainBundle\Entity\Comment;
+use HT\MainBundle\Entity\Rate;
 use HT\UserBundle\Entity\User;
 use HT\AdminBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 // notre controleur principal, c'est ici qu'il y aura toutes la logique du projet
-class MainController extends controller {
+class MainController extends Controller {
 
 	protected $title = "HappyTea";
 
@@ -71,11 +72,13 @@ class MainController extends controller {
 
 		$em = $this->getDoctrine()->getManager();
 
+		// Recuperer le produit
 		$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 		$product = $productRepository->find($id);
 		$error = [];
 		$success = "";
 
+		// Commentaire
 		if($request->isMethod('POST')) {
 					$content = $request->get('content');
 					$publishedAt = new \DateTime();
@@ -103,6 +106,9 @@ class MainController extends controller {
 				$productRepository = $em->getRepository('HTMainBundle:Product'); //em = 'entity manager'
 				$products = $productRepository->findAll();
 
+				$rateRepository = $em->getRepository('HTMainBundle:Rate');
+				$avgRate = $rateRepository->findAvgpRate($product)[0][1];
+
 		return $this->render("HTMainBundle:Main:teas.html.twig", array(
 				'title' => $this->title,
 				'pageName' => $pageName,
@@ -113,7 +119,8 @@ class MainController extends controller {
 				'error' => $error,
 				'products' => $products,
 				'user' => $utilisateur,
-				'favs' => $favarray
+				'favs' => $favarray,
+				'avgRate' => $avgRate
 			));
 
 
@@ -801,7 +808,7 @@ class MainController extends controller {
 
 					if($openingTimes['opening'] > $openingTimes['closing']) {
 
-						$error['openingTimes'] = "L'heure d'ouverture doit être antérieur à l'heure de fermeture."; 
+						$error['openingTimes'] = "L'heure d'ouverture doit être antérieur à l'heure de fermeture.";
 					}
 				}
 
@@ -897,7 +904,29 @@ class MainController extends controller {
 
 
 		public function ajaxRateAction(Request $request) {
-			$statut=""; 
+			$statut="";
+			$em = $this->getDoctrine()->getManager();
+
+			$user = $this->getUser();
+			$productRate = $request->query->get('rate');
+			$rateRepository = $em->getRepository('HTMainBundle:Rate');
+
+			$id = $request->query->get('id');
+			$productRepository = $em->getRepository('HTMainBundle:Product');
+			$product = $productRepository->find($id);
+
+			if( $rateRepository->findOneBy( array("user" => $user, "product" => $product) ) ) {
+				$rate = $rateRepository->findOneBy( array("user" => $user, "product" => $product) );
+			} else {
+				$rate = new Rate;
+				$rate->setUser($user);
+				$rate->setProduct($product);
+			}
+
+			$rate->setRate($productRate);
+			$em->persist($rate);
+			$em->flush();
+
 			return new JsonResponse($statut);
 		}
 
