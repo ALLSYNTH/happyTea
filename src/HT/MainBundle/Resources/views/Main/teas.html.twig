@@ -50,7 +50,7 @@
 					<h4 class="teas info">Note générale: XX </h4>
 				</div>
 			{# 	rating user #}
-				<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" > 
+				<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" >
 			  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
 			  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
 			  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
@@ -200,10 +200,12 @@
 		<div class="teas otherproducts d-flex my-2">
 
       {% for product in products %}
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-10 col-sm-6 col-md-4 col-lg-3">
 				<a class="no-textdecoration" href="{{path('ht_main_teas', {'id': product.id} )}}">
         <h4 class="text-center py-2">{{ product.name }}</h4>
-        <img src="/happyTea/web/web/img/{{product.picture}}"  class="img-responsive card-img-top">
+				<div class="product card-fixed-height">
+					<img src="/happyTea/web/web/img/{{product.picture}}"  class="img-responsive card-img-top">
+				</div>
         <div class="p-2 d-flex justify-content-around">
 					{% if product.category.name == "Thé vert"  %}
 	          <p class="shoppage-badge bg-turquoise">{{ product.category.name }} </p>
