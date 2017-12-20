@@ -47,10 +47,10 @@
 			<div class="d-flex flex-md-column">
 				<div class="col-6 col-md-12 d-flex align-items-baseline  my-3">
 					<img class="pr-2" src="{{ asset('img/icons/love-avis.png') }}" alt="">
-					<h4 class="teas info">Note générale: XX </h4>
+					<h4 class="teas info">Note générale : {{ avgRate|round(1) }}</h4>
 				</div>
 			{# 	rating user #}
-				<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" > 
+				<div class= "rating-star" data-href="{{path('ht_ajax_rate')}}" data-req="rate" data-id="{{product.id}}" >
 			  <i class="fa fa-star" data-rate="1" aria-hidden="true"></i>
 			  <i class="fa fa-star" data-rate="2"  aria-hidden="true"></i>
 			  <i class="fa fa-star" data-rate="3"  aria-hidden="true"></i>
