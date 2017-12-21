@@ -15,7 +15,7 @@
       <!-- logo and name shop -->
       <div class="d-flex align-items-end">
         <figure>
-          <img src="{{shop.logo}}" class="img-responsive shoppage-logo" alt="">
+          <img src="/happyTea/web/web/img/{{shop.logo}}" class="img-responsive shoppage-logo" alt="">
         </figure>
         <h1 class="ml-4">La boutique de {{ shop.name }}</h1>
       </div>
@@ -79,7 +79,7 @@
       <a href="{{path('ht_main_teas', {'id': shopProduct.id} )}}" class="no-textdecoration darkgrey">
         <h4 class="text-truncate text-center py-2">{{ shopProduct.name }}</h4>
         <div class="product card-fixed-height">
-          <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive card-img-top">
+          <img src="/happyTea/web/web/img/{{ shopProduct.picture }}"  class="img-responsive-3 card-img-top">
         </div>
         <div class="p-2 d-flex justify-content-around">
           {% if shopProduct.category.name == "Thé vert"  %}
